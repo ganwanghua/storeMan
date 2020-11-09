@@ -2,9 +2,11 @@ package com.pinnoocle.storeman.nets;
 
 import com.pinnoocle.storeman.bean.HomeModel;
 import com.pinnoocle.storeman.bean.NewUserLogin;
+import com.pinnoocle.storeman.bean.OrderBean;
 import com.pinnoocle.storeman.bean.PackageManagerBean;
 import com.pinnoocle.storeman.bean.PersonalBean;
 import com.pinnoocle.storeman.bean.QrCodeBean;
+import com.pinnoocle.storeman.bean.RefundBean;
 import com.pinnoocle.storeman.bean.StatusBean;
 import com.pinnoocle.storeman.bean.UserManagerBean;
 
@@ -47,4 +49,12 @@ public interface RetrofitService {
     // 个人中心
     @POST("index.php?s=/shop/api.index/shop")
     Observable<PersonalBean>shop(@QueryMap Map<String, String> queryMap);
+
+    // 订单列表
+    @POST("index.php?s=/shop/api.order/orderList")
+    Observable<OrderBean>orderList(@QueryMap Map<String, String> queryMap);
+
+    // 售后列表
+    @POST("index.php?s=/shop/api.order/refundList")
+    Observable<RefundBean>refundList(@QueryMap Map<String, String> queryMap);
 }

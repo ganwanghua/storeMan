@@ -11,8 +11,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
         ndk {
-            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+            abiFilters "arm64-v8a", "armeabi-v7a"
         }
         manifestPlaceholders = [
                 JPUSH_PKGNAME: applicationId,
@@ -53,6 +54,7 @@ dependencies {
     implementation files('libs\\jcore-android-2.3.8.jar')
     implementation files('libs\\jpush-android-3.6.6.jar')
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation files('libs\\Msc.jar')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -84,4 +86,7 @@ dependencies {
     implementation 'com.github.tbruyelle:rxpermissions:0.12'
     //扫码
     implementation 'com.github.yuzhiqiang1993:zxing:2.2.5'
+    //顶部导航栏
+    implementation 'com.androidkun:XTabLayout:1.1.5'
+    implementation 'com.android.support:multidex:1.0.3'
 }

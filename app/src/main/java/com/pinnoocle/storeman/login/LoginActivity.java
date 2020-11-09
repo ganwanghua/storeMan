@@ -53,7 +53,7 @@ public class LoginActivity extends BaseActivity {
     private void rxPermissionTest() {
         RxPermissions rxPermissions = new RxPermissions(this);
         rxPermissions
-                .request(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+                .request(Manifest.permission.CAMERA, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.RECORD_AUDIO, Manifest.permission.MODIFY_AUDIO_SETTINGS, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
                 .subscribe(granted -> {
                     if (granted) {
                         // I can control the camera now
@@ -81,10 +81,10 @@ public class LoginActivity extends BaseActivity {
 
     private void login(String phone, String password) {
         ViewLoading.show(this);
-        Map<String,String> map = new HashMap<String, String>();
-        map.put("phone",phone);
-        map.put("password",password);
-        map.put("registrationid",JPushInterface.getRegistrationID(this));
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("phone", phone);
+        map.put("password", password);
+        map.put("registrationid", JPushInterface.getRegistrationID(this));
         dataRepository.login(map, new RemotDataSource.getCallback() {
             @Override
             public void onFailure(String info) {

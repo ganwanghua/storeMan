@@ -27,4 +27,8 @@ public interface RemotDataSource {
     void getPayCode(Map<String, String> queryMap, getCallback callback);
 
     void shop(Map<String, String> queryMap, getCallback callback);
+
+    void orderList(Map<String, String> queryMap, getCallback callback);
+
+    void refundList(Map<String, String> queryMap, getCallback callback);
 }

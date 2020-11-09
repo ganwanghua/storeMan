@@ -29,6 +29,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class CollectionCodeActivity extends BaseActivity {
     DataRepository dataRepository;
@@ -108,7 +109,7 @@ public class CollectionCodeActivity extends BaseActivity {
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    SaveImageUtils.saveImageToGallerys(CollectionCodeActivity.this,myBitmap);
+                                                    SaveImageUtils.saveImageToGallerys(CollectionCodeActivity.this, myBitmap);
                                                 }
                                             });
 
@@ -147,5 +148,10 @@ public class CollectionCodeActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    @OnClick(R.id.iv_back)
+    public void onViewClicked() {
+        finish();
     }
 }

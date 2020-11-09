@@ -1,4 +1,4 @@
-package com.pinnoocle.storeman.home;
+package com.pinnoocle.storeman.home.fragment;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -19,6 +19,10 @@ import com.pedaily.yc.ycdialoglib.dialog.loading.ViewLoading;
 import com.pinnoocle.storeman.MainActivity;
 import com.pinnoocle.storeman.R;
 import com.pinnoocle.storeman.bean.HomeModel;
+import com.pinnoocle.storeman.home.CollectionCodeActivity;
+import com.pinnoocle.storeman.home.OrderActivity;
+import com.pinnoocle.storeman.home.PackageManagementActivity;
+import com.pinnoocle.storeman.home.UserManagementActivity;
 import com.pinnoocle.storeman.login.LoginActivity;
 import com.pinnoocle.storeman.nets.DataRepository;
 import com.pinnoocle.storeman.nets.Injection;
@@ -148,6 +152,7 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
         } else if (position == 1) {
             ActivityUtils.startActivity(getActivity(), UserManagementActivity.class);
         } else if (position == 2) {
+            ActivityUtils.startActivity(getActivity(), OrderActivity.class);
         } else if (position == 3) {
             ActivityUtils.startActivity(getActivity(), CollectionCodeActivity.class);
         }

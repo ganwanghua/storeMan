@@ -5,9 +5,11 @@ import android.content.Context;
 
 import com.pinnoocle.storeman.bean.HomeModel;
 import com.pinnoocle.storeman.bean.NewUserLogin;
+import com.pinnoocle.storeman.bean.OrderBean;
 import com.pinnoocle.storeman.bean.PackageManagerBean;
 import com.pinnoocle.storeman.bean.PersonalBean;
 import com.pinnoocle.storeman.bean.QrCodeBean;
+import com.pinnoocle.storeman.bean.RefundBean;
 import com.pinnoocle.storeman.bean.StatusBean;
 import com.pinnoocle.storeman.bean.UserManagerBean;
 
@@ -185,6 +187,50 @@ public class RemotDataSourceImpl implements RemotDataSource {
 
                     @Override
                     public void onNext(PersonalBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void orderList(Map<String, String> queryMap, final getCallback callback) {
+        Observable<OrderBean> observable = RetrofitHelper.getInstance(mContext).getServer().orderList(queryMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<OrderBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(OrderBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void refundList(Map<String, String> queryMap, final getCallback callback) {
+        Observable<RefundBean> observable = RetrofitHelper.getInstance(mContext).getServer().refundList(queryMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<RefundBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(RefundBean s) { // 请求成功
                         callback.onSuccess(s);
                     }
                 });

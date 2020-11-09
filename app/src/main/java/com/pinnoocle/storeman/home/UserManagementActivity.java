@@ -92,7 +92,7 @@ public class UserManagementActivity extends BaseActivity implements OnRefreshLoa
                 UserManagerBean userManagerBean = (UserManagerBean) data;
                 if (userManagerBean.getCode() == 1) {
                     dataBeanList.addAll(userManagerBean.getData().getUser().getData());
-                    userManagementAdapter.setData(userManagerBean.getData().getUser().getData());
+                    userManagementAdapter.setData(dataBeanList);
                 }
             }
         });
