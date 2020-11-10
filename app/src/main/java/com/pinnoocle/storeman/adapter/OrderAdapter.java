@@ -53,10 +53,19 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.tv_order.setText(mShowItems.get(position).getOrder_no());
         holder.tv_status.setText(mShowItems.get(position).getState_text());
         holder.tv_title.setText(mShowItems.get(position).getGoods().get(0).getGoods_name());
-        holder.tv_money.setText("¥" + mShowItems.get(position).getGoods().get(0).getGoods_price());
+
+        if (mShowItems.get(position).getPoints_exchange_num() > 0) {
+            if (Double.parseDouble(mShowItems.get(position).getGoods().get(0).getExchange_points_money()) > 0) {
+                holder.tv_money.setText(mShowItems.get(position).getGoods().get(0).getExchange_points_num() + "积分+¥" + mShowItems.get(position).getGoods().get(0).getExchange_points_money());
+            }else {
+                holder.tv_money.setText(mShowItems.get(position).getGoods().get(0).getExchange_points_num() + "积分");
+            }
+        }else {
+            holder.tv_money.setText("¥" + mShowItems.get(position).getGoods().get(0).getGoods_price());
+        }
         holder.tv_num.setText("x" + mShowItems.get(position).getGoods().get(0).getTotal_num());
         holder.tv_all_money.setText("共:" + mShowItems.get(position).getGoods().get(0).getTotal_price() + "元");
-        holder.tv_time.setText("支付时间：" + mShowItems.get(position).getGoods().get(0).getCreate_time());
+        holder.tv_time.setText("支付时间：" + mShowItems.get(position).getCreate_time());
 
         holder.ll_order.setOnClickListener(new View.OnClickListener() {
             @Override

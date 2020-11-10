@@ -6,6 +6,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +22,11 @@ import android.widget.TextView;
 import com.pedaily.yc.ycdialoglib.dialog.loading.ViewLoading;
 import com.pinnoocle.storeman.MainActivity;
 import com.pinnoocle.storeman.R;
+import com.pinnoocle.storeman.adapter.ClassAdapter;
+import com.pinnoocle.storeman.adapter.OrderAdapter;
+import com.pinnoocle.storeman.adapter.TravelAdapter;
 import com.pinnoocle.storeman.bean.HomeModel;
+import com.pinnoocle.storeman.bean.OrderBean;
 import com.pinnoocle.storeman.home.CollectionCodeActivity;
 import com.pinnoocle.storeman.home.OrderActivity;
 import com.pinnoocle.storeman.home.PackageManagementActivity;
@@ -30,6 +37,7 @@ import com.pinnoocle.storeman.nets.Injection;
 import com.pinnoocle.storeman.nets.RemotDataSource;
 import com.pinnoocle.storeman.util.ActivityUtils;
 import com.pinnoocle.storeman.util.FastData;
+import com.pinnoocle.storeman.weight.CommItemDecoration;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -52,6 +60,11 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
     private SmartRefreshLayout refreshLayout;
     private PowerSpinnerView powerSpinnerView;
     private int position;
+    private RecyclerView recyclerView,recyclerView1;
+    private ClassAdapter classAdapter;
+    private TravelAdapter travelAdapter;
+    private List<HomeModel.DataBean.ClassBean> dataBeanList = new ArrayList<>();
+    private List<HomeModel.DataBean.TravelBean> travelBeans = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,6 +93,8 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
         tv_zt_num = v.findViewById(R.id.tv_zt_num);
         refreshLayout = v.findViewById(R.id.refresh);
         powerSpinnerView = v.findViewById(R.id.popSpinner);
+        recyclerView = v.findViewById(R.id.recycleView);
+        recyclerView1 = v.findViewById(R.id.recycleView1);
 
         tv_store_name.setText(FastData.getStoreName());
         grid();
@@ -90,15 +105,25 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
             @Override
             public void onItemSelected(int i, String s) {
                 position = i;
-                if(i == 0){
+                dataBeanList.clear();
+                travelBeans.clear();
+                if (i == 0) {
                     home("day");
-                }else if(i == 1){
+                } else if (i == 1) {
                     home("week");
-                }else if(i == 2){
+                } else if (i == 2) {
                     home("month");
                 }
             }
         });
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        classAdapter = new ClassAdapter(getContext());
+        recyclerView.setAdapter(classAdapter);
+
+        recyclerView1.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        travelAdapter = new TravelAdapter(getContext());
+        recyclerView1.setAdapter(travelAdapter);
     }
 
     private void home(String achievement) {
@@ -131,6 +156,12 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
                         tv_indfh_num.setText(defaultdataList.getDf_order_num() + "");
                         tv_zt_num.setText(defaultdataList.getDt_order_num() + "");
                     }
+
+                    dataBeanList.addAll(homeModel.getData().getClassX());
+                    classAdapter.setData(dataBeanList);
+
+                    travelBeans.addAll(homeModel.getData().getTravel());
+                    travelAdapter.setData(travelBeans);
                 }
             }
         });
@@ -162,11 +193,13 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        if(position == 0){
+        dataBeanList.clear();
+        travelBeans.clear();
+        if (position == 0) {
             home("day");
-        }else if(position == 1){
+        } else if (position == 1) {
             home("week");
-        }else if(position == 2){
+        } else if (position == 2) {
             home("month");
         }
     }

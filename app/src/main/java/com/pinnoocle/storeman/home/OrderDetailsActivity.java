@@ -86,6 +86,10 @@ public class OrderDetailsActivity extends BaseActivity {
     TextView tvOrder;
     @BindView(R.id.tv_update_time)
     TextView tvUpdateTime;
+    @BindView(R.id.tv_delivery_fee)
+    TextView tvDeliveryFee;
+    @BindView(R.id.tv_total_merchandise)
+    TextView tvTotalMerchandise;
     private DataRepository dataRepository;
 
     @Override
@@ -171,11 +175,22 @@ public class OrderDetailsActivity extends BaseActivity {
                     tvAddress.setText(orderDetailBean.getData().getDetail().getShop().getAddress());
                     Glide.with(OrderDetailsActivity.this).load(orderDetailBean.getData().getDetail().getGoods().get(0).getImage().getFile_path()).centerCrop().into(ivShop);
                     tvTitle.setText(orderDetailBean.getData().getDetail().getGoods().get(0).getGoods_name());
-                    tvMoney.setText("¥" + orderDetailBean.getData().getDetail().getGoods().get(0).getGoods_price());
+
+                    if (orderDetailBean.getData().getDetail().getPoints_exchange_num() > 0) {
+                        if (Double.parseDouble(orderDetailBean.getData().getDetail().getGoods().get(0).getExchange_points_money()) > 0) {
+                            tvMoney.setText(orderDetailBean.getData().getDetail().getGoods().get(0).getExchange_points_num() + "积分+¥" + orderDetailBean.getData().getDetail().getGoods().get(0).getExchange_points_money());
+                        } else {
+                            tvMoney.setText(orderDetailBean.getData().getDetail().getGoods().get(0).getExchange_points_num() + "积分");
+                        }
+                    } else {
+                        tvMoney.setText("¥" + orderDetailBean.getData().getDetail().getGoods().get(0).getGoods_price());
+                    }
                     tvNum.setText("x" + orderDetailBean.getData().getDetail().getGoods().get(0).getTotal_num());
-                    tvTime.setText("共" + orderDetailBean.getData().getDetail().getGoods().size() + "件商品，合计:");
+                    tvTime.setText("共" + orderDetailBean.getData().getDetail().getGoods().get(0).getTotal_num() + "件商品，合计:");
                     tvAllMoney.setText("¥" + orderDetailBean.getData().getDetail().getGoods().get(0).getTotal_price());
                     tvTotalMoney.setText("¥" + orderDetailBean.getData().getDetail().getTotal_price());
+                    tvDeliveryFee.setText("¥" + orderDetailBean.getData().getDetail().getExpress_price());
+                    tvTotalMerchandise.setText("¥" + orderDetailBean.getData().getDetail().getOrder_price());
                     tvOrder.setText(orderDetailBean.getData().getDetail().getOrder_no());
                     tvUpdateTime.setText(orderDetailBean.getData().getDetail().getCreate_time());
                 }

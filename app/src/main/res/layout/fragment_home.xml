@@ -40,11 +40,13 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:overScrollMode="never">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
@@ -74,32 +76,6 @@
                                 android:layout_centerVertical="true"
                                 android:textColor="#FEFEFE"
                                 android:textSize="15sp" />
-
-                            <!--                            <LinearLayout-->
-                            <!--                                android:layout_width="wrap_content"-->
-                            <!--                                android:layout_height="wrap_content"-->
-                            <!--                                android:layout_alignParentRight="true"-->
-                            <!--                                android:layout_centerVertical="true"-->
-                            <!--                                android:background="@drawable/bg_achievement"-->
-                            <!--                                android:gravity="center_vertical">-->
-
-                            <!--                                <TextView-->
-                            <!--                                    android:layout_width="wrap_content"-->
-                            <!--                                    android:layout_height="wrap_content"-->
-                            <!--                                    android:paddingLeft="10dp"-->
-                            <!--                                    android:paddingTop="5dp"-->
-                            <!--                                    android:paddingBottom="5dp"-->
-                            <!--                                    android:text="今日业绩"-->
-                            <!--                                    android:textColor="@color/white"-->
-                            <!--                                    android:textSize="12sp" />-->
-
-                            <!--                                <ImageView-->
-                            <!--                                    android:layout_width="wrap_content"-->
-                            <!--                                    android:layout_height="wrap_content"-->
-                            <!--                                    android:paddingLeft="5dp"-->
-                            <!--                                    android:paddingRight="5dp"-->
-                            <!--                                    android:src="@mipmap/down" />-->
-                            <!--                            </LinearLayout>-->
 
                             <com.skydoves.powerspinner.PowerSpinnerView
                                 android:id="@+id/popSpinner"
@@ -395,6 +371,82 @@
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="热门课程"
+                        android:textColor="#111111"
+                        android:textSize="20sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/icon_right" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@id/iv_right"
+                        android:text="查看更多"
+                        android:textColor="#A5A5A5"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:overScrollMode="never" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="旅游卡"
+                        android:textColor="#111111"
+                        android:textSize="20sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_right_one"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/icon_right" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@id/iv_right_one"
+                        android:text="查看更多"
+                        android:textColor="#A5A5A5"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:overScrollMode="never" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
