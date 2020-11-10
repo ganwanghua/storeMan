@@ -1,15 +1,24 @@
 package com.pinnoocle.storeman.home;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pedaily.yc.ycdialoglib.dialog.loading.ViewLoading;
+import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
 import com.pinnoocle.storeman.R;
 import com.pinnoocle.storeman.adapter.UserManagementAdapter;
 import com.pinnoocle.storeman.bean.UserManagerBean;
@@ -44,6 +53,8 @@ public class UserManagementActivity extends BaseActivity implements OnRefreshLoa
     RecyclerView recycleView;
     @BindView(R.id.refresh)
     SmartRefreshLayout refresh;
+    @BindView(R.id.iv_cancel)
+    ImageView ivCancel;
     private DataRepository dataRepository;
     private UserManagementAdapter userManagementAdapter;
     private List<UserManagerBean.DataBeanX.UserBean.DataBean> dataBeanList = new ArrayList<>();
@@ -68,27 +79,70 @@ public class UserManagementActivity extends BaseActivity implements OnRefreshLoa
         myTeam(page);
 
         refresh.setOnRefreshLoadMoreListener(this);
+
+        edSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().length() > 0) {
+                    ivCancel.setVisibility(View.VISIBLE);
+                }else {
+                    ivCancel.setVisibility(View.GONE);
+                    page = 1;
+                    dataBeanList.clear();
+                    myTeam(page);
+                }
+            }
+        });
+
+        edSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_SEARCH) {
+                    ((InputMethodManager) edSearch.getContext().getSystemService(Context.INPUT_METHOD_SERVICE))
+                            .hideSoftInputFromWindow(
+                                    getCurrentFocus().getWindowToken(),
+                                    InputMethodManager.HIDE_NOT_ALWAYS);
+                    if (edSearch.getText().toString().equals("")) {
+                        ToastUtils.showToast("搜索内容不能为空");
+                    } else {
+                        page = 1;
+                        dataBeanList.clear();
+                        myTeam(page);
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void myTeam(int page) {
-        ViewLoading.show(this);
         Map<String, String> map = new HashMap<>();
         map.put("wxapp_id", FastData.getWxAppId());
         map.put("shop_id", FastData.getShopId());
+        map.put("nickName", edSearch.getText().toString());
         map.put("page", page + "");
         dataRepository.myTeam(map, new RemotDataSource.getCallback() {
             @Override
             public void onFailure(String info) {
                 refresh.finishRefresh();
                 refresh.finishLoadMoreWithNoMoreData();
-                ViewLoading.dismiss(UserManagementActivity.this);
             }
 
             @Override
             public void onSuccess(Object data) {
                 refresh.finishRefresh();
                 refresh.finishLoadMoreWithNoMoreData();
-                ViewLoading.dismiss(UserManagementActivity.this);
                 UserManagerBean userManagerBean = (UserManagerBean) data;
                 if (userManagerBean.getCode() == 1) {
                     dataBeanList.addAll(userManagerBean.getData().getUser().getData());
@@ -96,11 +150,6 @@ public class UserManagementActivity extends BaseActivity implements OnRefreshLoa
                 }
             }
         });
-    }
-
-    @OnClick(R.id.iv_back)
-    public void onViewClicked() {
-        finish();
     }
 
     @Override
@@ -114,5 +163,17 @@ public class UserManagementActivity extends BaseActivity implements OnRefreshLoa
         page = 1;
         dataBeanList.clear();
         myTeam(page);
+    }
+
+    @OnClick({R.id.iv_back, R.id.iv_cancel})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+            case R.id.iv_cancel:
+                edSearch.setText("");
+                break;
+        }
     }
 }

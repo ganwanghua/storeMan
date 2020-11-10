@@ -45,6 +45,10 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         rxPermissionTest();
+        if (FastData.getFirstLogin().equals("1")) {
+            ActivityUtils.startActivity(LoginActivity.this, MainActivity.class);
+            finish();
+        }
         dataRepository = Injection.dataRepository(this);
         etPhone.setText(FastData.getPhone());
         etPassword.setText(FastData.getPwd());
@@ -101,6 +105,7 @@ public class LoginActivity extends BaseActivity {
                     FastData.setStoreName(newUserLogin.getData().getShop().getShop_name());
                     FastData.setShopId(newUserLogin.getData().getShop().getShop_id() + "");
                     FastData.setWxAppId(newUserLogin.getData().getShop().getWxapp_id() + "");
+                    FastData.setFirstLogin("1");
                     ActivityUtils.startActivity(LoginActivity.this, MainActivity.class);
                     finish();
                 } else {

@@ -1,5 +1,6 @@
 package com.pinnoocle.storeman.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -13,14 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.pedaily.yc.ycdialoglib.dialog.loading.ViewLoading;
 import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
+import com.pinnoocle.storeman.MainActivity;
 import com.pinnoocle.storeman.R;
 import com.pinnoocle.storeman.adapter.PackageManagementAdapter;
 import com.pinnoocle.storeman.bean.PackageManagerBean;
 import com.pinnoocle.storeman.bean.StatusBean;
 import com.pinnoocle.storeman.common.BaseActivity;
+import com.pinnoocle.storeman.login.LoginActivity;
 import com.pinnoocle.storeman.nets.DataRepository;
 import com.pinnoocle.storeman.nets.Injection;
 import com.pinnoocle.storeman.nets.RemotDataSource;
+import com.pinnoocle.storeman.util.ActivityUtils;
 import com.pinnoocle.storeman.util.FastData;
 import com.pinnoocle.storeman.util.StatusBarUtil;
 import com.pinnoocle.storeman.weight.CommItemDecoration;
@@ -94,7 +98,7 @@ public class PackageManagementActivity extends BaseActivity implements PackageMa
                 if (packageManagerBean.getCode() == 1) {
                     tvNum.setText("共" + packageManagerBean.getData().getList().getTotal() + "个套餐商品");
                     dataBeanList.addAll(packageManagerBean.getData().getList().getData());
-                    packageManagementAdapter.setData(packageManagerBean.getData().getList().getData());
+                    packageManagementAdapter.setData(dataBeanList);
                 }
             }
         });
@@ -111,7 +115,9 @@ public class PackageManagementActivity extends BaseActivity implements PackageMa
                 }
                 break;
             case R.id.tv_purchase:
-
+                Intent intent = new Intent(PackageManagementActivity.this, PurchaseRecordsActivity.class);
+                intent.putExtra("goods_id", dataBeanList.get(position).getGoods_id()+"");
+                startActivity(intent);
                 break;
         }
     }

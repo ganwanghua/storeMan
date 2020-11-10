@@ -1,8 +1,11 @@
 package com.pinnoocle.storeman.nets;
 
+import com.pinnoocle.storeman.bean.CommissionBean;
 import com.pinnoocle.storeman.bean.HomeModel;
+import com.pinnoocle.storeman.bean.MyMoneyBean;
 import com.pinnoocle.storeman.bean.NewUserLogin;
 import com.pinnoocle.storeman.bean.OrderBean;
+import com.pinnoocle.storeman.bean.OrderDetailBean;
 import com.pinnoocle.storeman.bean.PackageManagerBean;
 import com.pinnoocle.storeman.bean.PersonalBean;
 import com.pinnoocle.storeman.bean.QrCodeBean;
@@ -57,4 +60,20 @@ public interface RetrofitService {
     // 售后列表
     @POST("index.php?s=/shop/api.order/refundList")
     Observable<RefundBean>refundList(@QueryMap Map<String, String> queryMap);
+
+    // 扫码核销
+    @POST("index.php?s=/shop/api.order/extract")
+    Observable<StatusBean>extract(@QueryMap Map<String, String> queryMap);
+
+    // 订单详情
+    @POST("index.php?s=/shop/api.order/orderDetail")
+    Observable<OrderDetailBean>orderDetail(@QueryMap Map<String, String> queryMap);
+
+    // 我的资产
+    @POST("index.php?s=/shop/api.index/myMoney")
+    Observable<MyMoneyBean>myMoney(@QueryMap Map<String, String> queryMap);
+
+    // 佣金明细
+    @POST("index.php?s=/shop/api.index/commission")
+    Observable<CommissionBean>commission(@QueryMap Map<String, String> queryMap);
 }

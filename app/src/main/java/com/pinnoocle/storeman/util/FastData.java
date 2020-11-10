@@ -20,6 +20,14 @@ public class FastData extends Remember {
         return remember;
     }
 
+    //首次登录
+    public static void setFirstLogin(String firstLogin) {
+        putString("firstLogin", firstLogin);
+    }
+
+    public static String getFirstLogin() {
+        return getString("firstLogin", "");
+    }
 
     //保存shopId
     public static void setShopId(String uid) {

@@ -2,6 +2,7 @@ package com.pinnoocle.storeman;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -13,16 +14,23 @@ import androidx.fragment.app.Fragment;
 
 import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
 import com.pinnoocle.storeman.adapter.FragmentTabAdapter;
+import com.pinnoocle.storeman.bean.StatusBean;
 import com.pinnoocle.storeman.common.BaseActivity;
 import com.pinnoocle.storeman.home.fragment.HomeFragment;
 import com.pinnoocle.storeman.mine.MyFragment;
+import com.pinnoocle.storeman.nets.DataRepository;
+import com.pinnoocle.storeman.nets.Injection;
+import com.pinnoocle.storeman.nets.RemotDataSource;
+import com.pinnoocle.storeman.util.FastData;
 import com.pinnoocle.storeman.util.StatusBarUtil;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
 import com.yzq.zxinglibrary.common.Constant;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,6 +64,7 @@ public class MainActivity extends BaseActivity {
     LinearLayout lin;
     private List<Fragment> fragments = new ArrayList<>();
     private FragmentTabAdapter tabAdapter;
+    private DataRepository dataRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +76,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initView() {
+        dataRepository = Injection.dataRepository(this);
         fragments.add(new HomeFragment());
         fragments.add(new MyFragment());
         tabAdapter = new FragmentTabAdapter(this, fragments, R.id.fl_layout);
@@ -115,7 +125,27 @@ public class MainActivity extends BaseActivity {
         if (requestCode == REQUEST_CODE_SCAN && resultCode == RESULT_OK) {
             if (data != null) {
                 String content = data.getStringExtra(Constant.CODED_CONTENT);
-                ToastUtils.showToast("扫描结果为：" + content);
+                String s = content.substring(content.lastIndexOf("/") + 1, content.length());
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("wxapp_id", FastData.getWxAppId());
+                map.put("shop_id", FastData.getShopId());
+                map.put("order_id", s);
+                dataRepository.extract(map, new RemotDataSource.getCallback() {
+                    @Override
+                    public void onFailure(String info) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(Object data) {
+                        StatusBean statusBean = (StatusBean) data;
+                        if (statusBean.getCode() == 1) {
+                            ToastUtils.showToast(statusBean.getMsg());
+                        } else {
+                            ToastUtils.showToast("核销失败");
+                        }
+                    }
+                });
             }
         }
     }
@@ -148,5 +178,21 @@ public class MainActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    /**
+     * 手机返回键监听
+     */
+    long firstTime = 0;
+
+    @Override
+    public void onBackPressed() {
+        long secondTime = System.currentTimeMillis();
+        if (secondTime - firstTime > 800) { // 两次点击间隔大于800毫秒，不退出
+            ToastUtils.showToast("再按一次退出程序");
+            firstTime = secondTime; // 更新firstTime
+        } else {
+            finish();
+        }
     }
 }

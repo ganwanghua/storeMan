@@ -1,5 +1,6 @@
 package com.pinnoocle.storeman.home.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.pinnoocle.storeman.R;
 import com.pinnoocle.storeman.adapter.OrderAdapter;
 import com.pinnoocle.storeman.bean.OrderBean;
+import com.pinnoocle.storeman.home.OrderDetailsActivity;
 import com.pinnoocle.storeman.nets.DataRepository;
 import com.pinnoocle.storeman.nets.Injection;
 import com.pinnoocle.storeman.nets.RemotDataSource;
@@ -30,7 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DeliveryFragment extends Fragment implements OnRefreshLoadMoreListener {
+public class DeliveryFragment extends Fragment implements OnRefreshLoadMoreListener, OrderAdapter.OnItemClickListener {
     RecyclerView recycleView;
     private DataRepository dataRepository;
     SmartRefreshLayout refresh;
@@ -61,6 +63,7 @@ public class DeliveryFragment extends Fragment implements OnRefreshLoadMoreListe
         recycleView.addItemDecoration(new CommItemDecoration(getContext(), DividerItemDecoration.VERTICAL, getResources().getColor(R.color.white1), 15));
         orderAdapter = new OrderAdapter(getContext());
         recycleView.setAdapter(orderAdapter);
+        orderAdapter.setOnItemClickListener(this);
 
         order(page);
         refresh.setOnRefreshLoadMoreListener(this);
@@ -114,5 +117,12 @@ public class DeliveryFragment extends Fragment implements OnRefreshLoadMoreListe
         page = 1;
         dataBeanList.clear();
         order(page);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
+        intent.putExtra("order_id", dataBeanList.get(position).getOrder_id() + "");
+        startActivity(intent);
     }
 }

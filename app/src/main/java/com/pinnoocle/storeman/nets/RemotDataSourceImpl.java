@@ -3,9 +3,12 @@ package com.pinnoocle.storeman.nets;
 
 import android.content.Context;
 
+import com.pinnoocle.storeman.bean.CommissionBean;
 import com.pinnoocle.storeman.bean.HomeModel;
+import com.pinnoocle.storeman.bean.MyMoneyBean;
 import com.pinnoocle.storeman.bean.NewUserLogin;
 import com.pinnoocle.storeman.bean.OrderBean;
+import com.pinnoocle.storeman.bean.OrderDetailBean;
 import com.pinnoocle.storeman.bean.PackageManagerBean;
 import com.pinnoocle.storeman.bean.PersonalBean;
 import com.pinnoocle.storeman.bean.QrCodeBean;
@@ -231,6 +234,94 @@ public class RemotDataSourceImpl implements RemotDataSource {
 
                     @Override
                     public void onNext(RefundBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void extract(Map<String, String> queryMap, final getCallback callback) {
+        Observable<StatusBean> observable = RetrofitHelper.getInstance(mContext).getServer().extract(queryMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<StatusBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(StatusBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void orderDetail(Map<String, String> queryMap, final getCallback callback) {
+        Observable<OrderDetailBean> observable = RetrofitHelper.getInstance(mContext).getServer().orderDetail(queryMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<OrderDetailBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(OrderDetailBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void myMoney(Map<String, String> queryMap, final getCallback callback) {
+        Observable<MyMoneyBean> observable = RetrofitHelper.getInstance(mContext).getServer().myMoney(queryMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<MyMoneyBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(MyMoneyBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void commission(Map<String, String> queryMap, final getCallback callback) {
+        Observable<CommissionBean> observable = RetrofitHelper.getInstance(mContext).getServer().commission(queryMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<CommissionBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(CommissionBean s) { // 请求成功
                         callback.onSuccess(s);
                     }
                 });

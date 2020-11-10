@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white1"
     android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    tools:context=".home.UserManagementActivity">
+    tools:context=".home.PackageManagementActivity">
 
     <RelativeLayout
         android:id="@+id/rl_title"
@@ -20,7 +19,7 @@
             android:layout_centerInParent="true"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="用户管理"
+            android:text="购买记录"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
@@ -32,45 +31,11 @@
             android:src="@mipmap/goback" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="18dp"
-        android:layout_marginBottom="10dp">
-
-        <EditText
-            android:id="@+id/ed_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_search"
-            android:drawableLeft="@mipmap/search"
-            android:drawablePadding="10dp"
-            android:hint="输入用户名"
-            android:imeOptions="actionSearch"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:textColor="@color/black"
-            android:textColorHint="#828282"
-            android:textSize="14sp" />
-
-        <ImageView
-            android:id="@+id/iv_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:padding="10dp"
-            android:src="@mipmap/cancel"
-            android:visibility="gone" />
-    </RelativeLayout>
-
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_title">
 
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"
@@ -86,4 +51,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-</LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="暂无购买记录"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="gone" />
+</RelativeLayout>

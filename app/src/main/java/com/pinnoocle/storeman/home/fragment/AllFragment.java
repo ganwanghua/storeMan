@@ -1,5 +1,6 @@
 package com.pinnoocle.storeman.home.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,9 @@ import com.pinnoocle.storeman.adapter.OrderAdapter;
 import com.pinnoocle.storeman.adapter.UserManagementAdapter;
 import com.pinnoocle.storeman.bean.OrderBean;
 import com.pinnoocle.storeman.bean.UserManagerBean;
+import com.pinnoocle.storeman.home.OrderDetailsActivity;
+import com.pinnoocle.storeman.home.PackageManagementActivity;
+import com.pinnoocle.storeman.home.PurchaseRecordsActivity;
 import com.pinnoocle.storeman.home.UserManagementActivity;
 import com.pinnoocle.storeman.nets.DataRepository;
 import com.pinnoocle.storeman.nets.Injection;
@@ -33,7 +37,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AllFragment extends Fragment implements OnRefreshLoadMoreListener {
+public class AllFragment extends Fragment implements OnRefreshLoadMoreListener, OrderAdapter.OnItemClickListener {
     RecyclerView recycleView;
     private DataRepository dataRepository;
     SmartRefreshLayout refresh;
@@ -62,6 +66,7 @@ public class AllFragment extends Fragment implements OnRefreshLoadMoreListener {
         recycleView.addItemDecoration(new CommItemDecoration(getContext(), DividerItemDecoration.VERTICAL, getResources().getColor(R.color.white1), 15));
         orderAdapter = new OrderAdapter(getContext());
         recycleView.setAdapter(orderAdapter);
+        orderAdapter.setOnItemClickListener(this);
 
         order(page);
         refresh.setOnRefreshLoadMoreListener(this);
@@ -85,9 +90,9 @@ public class AllFragment extends Fragment implements OnRefreshLoadMoreListener {
                 refresh.finishRefresh();
                 OrderBean orderBean = (OrderBean) data;
                 if (orderBean.getCode() == 1) {
-                    if(orderBean.getData().getList().getCurrent_page() == orderBean.getData().getList().getLast_page()){
+                    if (orderBean.getData().getList().getCurrent_page() == orderBean.getData().getList().getLast_page()) {
                         refresh.finishLoadMoreWithNoMoreData();
-                    }else {
+                    } else {
                         refresh.finishLoadMore();
                     }
                     dataBeanList.addAll(orderBean.getData().getList().getData());
@@ -108,5 +113,12 @@ public class AllFragment extends Fragment implements OnRefreshLoadMoreListener {
         page = 1;
         dataBeanList.clear();
         order(page);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
+        intent.putExtra("order_id", dataBeanList.get(position).getOrder_id() + "");
+        startActivity(intent);
     }
 }

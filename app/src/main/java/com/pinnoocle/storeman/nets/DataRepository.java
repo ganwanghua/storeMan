@@ -72,4 +72,24 @@ public class DataRepository implements RemotDataSource {
     public void refundList(Map<String, String> queryMap, getCallback callback) {
         mRemoteDataSource.refundList(queryMap, callback);
     }
+
+    @Override
+    public void extract(Map<String, String> queryMap, getCallback callback) {
+        mRemoteDataSource.extract(queryMap, callback);
+    }
+
+    @Override
+    public void orderDetail(Map<String, String> queryMap, getCallback callback) {
+        mRemoteDataSource.orderDetail(queryMap, callback);
+    }
+
+    @Override
+    public void myMoney(Map<String, String> queryMap, getCallback callback) {
+        mRemoteDataSource.myMoney(queryMap, callback);
+    }
+
+    @Override
+    public void commission(Map<String, String> queryMap, getCallback callback) {
+        mRemoteDataSource.commission(queryMap, callback);
+    }
 }

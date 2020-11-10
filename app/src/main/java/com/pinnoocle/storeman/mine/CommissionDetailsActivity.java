@@ -7,22 +7,22 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.pedaily.yc.ycdialoglib.dialog.loading.ViewLoading;
-import com.pinnoocle.storeman.MainActivity;
 import com.pinnoocle.storeman.R;
+import com.pinnoocle.storeman.adapter.CommissionAdapter;
 import com.pinnoocle.storeman.adapter.MyMoneyAdapter;
+import com.pinnoocle.storeman.bean.CommissionBean;
 import com.pinnoocle.storeman.bean.MyMoneyBean;
 import com.pinnoocle.storeman.common.BaseActivity;
-import com.pinnoocle.storeman.login.LoginActivity;
 import com.pinnoocle.storeman.nets.DataRepository;
 import com.pinnoocle.storeman.nets.Injection;
 import com.pinnoocle.storeman.nets.RemotDataSource;
-import com.pinnoocle.storeman.util.ActivityUtils;
 import com.pinnoocle.storeman.util.FastData;
 import com.pinnoocle.storeman.util.StatusBarUtil;
 
@@ -38,35 +38,39 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AssetsActivity extends BaseActivity {
+public class CommissionDetailsActivity extends BaseActivity {
 
     @BindView(R.id.iv_back)
     ImageView ivBack;
     @BindView(R.id.rl_title)
     RelativeLayout rlTitle;
-    @BindView(R.id.tv_total_money)
-    TextView tvTotalMoney;
     @BindView(R.id.tv_aliPay_money)
     TextView tvAliPayMoney;
     @BindView(R.id.tv_balancePay_money)
     TextView tvBalancePayMoney;
-    @BindView(R.id.tv_time)
-    TextView tvTime;
-    @BindView(R.id.recycleView)
-    RecyclerView recycleView;
     @BindView(R.id.ll_balancePay_money)
     LinearLayout llBalancePayMoney;
+    @BindView(R.id.cardView)
+    CardView cardView;
+    @BindView(R.id.tv_time)
+    TextView tvTime;
+    @BindView(R.id.rl_time)
+    RelativeLayout rlTime;
+    @BindView(R.id.tv_withdrawal)
+    TextView tvWithdrawal;
+    @BindView(R.id.recycleView)
+    RecyclerView recycleView;
     private DataRepository dataRepository;
-    private MyMoneyAdapter myMoneyAdapter;
+    private CommissionAdapter commissionAdapter;
     private Calendar selectedDate;
-    private List<MyMoneyBean.DataBeanXX.ListBean.DataBean> dataBeanList = new ArrayList<>();
+    private List<CommissionBean.DataBeanX.ListBean.DataBean> dataBeanList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        initWhite1();
+        initWhite();
         StatusBarUtil.StatusBarLightMode(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_assets);
+        setContentView(R.layout.activity_commission_details);
         ButterKnife.bind(this);
         initView();
     }
@@ -79,48 +83,47 @@ public class AssetsActivity extends BaseActivity {
         tvTime.setText(simpleDateFormat.format(date));
 
         SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM");
-        myMoney(simpleDateFormat1.format(date));
+        commission(simpleDateFormat1.format(date));
 
         recycleView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        myMoneyAdapter = new MyMoneyAdapter(this);
-        recycleView.setAdapter(myMoneyAdapter);
+        commissionAdapter = new CommissionAdapter(this);
+        recycleView.setAdapter(commissionAdapter);
     }
 
-    private void myMoney(String time) {
+    private void commission(String time) {
         ViewLoading.show(this);
         Map<String, String> map = new HashMap<String, String>();
         map.put("shop_id", FastData.getShopId());
-        map.put("date", time);
-        dataRepository.myMoney(map, new RemotDataSource.getCallback() {
+        map.put("wxapp_id", FastData.getWxAppId());
+        map.put("time", time);
+        dataRepository.commission(map, new RemotDataSource.getCallback() {
             @Override
             public void onFailure(String info) {
-                ViewLoading.dismiss(AssetsActivity.this);
+                ViewLoading.dismiss(CommissionDetailsActivity.this);
             }
 
             @Override
             public void onSuccess(Object data) {
-                ViewLoading.dismiss(AssetsActivity.this);
-                MyMoneyBean myMoneyBean = (MyMoneyBean) data;
-                if (myMoneyBean.getCode() == 1) {
-                    tvTotalMoney.setText("¥" + myMoneyBean.getData().getData().getOrder_money());
-                    tvAliPayMoney.setText("¥" + myMoneyBean.getData().getData().getRefund_money());
-                    tvBalancePayMoney.setText("¥" + myMoneyBean.getData().getData().getCommission());
+                ViewLoading.dismiss(CommissionDetailsActivity.this);
+                CommissionBean commissionBean = (CommissionBean) data;
+                if (commissionBean.getCode() == 1) {
+                    tvAliPayMoney.setText("¥" + commissionBean.getData().getCount().getTotal());
+                    tvBalancePayMoney.setText("¥" + commissionBean.getData().getCount().getMonth_total());
 
-                    dataBeanList.addAll(myMoneyBean.getData().getList().getData());
-                    myMoneyAdapter.setData(dataBeanList);
+                    dataBeanList.addAll(commissionBean.getData().getList().getData());
+                    commissionAdapter.setData(dataBeanList);
                 }
             }
         });
     }
 
-    @OnClick({R.id.iv_back, R.id.tv_time, R.id.ll_balancePay_money})
+    @OnClick({R.id.iv_back, R.id.tv_time, R.id.tv_withdrawal})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.ll_balancePay_money:
-                ActivityUtils.startActivity(AssetsActivity.this, CommissionDetailsActivity.class);
-                break;
             case R.id.iv_back:
                 finish();
+                break;
+            case R.id.tv_withdrawal:
                 break;
             case R.id.tv_time:
                 Calendar startDate = Calendar.getInstance();
@@ -136,7 +139,7 @@ public class AssetsActivity extends BaseActivity {
                         tvTime.setText(simpleDateFormat.format(date));
                         selectedDate.setTime(date);
                         SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM");
-                        myMoney(simpleDateFormat1.format(date));
+                        commission(simpleDateFormat1.format(date));
                     }
                 })
                         .setType(new boolean[]{true, true, false, false, false, false})// 默认全部显示

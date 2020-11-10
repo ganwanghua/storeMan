@@ -89,4 +89,8 @@ dependencies {
     //顶部导航栏
     implementation 'com.androidkun:XTabLayout:1.1.5'
     implementation 'com.android.support:multidex:1.0.3'
+    //下拉弹窗
+    implementation "com.github.skydoves:powerspinner:1.1.5"
+    //滚轮选择器
+    implementation 'com.contrarywind:Android-PickerView:4.1.9'
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_order"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
@@ -19,11 +20,20 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/tv_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单编号："
+            android:textColor="@color/grey"
+            android:textSize="14sp" />
+
+        <TextView
             android:id="@+id/tv_order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
             android:layout_toLeftOf="@id/tv_status"
+            android:layout_toRightOf="@id/tv_hint"
             android:textColor="@color/grey"
             android:textSize="14sp" />
     </RelativeLayout>
@@ -109,8 +119,9 @@
         android:id="@+id/ll_operation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="right"
         android:paddingBottom="10dp"
-        android:gravity="right">
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tv_pay"

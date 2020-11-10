@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -32,6 +33,8 @@ import com.pinnoocle.storeman.util.FastData;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.skydoves.powerspinner.OnSpinnerItemSelectedListener;
+import com.skydoves.powerspinner.PowerSpinnerView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,6 +50,8 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
     private DataRepository dataRepository;
     private TextView tv_store_name, tv_total_money, tv_wxPay_money, tv_aliPay_money, tv_balancePay_money, tv_pay_num, tv_indent_num, tv_indfh_num, tv_zt_num;
     private SmartRefreshLayout refreshLayout;
+    private PowerSpinnerView powerSpinnerView;
+    private int position;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,18 +79,33 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
         tv_indfh_num = v.findViewById(R.id.tv_indfh_num);
         tv_zt_num = v.findViewById(R.id.tv_zt_num);
         refreshLayout = v.findViewById(R.id.refresh);
+        powerSpinnerView = v.findViewById(R.id.popSpinner);
 
         tv_store_name.setText(FastData.getStoreName());
         grid();
-        home();
+        home("day");
         refreshLayout.setOnRefreshListener(this);
         gridView.setOnItemClickListener(this);
+        powerSpinnerView.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener<String>() {
+            @Override
+            public void onItemSelected(int i, String s) {
+                position = i;
+                if(i == 0){
+                    home("day");
+                }else if(i == 1){
+                    home("week");
+                }else if(i == 2){
+                    home("month");
+                }
+            }
+        });
     }
 
-    private void home() {
+    private void home(String achievement) {
         ViewLoading.show(getActivity());
         Map<String, String> map = new HashMap<>();
         map.put("shop_id", FastData.getShopId());
+        map.put("type", achievement);
         dataRepository.indexNew(map, new RemotDataSource.getCallback() {
             @Override
             public void onFailure(String info) {
@@ -142,7 +162,13 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        home();
+        if(position == 0){
+            home("day");
+        }else if(position == 1){
+            home("week");
+        }else if(position == 2){
+            home("month");
+        }
     }
 
     @Override
