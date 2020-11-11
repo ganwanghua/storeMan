@@ -92,4 +92,19 @@ public class DataRepository implements RemotDataSource {
     public void commission(Map<String, String> queryMap, getCallback callback) {
         mRemoteDataSource.commission(queryMap, callback);
     }
+
+    @Override
+    public void classList(Map<String, String> queryMap, getCallback callback) {
+        mRemoteDataSource.classList(queryMap, callback);
+    }
+
+    @Override
+    public void classDetail(Map<String, String> queryMap, getCallback callback) {
+        mRemoteDataSource.classDetail(queryMap, callback);
+    }
+
+    @Override
+    public void classIndex(getCallback callback) {
+        mRemoteDataSource.classIndex(callback);
+    }
 }

@@ -1,5 +1,8 @@
 package com.pinnoocle.storeman.nets;
 
+import com.pinnoocle.storeman.bean.ClassBean;
+import com.pinnoocle.storeman.bean.ClassDetailBean;
+import com.pinnoocle.storeman.bean.ClassListBean;
 import com.pinnoocle.storeman.bean.CommissionBean;
 import com.pinnoocle.storeman.bean.HomeModel;
 import com.pinnoocle.storeman.bean.MyMoneyBean;
@@ -76,4 +79,16 @@ public interface RetrofitService {
     // 佣金明细
     @POST("index.php?s=/shop/api.index/commission")
     Observable<CommissionBean>commission(@QueryMap Map<String, String> queryMap);
+
+    // 课程分类
+    @POST("index.php?s=/shop/api.index/classIndex")
+    Observable<ClassBean>classIndex();
+
+    // 课程列表
+    @POST("index.php?s=/shop/api.index/classList")
+    Observable<ClassListBean>classList(@QueryMap Map<String, String> queryMap);
+
+    // 课程详情
+    @POST("index.php?s=/shop/api.goods/detail")
+    Observable<ClassDetailBean>classDetail(@QueryMap Map<String, String> queryMap);
 }

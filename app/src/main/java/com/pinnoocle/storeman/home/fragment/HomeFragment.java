@@ -1,5 +1,6 @@
 package com.pinnoocle.storeman.home.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -27,8 +28,11 @@ import com.pinnoocle.storeman.adapter.OrderAdapter;
 import com.pinnoocle.storeman.adapter.TravelAdapter;
 import com.pinnoocle.storeman.bean.HomeModel;
 import com.pinnoocle.storeman.bean.OrderBean;
+import com.pinnoocle.storeman.home.ClassActivity;
+import com.pinnoocle.storeman.home.ClassDetailsActivity;
 import com.pinnoocle.storeman.home.CollectionCodeActivity;
 import com.pinnoocle.storeman.home.OrderActivity;
+import com.pinnoocle.storeman.home.OrderDetailsActivity;
 import com.pinnoocle.storeman.home.PackageManagementActivity;
 import com.pinnoocle.storeman.home.UserManagementActivity;
 import com.pinnoocle.storeman.login.LoginActivity;
@@ -49,7 +53,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HomeFragment extends Fragment implements OnRefreshListener, AdapterView.OnItemClickListener {
+public class HomeFragment extends Fragment implements OnRefreshListener, AdapterView.OnItemClickListener, View.OnClickListener {
     private GridView gridView;
     private int[] icon = {R.mipmap.package_management, R.mipmap.user_management, R.mipmap.order_management, R.mipmap.qr_code};
     private String[] iconName = {"套餐管理", "用户管理", "订单管理", "收款码"};
@@ -60,11 +64,12 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
     private SmartRefreshLayout refreshLayout;
     private PowerSpinnerView powerSpinnerView;
     private int position;
-    private RecyclerView recyclerView,recyclerView1;
+    private RecyclerView recyclerView, recyclerView1;
     private ClassAdapter classAdapter;
     private TravelAdapter travelAdapter;
     private List<HomeModel.DataBean.ClassBean> dataBeanList = new ArrayList<>();
     private List<HomeModel.DataBean.TravelBean> travelBeans = new ArrayList<>();
+    private LinearLayout ll_class_more, ll_travel_card_more;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -95,7 +100,11 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
         powerSpinnerView = v.findViewById(R.id.popSpinner);
         recyclerView = v.findViewById(R.id.recycleView);
         recyclerView1 = v.findViewById(R.id.recycleView1);
+        ll_class_more = v.findViewById(R.id.ll_class_more);
+        ll_travel_card_more = v.findViewById(R.id.ll_travel_card_more);
 
+        ll_class_more.setOnClickListener(this);
+        ll_travel_card_more.setOnClickListener(this);
         tv_store_name.setText(FastData.getStoreName());
         grid();
         home("day");
@@ -120,6 +129,15 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         classAdapter = new ClassAdapter(getContext());
         recyclerView.setAdapter(classAdapter);
+        classAdapter.setOnItemClickListener(new ClassAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(getActivity(), ClassDetailsActivity.class);
+                intent.putExtra("goods_id", dataBeanList.get(position).getGoods_id() + "");
+                intent.putExtra("goods_name", dataBeanList.get(position).getGoods_name());
+                startActivity(intent);
+            }
+        });
 
         recyclerView1.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         travelAdapter = new TravelAdapter(getContext());
@@ -214,6 +232,18 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
             ActivityUtils.startActivity(getActivity(), OrderActivity.class);
         } else if (position == 3) {
             ActivityUtils.startActivity(getActivity(), CollectionCodeActivity.class);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.ll_class_more:
+                ActivityUtils.startActivity(getActivity(), ClassActivity.class);
+                break;
+
+            case R.id.ll_travel_card_more:
+                break;
         }
     }
 }

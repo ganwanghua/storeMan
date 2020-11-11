@@ -3,6 +3,9 @@ package com.pinnoocle.storeman.nets;
 
 import android.content.Context;
 
+import com.pinnoocle.storeman.bean.ClassBean;
+import com.pinnoocle.storeman.bean.ClassDetailBean;
+import com.pinnoocle.storeman.bean.ClassListBean;
 import com.pinnoocle.storeman.bean.CommissionBean;
 import com.pinnoocle.storeman.bean.HomeModel;
 import com.pinnoocle.storeman.bean.MyMoneyBean;
@@ -322,6 +325,72 @@ public class RemotDataSourceImpl implements RemotDataSource {
 
                     @Override
                     public void onNext(CommissionBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void classIndex(final getCallback callback) {
+        Observable<ClassBean> observable = RetrofitHelper.getInstance(mContext).getServer().classIndex();
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ClassBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(ClassBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void classList(Map<String, String> queryMap, final getCallback callback) {
+        Observable<ClassListBean> observable = RetrofitHelper.getInstance(mContext).getServer().classList(queryMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ClassListBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(ClassListBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void classDetail(Map<String, String> queryMap, final getCallback callback) {
+        Observable<ClassDetailBean> observable = RetrofitHelper.getInstance(mContext).getServer().classDetail(queryMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ClassDetailBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(ClassDetailBean s) { // 请求成功
                         callback.onSuccess(s);
                     }
                 });

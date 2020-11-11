@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,6 +50,15 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ViewHolder> 
         Glide.with(context).load(mShowItems.get(position).getGoods_image()).centerCrop().into(holder.iv_class);
         holder.tv_name.setText(mShowItems.get(position).getGoods_name());
         holder.tv_content.setText(mShowItems.get(position).getSelling_point());
+
+        holder.ll_class.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(position);
+                }
+            }
+        });
     }
 
     @Override
@@ -64,7 +74,7 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ViewHolder> 
 
     //**********************itemClick************************
     public interface OnItemClickListener {
-        void onItemClick(int position, View v);
+        void onItemClick(int position);
     }
 
     private OnItemClickListener mOnItemClickListener;
@@ -77,12 +87,14 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ViewHolder> 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView tv_name, tv_content;
         private final ImageView iv_class;
+        private final LinearLayout ll_class;
 
         public ViewHolder(View itemView) {
             super(itemView);
             iv_class = (ImageView) itemView.findViewById(R.id.iv_class);
             tv_content = (TextView) itemView.findViewById(R.id.tv_content);
             tv_name = (TextView) itemView.findViewById(R.id.tv_name);
+            ll_class = (LinearLayout) itemView.findViewById(R.id.ll_class);
         }
     }
 
