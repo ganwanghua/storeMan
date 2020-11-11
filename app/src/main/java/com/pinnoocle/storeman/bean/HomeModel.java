@@ -88,44 +88,44 @@ public class HomeModel {
              * dt_order_num : 0
              */
 
-            private int today_total;
-            private int total_wechat;
-            private int total_alipay;
-            private int total_all;
+            private double today_total;
+            private double total_wechat;
+            private double total_alipay;
+            private double total_all;
             private int scan_order_num;
             private int pay_order_num;
             private int df_order_num;
             private int dt_order_num;
 
-            public int getToday_total() {
+            public double getToday_total() {
                 return today_total;
             }
 
-            public void setToday_total(int today_total) {
+            public void setToday_total(double today_total) {
                 this.today_total = today_total;
             }
 
-            public int getTotal_wechat() {
+            public double getTotal_wechat() {
                 return total_wechat;
             }
 
-            public void setTotal_wechat(int total_wechat) {
+            public void setTotal_wechat(double total_wechat) {
                 this.total_wechat = total_wechat;
             }
 
-            public int getTotal_alipay() {
+            public double getTotal_alipay() {
                 return total_alipay;
             }
 
-            public void setTotal_alipay(int total_alipay) {
+            public void setTotal_alipay(double total_alipay) {
                 this.total_alipay = total_alipay;
             }
 
-            public int getTotal_all() {
+            public double getTotal_all() {
                 return total_all;
             }
 
-            public void setTotal_all(int total_all) {
+            public void setTotal_all(double total_all) {
                 this.total_all = total_all;
             }
 

@@ -33,7 +33,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private DataRepository dataRepository;
     private CircleImageView circleImageView;
     private TextView tv_name, tv_phone;
-    private RelativeLayout rl_assets;
+    private RelativeLayout rl_assets, rl_my_class;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,10 +53,12 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         tv_name = v.findViewById(R.id.tv_name);
         tv_phone = v.findViewById(R.id.tv_phone);
         rl_assets = v.findViewById(R.id.rl_assets);
+        rl_my_class = v.findViewById(R.id.rl_my_class);
         dataRepository = Injection.dataRepository(getContext());
         shop();
 
         rl_assets.setOnClickListener(this);
+        rl_my_class.setOnClickListener(this);
     }
 
     private void shop() {
@@ -92,6 +94,14 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        ActivityUtils.startActivity(getActivity(), AssetsActivity.class);
+        switch (v.getId()) {
+            case R.id.rl_my_class:
+                ActivityUtils.startActivity(getActivity(), MyClassActivity.class);
+                break;
+
+            case R.id.rl_assets:
+                ActivityUtils.startActivity(getActivity(), AssetsActivity.class);
+                break;
+        }
     }
 }

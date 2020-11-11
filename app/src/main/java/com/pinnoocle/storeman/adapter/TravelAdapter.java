@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,7 +47,16 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.ViewHolder
         Glide.with(context).load(mShowItems.get(position).getGoods_image()).centerCrop().into(holder.iv_class);
         holder.tv_name.setText(mShowItems.get(position).getGoods_name());
         holder.tv_money.setText("¥" + mShowItems.get(position).getGoods_sku().getGoods_price());
-        holder.tv_sales_volume.setText("销量:" + mShowItems.get(position).getGoods_sku().getStock_num());
+        holder.tv_sales_volume.setText("销量:" + mShowItems.get(position).getGoods_sales());
+
+        holder.ll_travel_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(position);
+                }
+            }
+        });
     }
 
     @Override
@@ -62,7 +72,7 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.ViewHolder
 
     //**********************itemClick************************
     public interface OnItemClickListener {
-        void onItemClick(int position, View v);
+        void onItemClick(int position);
     }
 
     private OnItemClickListener mOnItemClickListener;
@@ -75,6 +85,7 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView tv_name, tv_money, tv_sales_volume, tv_rush_purchase;
         private final ImageView iv_class;
+        private final LinearLayout ll_travel_card;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -83,6 +94,7 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.ViewHolder
             tv_name = (TextView) itemView.findViewById(R.id.tv_name);
             tv_sales_volume = (TextView) itemView.findViewById(R.id.tv_sales_volume);
             tv_rush_purchase = (TextView) itemView.findViewById(R.id.tv_rush_purchase);
+            ll_travel_card = (LinearLayout) itemView.findViewById(R.id.ll_travel_card);
         }
     }
 

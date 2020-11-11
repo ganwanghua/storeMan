@@ -104,6 +104,11 @@ public class DataRepository implements RemotDataSource {
     }
 
     @Override
+    public void order(Map<String, String> queryMap, getCallback callback) {
+        mRemoteDataSource.order(queryMap, callback);
+    }
+
+    @Override
     public void classIndex(getCallback callback) {
         mRemoteDataSource.classIndex(callback);
     }

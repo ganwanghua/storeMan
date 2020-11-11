@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,27 +20,23 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.pedaily.yc.ycdialoglib.dialog.loading.ViewLoading;
-import com.pinnoocle.storeman.MainActivity;
 import com.pinnoocle.storeman.R;
 import com.pinnoocle.storeman.adapter.ClassAdapter;
-import com.pinnoocle.storeman.adapter.OrderAdapter;
 import com.pinnoocle.storeman.adapter.TravelAdapter;
 import com.pinnoocle.storeman.bean.HomeModel;
-import com.pinnoocle.storeman.bean.OrderBean;
 import com.pinnoocle.storeman.home.ClassActivity;
 import com.pinnoocle.storeman.home.ClassDetailsActivity;
 import com.pinnoocle.storeman.home.CollectionCodeActivity;
 import com.pinnoocle.storeman.home.OrderActivity;
-import com.pinnoocle.storeman.home.OrderDetailsActivity;
 import com.pinnoocle.storeman.home.PackageManagementActivity;
+import com.pinnoocle.storeman.home.TravelCardActivity;
+import com.pinnoocle.storeman.home.TravelCardDetailsActivity;
 import com.pinnoocle.storeman.home.UserManagementActivity;
-import com.pinnoocle.storeman.login.LoginActivity;
 import com.pinnoocle.storeman.nets.DataRepository;
 import com.pinnoocle.storeman.nets.Injection;
 import com.pinnoocle.storeman.nets.RemotDataSource;
 import com.pinnoocle.storeman.util.ActivityUtils;
 import com.pinnoocle.storeman.util.FastData;
-import com.pinnoocle.storeman.weight.CommItemDecoration;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -142,6 +137,15 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
         recyclerView1.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         travelAdapter = new TravelAdapter(getContext());
         recyclerView1.setAdapter(travelAdapter);
+        travelAdapter.setOnItemClickListener(new TravelAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(getActivity(), TravelCardDetailsActivity.class);
+                intent.putExtra("goods_id", travelBeans.get(position).getGoods_id() + "");
+                intent.putExtra("goods_name", travelBeans.get(position).getGoods_name());
+                startActivity(intent);
+            }
+        });
     }
 
     private void home(String achievement) {
@@ -243,6 +247,7 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
                 break;
 
             case R.id.ll_travel_card_more:
+                ActivityUtils.startActivity(getActivity(), TravelCardActivity.class);
                 break;
         }
     }

@@ -64,6 +64,7 @@ public class PushMessageReceiver extends JPushMessageReceiver {
     @Override
     public void onNotifyMessageArrived(Context context, NotificationMessage message) {
         Log.e(TAG, "[onNotifyMessageArrived] " + message);
+        TTSUtils.getInstance().speak(message.notificationContent);
     }
 
     @Override
