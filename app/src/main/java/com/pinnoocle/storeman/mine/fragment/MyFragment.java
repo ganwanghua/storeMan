@@ -1,10 +1,11 @@
-package com.pinnoocle.storeman.mine;
+package com.pinnoocle.storeman.mine.fragment;
 
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,7 +18,12 @@ import com.pinnoocle.storeman.R;
 import com.pinnoocle.storeman.bean.PersonalBean;
 import com.pinnoocle.storeman.bean.QrCodeBean;
 import com.pinnoocle.storeman.home.CollectionCodeActivity;
+import com.pinnoocle.storeman.home.TravelCardActivity;
 import com.pinnoocle.storeman.login.LoginActivity;
+import com.pinnoocle.storeman.mine.AssetsActivity;
+import com.pinnoocle.storeman.mine.MyClassActivity;
+import com.pinnoocle.storeman.mine.SettingActivity;
+import com.pinnoocle.storeman.mine.TravelCardOrderActivity;
 import com.pinnoocle.storeman.nets.DataRepository;
 import com.pinnoocle.storeman.nets.Injection;
 import com.pinnoocle.storeman.nets.RemotDataSource;
@@ -33,7 +39,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private DataRepository dataRepository;
     private CircleImageView circleImageView;
     private TextView tv_name, tv_phone;
-    private RelativeLayout rl_assets, rl_my_class;
+    private RelativeLayout rl_assets, rl_my_class, rl_travel_card;
+    private ImageView iv_setting;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,11 +61,15 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         tv_phone = v.findViewById(R.id.tv_phone);
         rl_assets = v.findViewById(R.id.rl_assets);
         rl_my_class = v.findViewById(R.id.rl_my_class);
+        iv_setting = v.findViewById(R.id.iv_setting);
+        rl_travel_card = v.findViewById(R.id.rl_travel_card);
         dataRepository = Injection.dataRepository(getContext());
         shop();
 
         rl_assets.setOnClickListener(this);
         rl_my_class.setOnClickListener(this);
+        iv_setting.setOnClickListener(this);
+        rl_travel_card.setOnClickListener(this);
     }
 
     private void shop() {
@@ -98,9 +109,14 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             case R.id.rl_my_class:
                 ActivityUtils.startActivity(getActivity(), MyClassActivity.class);
                 break;
-
             case R.id.rl_assets:
                 ActivityUtils.startActivity(getActivity(), AssetsActivity.class);
+                break;
+            case R.id.iv_setting:
+                ActivityUtils.startActivity(getActivity(), SettingActivity.class);
+                break;
+            case R.id.rl_travel_card:
+                ActivityUtils.startActivity(getActivity(), TravelCardOrderActivity.class);
                 break;
         }
     }

@@ -101,7 +101,7 @@ public class TravelCardDetailsActivity extends BaseActivity {
                 ViewLoading.dismiss(TravelCardDetailsActivity.this);
                 ClassDetailBean classDetailBean = (ClassDetailBean) data;
                 if (classDetailBean.getCode() == 1) {
-                    Glide.with(TravelCardDetailsActivity.this).load(classDetailBean.getData().getDetail().getGoods_image()).centerCrop().into(ivPicture);
+                    Glide.with(TravelCardDetailsActivity.this).load(classDetailBean.getData().getDetail().getGoods_image()).into(ivPicture);
                     tvMoney.setText(classDetailBean.getData().getDetail().getGoods_sku().getGoods_price());
                     tvConcessionalRate.setText("价值:" + classDetailBean.getData().getDetail().getGoods_sku().getLine_price() + "元充值卡");
                     tvNum.setText("还剩" + classDetailBean.getData().getDetail().getGoods_stock() + "份");

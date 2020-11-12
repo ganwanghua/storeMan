@@ -6,6 +6,7 @@ import com.pinnoocle.storeman.bean.ClassListBean;
 import com.pinnoocle.storeman.bean.CommissionBean;
 import com.pinnoocle.storeman.bean.HomeModel;
 import com.pinnoocle.storeman.bean.MyClassBean;
+import com.pinnoocle.storeman.bean.MyClassDetailsBean;
 import com.pinnoocle.storeman.bean.MyMoneyBean;
 import com.pinnoocle.storeman.bean.NewUserLogin;
 import com.pinnoocle.storeman.bean.OrderBean;
@@ -96,4 +97,8 @@ public interface RetrofitService {
     // 我的课程
     @POST("index.php?s=/shop/api.user/order")
     Observable<MyClassBean>order(@QueryMap Map<String, String> queryMap);
+
+    // 我的课程详情
+    @POST("index.php?s=/shop/api.user/orderDetail")
+    Observable<MyClassDetailsBean>MyOrderDetail(@QueryMap Map<String, String> queryMap);
 }

@@ -6,15 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.pinnoocle.storeman.R;
-import com.pinnoocle.storeman.bean.HomeModel;
-import com.pinnoocle.storeman.bean.MyClassBean;
+import com.pinnoocle.storeman.bean.ClassDetailBean;
+import com.pinnoocle.storeman.bean.CommissionBean;
+import com.pinnoocle.storeman.bean.MyClassDetailsBean;
 
 import java.util.List;
 
@@ -24,32 +23,39 @@ import java.util.List;
  * @date: 2017/7/19
  */
 
-public class MyClassAdapter extends RecyclerView.Adapter<MyClassAdapter.ViewHolder> {
+public class MyClassDetailsAdapter extends RecyclerView.Adapter<MyClassDetailsAdapter.ViewHolder> {
     private LayoutInflater mInflater;
-    private List<MyClassBean.DataBeanX.ListBean.DataBean> mShowItems;
+    private List<MyClassDetailsBean.DataBean.OrderBean.VideoListBean> mShowItems;
     private Context context;
 
-    public MyClassAdapter(Context context) {
+    public MyClassDetailsAdapter(Context context) {
         this.context = context;
         mInflater = LayoutInflater.from(context);
     }
 
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.item_my_class, parent, false);
+        View view = mInflater.inflate(R.layout.item_course_catalogue, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
 
         return viewHolder;
     }
 
+    public void setData(List<MyClassDetailsBean.DataBean.OrderBean.VideoListBean> list) {
+        mShowItems = list;
+        notifyDataSetChanged();
+    }
+
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        Glide.with(context).load(mShowItems.get(position).getGoods().get(0).getImage().getFile_path()).centerCrop().into(holder.iv_picture);
-        holder.tv_name.setText(mShowItems.get(position).getGoods().get(0).getGoods_name());
-        holder.tv_content.setText(mShowItems.get(position).getGoods().get(0).getSelling_point());
+        holder.tv_name.setText(mShowItems.get(position).getTitle());
+        if(mShowItems.get(position).getFree() == 1){
+            holder.iv_play.setImageResource(R.mipmap.play);
+        }else {
+            holder.iv_play.setImageResource(R.mipmap.locking);
+        }
 
-        holder.tv_study.setOnClickListener(new View.OnClickListener() {
+        holder.iv_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mOnItemClickListener != null) {
@@ -64,12 +70,6 @@ public class MyClassAdapter extends RecyclerView.Adapter<MyClassAdapter.ViewHold
         return mShowItems == null ? 0 : mShowItems.size();
     }
 
-    public void setData(List<MyClassBean.DataBeanX.ListBean.DataBean> list) {
-        mShowItems = list;
-        notifyDataSetChanged();
-    }
-
-
     //**********************itemClick************************
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -83,17 +83,13 @@ public class MyClassAdapter extends RecyclerView.Adapter<MyClassAdapter.ViewHold
     //**************************************************************
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView tv_name, tv_content,tv_study;
-        private final ImageView iv_picture;
-        private final LinearLayout ll_class;
+        private final TextView tv_name;
+        private final ImageView iv_play;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            iv_picture = (ImageView) itemView.findViewById(R.id.iv_picture);
-            tv_content = (TextView) itemView.findViewById(R.id.tv_content);
-            tv_study = (TextView) itemView.findViewById(R.id.tv_study);
+            iv_play = (ImageView) itemView.findViewById(R.id.iv_play);
             tv_name = (TextView) itemView.findViewById(R.id.tv_name);
-            ll_class = (LinearLayout) itemView.findViewById(R.id.ll_class);
         }
     }
 

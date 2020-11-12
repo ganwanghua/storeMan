@@ -46,7 +46,7 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        Glide.with(context).load(mShowItems.get(position).getGoods_image()).centerCrop().into(holder.iv_class);
+        Glide.with(context).load(mShowItems.get(position).getGoods_image()).into(holder.iv_class);
         holder.tv_name.setText(mShowItems.get(position).getGoods_name());
         holder.tv_content.setText(mShowItems.get(position).getSelling_point());
         holder.tv_money.setText("¥" + mShowItems.get(position).getGoods_sku().getGoods_price());

@@ -92,7 +92,7 @@ public class ClassDetailsActivity extends BaseActivity {
                 ViewLoading.dismiss(ClassDetailsActivity.this);
                 ClassDetailBean classDetailBean = (ClassDetailBean) data;
                 if (classDetailBean.getCode() == 1) {
-                    Glide.with(ClassDetailsActivity.this).load(classDetailBean.getData().getDetail().getGoods_image()).centerCrop().into(ivPicture);
+                    Glide.with(ClassDetailsActivity.this).load(classDetailBean.getData().getDetail().getGoods_image()).into(ivPicture);
                     tvName.setText(classDetailBean.getData().getDetail().getGoods_name());
                     tvMoneyOne.setText(classDetailBean.getData().getDetail().getGoods_sku().getGoods_price());
                     tvConcessionalRate.setText("¥" + classDetailBean.getData().getDetail().getGoods_sku().getLine_price());

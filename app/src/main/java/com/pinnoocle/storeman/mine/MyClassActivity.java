@@ -1,5 +1,6 @@
 package com.pinnoocle.storeman.mine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -16,6 +17,7 @@ import com.pinnoocle.storeman.adapter.MyClassAdapter;
 import com.pinnoocle.storeman.bean.ClassListBean;
 import com.pinnoocle.storeman.bean.MyClassBean;
 import com.pinnoocle.storeman.common.BaseActivity;
+import com.pinnoocle.storeman.home.OrderDetailsActivity;
 import com.pinnoocle.storeman.nets.DataRepository;
 import com.pinnoocle.storeman.nets.Injection;
 import com.pinnoocle.storeman.nets.RemotDataSource;
@@ -35,7 +37,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MyClassActivity extends BaseActivity implements OnRefreshLoadMoreListener {
+public class MyClassActivity extends BaseActivity implements OnRefreshLoadMoreListener, MyClassAdapter.OnItemClickListener {
 
     @BindView(R.id.iv_back)
     ImageView ivBack;
@@ -65,6 +67,7 @@ public class MyClassActivity extends BaseActivity implements OnRefreshLoadMoreLi
         recycleView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         myClassAdapter = new MyClassAdapter(this);
         recycleView.setAdapter(myClassAdapter);
+        myClassAdapter.setOnItemClickListener(this);
 
         order(page);
         refresh.setOnRefreshLoadMoreListener(this);
@@ -116,5 +119,13 @@ public class MyClassActivity extends BaseActivity implements OnRefreshLoadMoreLi
     @OnClick(R.id.iv_back)
     public void onViewClicked() {
         finish();
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(this, MyClassDetailsActivity.class);
+        intent.putExtra("order_name", dataBeanList.get(position).getGoods().get(0).getGoods_name());
+        intent.putExtra("order_id", dataBeanList.get(position).getOrder_id() + "");
+        startActivity(intent);
     }
 }

@@ -109,6 +109,11 @@ public class DataRepository implements RemotDataSource {
     }
 
     @Override
+    public void MyOrderDetail(Map<String, String> queryMap, getCallback callback) {
+        mRemoteDataSource.MyOrderDetail(queryMap, callback);
+    }
+
+    @Override
     public void classIndex(getCallback callback) {
         mRemoteDataSource.classIndex(callback);
     }

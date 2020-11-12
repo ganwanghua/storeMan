@@ -43,7 +43,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mine.MyClassActivity"></activity>
+        <activity android:name=".mine.MyClassDetailsActivity"></activity>
+        <activity android:name=".mine.TravelCardOrderActivity" />
+        <activity android:name=".mine.SettingActivity" />
+        <activity android:name=".mine.MyClassActivity" />
         <activity android:name=".home.TravelCardDetailsActivity" />
         <activity android:name=".home.TravelCardActivity" />
         <activity android:name=".home.VideoActivity" />

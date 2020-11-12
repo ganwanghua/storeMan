@@ -2,7 +2,6 @@ package com.pinnoocle.storeman;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -15,9 +14,10 @@ import androidx.fragment.app.Fragment;
 import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
 import com.pinnoocle.storeman.adapter.FragmentTabAdapter;
 import com.pinnoocle.storeman.bean.StatusBean;
+import com.pinnoocle.storeman.common.AppManager;
 import com.pinnoocle.storeman.common.BaseActivity;
 import com.pinnoocle.storeman.home.fragment.HomeFragment;
-import com.pinnoocle.storeman.mine.MyFragment;
+import com.pinnoocle.storeman.mine.fragment.MyFragment;
 import com.pinnoocle.storeman.nets.DataRepository;
 import com.pinnoocle.storeman.nets.Injection;
 import com.pinnoocle.storeman.nets.RemotDataSource;
@@ -76,6 +76,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initView() {
+        AppManager.getInstance().addActivity(this);
         dataRepository = Injection.dataRepository(this);
         fragments.add(new HomeFragment());
         fragments.add(new MyFragment());

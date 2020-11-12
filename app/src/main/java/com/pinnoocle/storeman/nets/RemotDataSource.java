@@ -46,5 +46,7 @@ public interface RemotDataSource {
 
     void order(Map<String, String> queryMap, getCallback callback);
 
+    void MyOrderDetail(Map<String, String> queryMap, getCallback callback);
+
     void classIndex(getCallback callback);
 }

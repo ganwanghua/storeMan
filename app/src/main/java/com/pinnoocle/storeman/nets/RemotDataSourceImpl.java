@@ -9,6 +9,7 @@ import com.pinnoocle.storeman.bean.ClassListBean;
 import com.pinnoocle.storeman.bean.CommissionBean;
 import com.pinnoocle.storeman.bean.HomeModel;
 import com.pinnoocle.storeman.bean.MyClassBean;
+import com.pinnoocle.storeman.bean.MyClassDetailsBean;
 import com.pinnoocle.storeman.bean.MyMoneyBean;
 import com.pinnoocle.storeman.bean.NewUserLogin;
 import com.pinnoocle.storeman.bean.OrderBean;
@@ -414,6 +415,28 @@ public class RemotDataSourceImpl implements RemotDataSource {
 
                     @Override
                     public void onNext(MyClassBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void MyOrderDetail(Map<String, String> queryMap, final getCallback callback) {
+        Observable<MyClassDetailsBean> observable = RetrofitHelper.getInstance(mContext).getServer().MyOrderDetail(queryMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<MyClassDetailsBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(MyClassDetailsBean s) { // 请求成功
                         callback.onSuccess(s);
                     }
                 });
