@@ -1,6 +1,8 @@
 package com.pinnoocle.storeman.home;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -11,17 +13,23 @@ import androidx.viewpager.widget.ViewPager;
 import com.androidkun.xtablayout.XTabLayout;
 import com.bumptech.glide.Glide;
 import com.pedaily.yc.ycdialoglib.dialog.loading.ViewLoading;
+import com.pinnoocle.storeman.MainActivity;
 import com.pinnoocle.storeman.R;
 import com.pinnoocle.storeman.adapter.FragmentAdapter;
+import com.pinnoocle.storeman.bean.ByNowClassBean;
 import com.pinnoocle.storeman.bean.ClassDetailBean;
 import com.pinnoocle.storeman.common.BaseActivity;
 import com.pinnoocle.storeman.home.fragment.CourseCatalogueFragment;
 import com.pinnoocle.storeman.home.fragment.CourseIntroductionFragment;
+import com.pinnoocle.storeman.login.LoginActivity;
+import com.pinnoocle.storeman.mine.MyClassDetailsActivity;
 import com.pinnoocle.storeman.nets.DataRepository;
 import com.pinnoocle.storeman.nets.Injection;
 import com.pinnoocle.storeman.nets.RemotDataSource;
+import com.pinnoocle.storeman.util.ActivityUtils;
 import com.pinnoocle.storeman.util.FastData;
 import com.pinnoocle.storeman.util.StatusBarUtil;
+import com.pinnoocle.storeman.weight.WrapContentHeightViewPager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,9 +63,12 @@ public class ClassDetailsActivity extends BaseActivity {
     @BindView(R.id.xTablayout)
     XTabLayout xTablayout;
     @BindView(R.id.viewPager)
-    ViewPager viewPager;
+    WrapContentHeightViewPager viewPager;
+    @BindView(R.id.tv_buy)
+    TextView tvBuy;
     private DataRepository dataRepository;
     List<Fragment> fragments = new ArrayList<>();
+    ClassDetailBean.DataBean.DetailBean classDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +103,7 @@ public class ClassDetailsActivity extends BaseActivity {
                 ViewLoading.dismiss(ClassDetailsActivity.this);
                 ClassDetailBean classDetailBean = (ClassDetailBean) data;
                 if (classDetailBean.getCode() == 1) {
+                    classDetail = classDetailBean.getData().getDetail();
                     Glide.with(ClassDetailsActivity.this).load(classDetailBean.getData().getDetail().getGoods_image()).into(ivPicture);
                     tvName.setText(classDetailBean.getData().getDetail().getGoods_name());
                     tvMoneyOne.setText(classDetailBean.getData().getDetail().getGoods_sku().getGoods_price());
@@ -104,7 +116,7 @@ public class ClassDetailsActivity extends BaseActivity {
                     for (int i = 0; i < titles.size(); i++) {
                         if (i == 0) {
                             fragments.add(new CourseIntroductionFragment(classDetailBean.getData().getDetail().getContent()));
-                        }else {
+                        } else {
                             fragments.add(new CourseCatalogueFragment(classDetailBean.getData().getVideoList()));
                         }
                     }
@@ -118,8 +130,18 @@ public class ClassDetailsActivity extends BaseActivity {
         });
     }
 
-    @OnClick(R.id.iv_back)
-    public void onViewClicked() {
-        finish();
+    @OnClick({R.id.iv_back, R.id.tv_buy})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+            case R.id.tv_buy:
+                Intent intent = new Intent(this, AcknowledgementOrderActivity.class);
+                intent.putExtra("goods_id", classDetail.getGoods_id() + "");
+                intent.putExtra("sku_id", classDetail.getGoods_sku().getSpec_sku_id());
+                startActivity(intent);
+                break;
+        }
     }
 }

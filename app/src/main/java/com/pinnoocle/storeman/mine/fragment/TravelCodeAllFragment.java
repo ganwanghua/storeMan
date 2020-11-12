@@ -19,6 +19,7 @@ import com.pinnoocle.storeman.adapter.TravelCodeOrderAdapter;
 import com.pinnoocle.storeman.bean.MyClassBean;
 import com.pinnoocle.storeman.bean.OrderBean;
 import com.pinnoocle.storeman.home.OrderDetailsActivity;
+import com.pinnoocle.storeman.mine.TravelCardOrderDetailsActivity;
 import com.pinnoocle.storeman.nets.DataRepository;
 import com.pinnoocle.storeman.nets.Injection;
 import com.pinnoocle.storeman.nets.RemotDataSource;
@@ -127,7 +128,7 @@ public class TravelCodeAllFragment extends Fragment implements TravelCodeOrderAd
 
     @Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
+        Intent intent = new Intent(getActivity(), TravelCardOrderDetailsActivity.class);
         intent.putExtra("order_id", dataBeanList.get(position).getOrder_id() + "");
         startActivity(intent);
     }

@@ -48,5 +48,12 @@ public interface RemotDataSource {
 
     void MyOrderDetail(Map<String, String> queryMap, getCallback callback);
 
+    void buyPay(Map<String, String> queryMap, getCallback callback);
+
+    void lists(Map<String, String> queryMap, getCallback callback);
+
     void classIndex(getCallback callback);
+
+    void buyNow(String s, String goods_id, String goods_num, String goods_sku_id,
+                String shop_id, getCallback callback);
 }

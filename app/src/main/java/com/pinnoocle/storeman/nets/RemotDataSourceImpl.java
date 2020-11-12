@@ -3,6 +3,9 @@ package com.pinnoocle.storeman.nets;
 
 import android.content.Context;
 
+import com.pinnoocle.storeman.bean.AddressBean;
+import com.pinnoocle.storeman.bean.AliPayBean;
+import com.pinnoocle.storeman.bean.ByNowClassBean;
 import com.pinnoocle.storeman.bean.ClassBean;
 import com.pinnoocle.storeman.bean.ClassDetailBean;
 import com.pinnoocle.storeman.bean.ClassListBean;
@@ -23,6 +26,7 @@ import com.pinnoocle.storeman.bean.UserManagerBean;
 
 import java.util.Map;
 
+import retrofit2.http.Path;
 import rx.Observable;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -437,6 +441,73 @@ public class RemotDataSourceImpl implements RemotDataSource {
 
                     @Override
                     public void onNext(MyClassDetailsBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void buyNow(String s, String goods_id, String goods_num, String goods_sku_id,
+                       String shop_id, final getCallback callback) {
+        Observable<ByNowClassBean> observable = RetrofitHelper.getInstance(mContext).getServer().buyNow(s, goods_id, goods_num, goods_sku_id, shop_id);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ByNowClassBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(ByNowClassBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void buyPay(Map<String, String> queryMap, final getCallback callback) {
+        Observable<AliPayBean> observable = RetrofitHelper.getInstance(mContext).getServer().buyPay(queryMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<AliPayBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(AliPayBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void lists(Map<String, String> queryMap, final getCallback callback) {
+        Observable<AddressBean> observable = RetrofitHelper.getInstance(mContext).getServer().lists(queryMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<AddressBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(AddressBean s) { // 请求成功
                         callback.onSuccess(s);
                     }
                 });

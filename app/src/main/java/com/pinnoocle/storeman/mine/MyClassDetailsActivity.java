@@ -121,6 +121,5 @@ public class MyClassDetailsActivity extends BaseActivity implements MyClassDetai
         }else {
             ToastUtils.showToast("购买之后才能观看哟");
         }
-
     }
 }
