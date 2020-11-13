@@ -135,4 +135,8 @@ public interface RetrofitService {
     // 删除地址
     @POST("index.php?s=/shop/api.address/delete")
     Observable<StatusBean> delete(@QueryMap Map<String, String> queryMap);
+
+    // 是否开启通知
+    @POST("index.php?s=/shop/api.index/switchNotice")
+    Observable<StatusBean> switchNotice(@QueryMap Map<String, String> queryMap);
 }

@@ -30,6 +30,10 @@ import com.pinnoocle.storeman.nets.RemotDataSource;
 import com.pinnoocle.storeman.util.ActivityUtils;
 import com.pinnoocle.storeman.util.FastData;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,7 +59,21 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         return v;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, priority = 100, sticky = false) //在ui线程执行，优先级为100
+    public void onEvent(String message) {
+        if (message.equals("1")) {
+            shop();
+        }
+    }
+
     private void initView(View v) {
+        EventBus.getDefault().register(this);
         circleImageView = v.findViewById(R.id.iv_avatar_one);
         tv_name = v.findViewById(R.id.tv_name);
         tv_phone = v.findViewById(R.id.tv_phone);
@@ -84,6 +102,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             public void onSuccess(Object data) {
                 PersonalBean personalBean = (PersonalBean) data;
                 if (personalBean.getCode() == 1) {
+                    FastData.setCan_notice(personalBean.getData().getShop().getCan_notice() + "");
                     Glide.with(getActivity()).load(personalBean.getData().getShop().getLogo()).centerCrop().into(circleImageView);
                     tv_name.setText(personalBean.getData().getShop().getShop_name());
                     if (!TextUtils.isEmpty(personalBean.getData().getShop().getPhone()) && personalBean.getData().getShop().getPhone().length() > 6) {

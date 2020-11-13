@@ -144,6 +144,11 @@ public class DataRepository implements RemotDataSource {
     }
 
     @Override
+    public void switchNotice(Map<String, String> queryMap, getCallback callback) {
+        mRemoteDataSource.switchNotice(queryMap, callback);
+    }
+
+    @Override
     public void classIndex(getCallback callback) {
         mRemoteDataSource.classIndex(callback);
     }

@@ -60,6 +60,8 @@ public interface RemotDataSource {
 
     void delete(Map<String, String> queryMap, getCallback callback);
 
+    void switchNotice(Map<String, String> queryMap, getCallback callback);
+
     void classIndex(getCallback callback);
 
     void buyNow(String s, String goods_id, String goods_num, String goods_sku_id,

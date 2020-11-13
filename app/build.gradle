@@ -98,5 +98,8 @@ dependencies {
     implementation('cn.qqtheme.framework:WheelPicker:1.5.5') {
         exclude group: 'com.android.support'
     }
+    //支付宝支付
     implementation(name: 'alipaySdk-15.7.7-20200702160044', ext: 'aar')
+    //开关
+    implementation 'ch.ielse:switchbutton:1.0.1'
 }

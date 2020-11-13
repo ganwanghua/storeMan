@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -41,13 +42,21 @@ import com.pinnoocle.storeman.util.FastData;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.skydoves.powerspinner.OnSpinnerDismissListener;
 import com.skydoves.powerspinner.OnSpinnerItemSelectedListener;
+import com.skydoves.powerspinner.OnSpinnerOutsideTouchListener;
 import com.skydoves.powerspinner.PowerSpinnerView;
+import com.skydoves.powerspinner.SpinnerAnimation;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import cn.qqtheme.framework.picker.OptionPicker;
+import cn.qqtheme.framework.widget.WheelView;
 
 public class HomeFragment extends Fragment implements OnRefreshListener, AdapterView.OnItemClickListener, View.OnClickListener {
     private GridView gridView;
@@ -56,16 +65,17 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
     private SimpleAdapter sim_adapter;
     private ArrayList<Map<String, Object>> data_list;
     private DataRepository dataRepository;
-    private TextView tv_store_name, tv_total_money, tv_wxPay_money, tv_aliPay_money, tv_balancePay_money, tv_pay_num, tv_indent_num, tv_indfh_num, tv_zt_num;
+    private TextView tv_store_name,tv_achievement, tv_total_money, tv_wxPay_money, tv_aliPay_money, tv_balancePay_money, tv_pay_num, tv_indent_num, tv_indfh_num, tv_zt_num;
     private SmartRefreshLayout refreshLayout;
-    private PowerSpinnerView powerSpinnerView;
+//    private PowerSpinnerView powerSpinnerView;
     private int position;
     private RecyclerView recyclerView, recyclerView1;
     private ClassAdapter classAdapter;
     private TravelAdapter travelAdapter;
+    private List<String> dataList = new ArrayList<>();
     private List<HomeModel.DataBean.ClassBean> dataBeanList = new ArrayList<>();
     private List<HomeModel.DataBean.TravelBean> travelBeans = new ArrayList<>();
-    private LinearLayout ll_class_more, ll_travel_card_more;
+    private LinearLayout ll_class_more, ll_travel_card_more,ll_achievement;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -81,6 +91,9 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
     }
 
     private void initView(View v) {
+        dataList.add("当日业绩");
+        dataList.add("本周业绩");
+        dataList.add("本月业绩");
         dataRepository = Injection.dataRepository(getContext());
         gridView = v.findViewById(R.id.gridView);
         tv_store_name = v.findViewById(R.id.tv_store_name);
@@ -92,35 +105,38 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
         tv_indent_num = v.findViewById(R.id.tv_indent_num);
         tv_indfh_num = v.findViewById(R.id.tv_indfh_num);
         tv_zt_num = v.findViewById(R.id.tv_zt_num);
+        tv_achievement = v.findViewById(R.id.tv_achievement);
         refreshLayout = v.findViewById(R.id.refresh);
-        powerSpinnerView = v.findViewById(R.id.popSpinner);
+//        powerSpinnerView = v.findViewById(R.id.popSpinner);
         recyclerView = v.findViewById(R.id.recycleView);
         recyclerView1 = v.findViewById(R.id.recycleView1);
         ll_class_more = v.findViewById(R.id.ll_class_more);
         ll_travel_card_more = v.findViewById(R.id.ll_travel_card_more);
+        ll_achievement = v.findViewById(R.id.ll_achievement);
 
         ll_class_more.setOnClickListener(this);
         ll_travel_card_more.setOnClickListener(this);
+        ll_achievement.setOnClickListener(this);
         tv_store_name.setText(FastData.getStoreName());
         grid();
         home("day");
         refreshLayout.setOnRefreshListener(this);
         gridView.setOnItemClickListener(this);
-        powerSpinnerView.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener<String>() {
-            @Override
-            public void onItemSelected(int i, String s) {
-                position = i;
-                dataBeanList.clear();
-                travelBeans.clear();
-                if (i == 0) {
-                    home("day");
-                } else if (i == 1) {
-                    home("week");
-                } else if (i == 2) {
-                    home("month");
-                }
-            }
-        });
+//        powerSpinnerView.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener<String>() {
+//            @Override
+//            public void onItemSelected(int i, String s) {
+//                position = i;
+//                dataBeanList.clear();
+//                travelBeans.clear();
+//                if (i == 0) {
+//                    home("day");
+//                } else if (i == 1) {
+//                    home("week");
+//                } else if (i == 2) {
+//                    home("month");
+//                }
+//            }
+//        });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         classAdapter = new ClassAdapter(getContext());
@@ -259,6 +275,40 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
 
             case R.id.ll_travel_card_more:
                 ActivityUtils.startActivity(getActivity(), TravelCardActivity.class);
+                break;
+
+            case R.id.ll_achievement:
+                OptionPicker picker = new OptionPicker(getActivity(), dataList);
+                picker.setDividerRatio(WheelView.DividerConfig.FILL);
+                picker.setSubmitText("确定");
+                picker.setSubmitTextColor(0xff2463FF);
+                picker.setSubmitTextSize(16);
+                picker.setCancelText("取消");
+                picker.setCancelTextColor(0xff666666);
+                picker.setCancelTextSize(16);
+                picker.setTextColor(0xff374459);
+                picker.setDividerColor(0xffE6EAF0);
+                picker.setTopLineColor(0xffE6EAF0);
+                picker.setCycleDisable(true);
+                picker.setSelectedIndex(position);
+                picker.setAnimationStyle(R.style.main_menu_anim_style);
+                picker.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
+                    @Override
+                    public void onOptionPicked(int index, String item) {
+                        tv_achievement.setText(item);
+                        position = index;
+                        dataBeanList.clear();
+                        travelBeans.clear();
+                        if (index == 0) {
+                            home("day");
+                        } else if (index == 1) {
+                            home("week");
+                        } else if (index == 2) {
+                            home("month");
+                        }
+                    }
+                });
+                picker.show();
                 break;
         }
     }

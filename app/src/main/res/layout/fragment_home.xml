@@ -77,27 +77,50 @@
                                 android:textColor="#FEFEFE"
                                 android:textSize="15sp" />
 
-                            <com.skydoves.powerspinner.PowerSpinnerView
-                                android:id="@+id/popSpinner"
+                            <!--                            <com.skydoves.powerspinner.PowerSpinnerView-->
+                            <!--                                android:id="@+id/popSpinner"-->
+                            <!--                                android:layout_width="wrap_content"-->
+                            <!--                                android:layout_height="wrap_content"-->
+                            <!--                                android:layout_alignParentRight="true"-->
+                            <!--                                android:background="#4D002d96"-->
+                            <!--                                android:gravity="center"-->
+                            <!--                                android:paddingLeft="6dp"-->
+                            <!--                                android:paddingTop="3dp"-->
+                            <!--                                android:paddingBottom="3dp"-->
+                            <!--                                android:text="当日业绩"-->
+                            <!--                                android:textColor="@color/white"-->
+                            <!--                                android:textSize="12sp"-->
+                            <!--                                app:spinner_arrow_gravity="end"-->
+                            <!--                                app:spinner_divider_color="@color/white"-->
+                            <!--                                app:spinner_divider_show="true"-->
+                            <!--                                app:spinner_divider_size="0.4dp"-->
+                            <!--                                app:spinner_item_array="@array/questions"-->
+                            <!--                                app:spinner_popup_animation="normal"-->
+                            <!--                                app:spinner_popup_background="#4D002d96"-->
+                            <!--                                app:spinner_popup_elevation="14dp" />-->
+
+                            <LinearLayout
+                                android:id="@+id/ll_achievement"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
-                                android:background="#002d96"
-                                android:gravity="center"
-                                android:paddingLeft="6dp"
-                                android:paddingTop="3dp"
-                                android:paddingBottom="3dp"
-                                android:text="当日业绩"
-                                android:textColor="@color/white"
-                                android:textSize="12sp"
-                                app:spinner_arrow_gravity="end"
-                                app:spinner_divider_color="@color/white"
-                                app:spinner_divider_show="true"
-                                app:spinner_divider_size="0.4dp"
-                                app:spinner_item_array="@array/questions"
-                                app:spinner_popup_animation="normal"
-                                app:spinner_popup_background="#002d96"
-                                app:spinner_popup_elevation="14dp" />
+                                android:gravity="center_vertical"
+                                android:background="@drawable/bg_achievement">
+
+                                <TextView
+                                    android:id="@+id/tv_achievement"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="今日业绩"
+                                    android:layout_marginLeft="5dp"
+                                    android:textColor="@color/white" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:src="@mipmap/down" />
+                            </LinearLayout>
                         </RelativeLayout>
 
                         <LinearLayout
