@@ -5,8 +5,9 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class MyClassDetailsBean {
+
     /**
-     * data : {"order":{"order_id":18907,"supplier_id":0,"shop_id":10020,"order_no":"SHOP_2020111011070254509956","total_price":"0.01","order_price":"0.01","coupon_id":0,"coupon_money":"0.00","points_money":"0.00","points_num":0,"virtual_code":"","virtual_code_money":"0.00","points_exchange_num":0,"pay_price":"0.01","update_price":{"symbol":"+","value":"0.00"},"buyer_remark":"","seller_remark":"","pay_type":{"text":"微信支付","value":20},"pay_status":{"text":"待付款","value":10},"pay_time":0,"delivery_type":{"text":"到店核销","value":20},"extract_shop_id":10040,"extract_clerk_id":0,"express_price":"0.00","express_id":0,"express_company":"","express_no":"","delivery_status":{"text":"待发货","value":10},"delivery_time":0,"receipt_status":{"text":"待收货","value":10},"receipt_time":0,"order_status":{"text":"已取消","value":20},"cancel_time":0,"points_bonus":0,"is_settled":0,"transaction_id":"","is_comment":0,"order_source":10,"order_type":3,"order_source_id":0,"source_id":0,"user_id":14784,"share_id":0,"is_delete":0,"create_time":"2020-11-10 11:07:02","uniqueOrderNo":null,"travel_ids":"0","video_list":[{"study_id":1,"goods_id":12014,"title":"测试1","video_id":25820,"sort":10,"free":0,"create_time":"2020-09-21 15:42:29","update_time":"2020-09-21 16:11:46","wxapp_id":10001,"is_delete":0,"file":{"file_id":25820,"shop_id":0,"storage":"aliyun","group_id":0,"file_url":"http://dijiush.oss-cn-beijing.aliyuncs.com","file_name":"20200921154225ffd781956.mp4","file_size":3639229,"file_type":"image","extension":"mp4","is_user":0,"is_recycle":0,"is_delete":0,"wxapp_id":10001,"create_time":"2020-09-21 15:42:26","file_path":"http://dijiush.oss-cn-beijing.aliyuncs.com/20200921154225ffd781956.mp4"}},{"study_id":2,"goods_id":12014,"title":"测试222","video_id":32974,"sort":100,"free":1,"create_time":"2020-10-26 09:38:00","update_time":"2020-10-26 09:38:00","wxapp_id":10001,"is_delete":0,"file":{"file_id":32974,"shop_id":0,"storage":"aliyun","group_id":0,"file_url":"http://dijiush.oss-cn-beijing.aliyuncs.com","file_name":"20201026093753c35035864.mp4","file_size":1502939,"file_type":"image","extension":"mp4","is_user":0,"is_recycle":0,"is_delete":0,"wxapp_id":10001,"create_time":"2020-10-26 09:37:54","file_path":"http://dijiush.oss-cn-beijing.aliyuncs.com/20201026093753c35035864.mp4"}}],"isAllowRefund":false,"goods":[{"order_goods_id":20291,"goods_id":12014,"goods_name":"测试课程","image_id":24584,"deduct_stock_type":10,"spec_type":10,"spec_sku_id":"0","goods_sku_id":29175,"goods_attr":"","goods_no":"","goods_price":"0.01","line_price":"0.00","goods_weight":0,"is_user_grade":0,"grade_ratio":0,"grade_goods_price":"0.00","grade_total_money":"0.00","coupon_money":"0.00","points_money":"0.00","points_num":0,"points_bonus":0,"virtual_code_money":"0.00","exchange_points_num":0,"exchange_points_money":"0.00","total_num":1,"total_price":"0.01","total_pay_price":"0.01","is_ind_dealer":0,"dealer_money_type":10,"first_money":"0.00","second_money":"0.00","third_money":"0.00","is_comment":0,"order_id":18907,"user_id":14784,"image":{"file_id":24584,"shop_id":0,"storage":"aliyun","group_id":0,"file_url":"http://dijiush.oss-cn-beijing.aliyuncs.com","file_name":"202009151725453455d7261.jpg","file_size":73947,"file_type":"image","extension":"jpg","is_user":0,"is_recycle":0,"is_delete":0,"wxapp_id":10001,"create_time":"2020-09-15 17:25:46","file_path":"http://dijiush.oss-cn-beijing.aliyuncs.com/202009151725453455d7261.jpg"},"sku":{"goods_sku_id":29175,"goods_id":12014,"spec_sku_id":"0","image_id":0,"goods_no":"","balance_price":"0.00","goods_price":"0.01","line_price":"0.00","real_price":"0.00","stock_num":4,"goods_sales":0,"goods_weight":0},"goods":{"goods_id":12014,"shop_id":10020,"supplier_id":0,"type":3,"goods_name":"测试课程","selling_point":"测试课程测试课程测试课程测试课程","use_rule":null,"category_id":10541,"spec_type":10,"deduct_stock_type":10,"content":"<p><img src=\"http://dijiush.oss-cn-beijing.aliyuncs.com/20201022165000794ee0767.png\"/><\/p><p><span style=\"color: rgb(14, 23, 38); font-family: \" pingfang=\"\" helvetica=\"\" hiragino=\"\" sans=\"\" source=\"\" han=\"\" noto=\"\" cjk=\"\" microsoft=\"\" white-space:=\"\" background-color:=\"\"><\/span><br/><\/p>","content2":"","goods_sort":100,"buy_limit":0,"least_expend_money":"0.00","delivery_id":0,"delivery_type":20,"is_new_user_enjoy":0,"is_points_gift":1,"is_points_discount":1,"is_enable_balance_price":0,"is_enable_grade":1,"is_alone_grade":0,"alone_grade_equity":{"10020":"","10021":"","10022":"","10023":"","10024":""},"is_ind_dealer":0,"dealer_money_type":10,"first_money":"0.00","second_money":"0.00","third_money":"0.00","is_rush":0,"is_points_exchange":0,"need_points_num":0,"need_points_money":"0.00","is_new_user":0,"new_need_points_num":0,"new_need_points_money":"0.00","video":null,"goods_status":{"text":"上架","value":10},"is_hot":1,"use_code":0,"is_check":1,"share_buy":0,"share_num":0,"view_num":201,"is_baopin":0,"is_ziyin":0,"is_pinpai":0,"brand_id":0,"goods_sales":3},"refund":null}],"address":null,"express":null,"extract_shop":{"shop_id":10020,"shanglv_id":14759,"user_id":0,"apply_id":0,"shop_name":"第玖生活自营商家","money":"0.01","commission":"0.00","logo_image_id":20032,"image_id":0,"area_id":10545,"category_id":10430,"tips":"商家标签","linkman":"第玖生活","phone":"4000706899","password":"e10adc3949ba59abbe56e057f20f883e","shop_hours":"24小时","price":"0.00","province_id":0,"city_id":1,"region_id":0,"address":"芙蓉路东海花园","longitude":"117.176056","latitude":"31.858897","geohash":"wtem4rtp80b","summary":"商家简介","sort":100,"is_hot":0,"is_check":1,"percent":"0.00","order_num":44,"score":"4.8","status":1,"can_goods":1,"can_foods":1,"can_notice":1,"registrationid":"170976fa8a3063ff581","is_over":1,"region":{"province":"其他","city":"北京市","region":""}},"state_text":"已取消"}}
+     * data : {"order":{"order_id":18957,"supplier_id":0,"shop_id":10020,"order_no":"SHOP_2020111218540297100101","total_price":"2680.00","order_price":"2680.00","coupon_id":0,"coupon_money":"0.00","points_money":"0.00","points_num":0,"virtual_code":"","virtual_code_money":"0.00","points_exchange_num":0,"pay_price":"2680.00","update_price":{"symbol":"+","value":"0.00"},"buyer_remark":"","seller_remark":"","pay_type":{"text":"支付宝支付","value":30},"pay_status":{"text":"待付款","value":10},"pay_time":0,"delivery_type":{"text":"快递配送","value":10},"extract_shop_id":0,"extract_clerk_id":0,"express_price":"0.00","express_id":0,"express_company":"","express_no":"","delivery_status":{"text":"待发货","value":10},"delivery_time":0,"receipt_status":{"text":"待收货","value":10},"receipt_time":0,"order_status":{"text":"进行中","value":10},"cancel_time":0,"points_bonus":2680,"is_settled":0,"transaction_id":"","is_comment":0,"order_source":10,"order_type":1,"order_source_id":0,"source_id":0,"user_id":14784,"share_id":0,"is_delete":0,"create_time":"2020-11-12 18:54:02","uniqueOrderNo":null,"travel_ids":"0","video_list":[],"isAllowRefund":false,"goods":[{"order_goods_id":20344,"goods_id":11888,"goods_name":"云南腾冲三飞6日游","image_id":20995,"deduct_stock_type":10,"spec_type":10,"spec_sku_id":"0","goods_sku_id":26811,"goods_attr":"","goods_no":"","goods_price":"2680.00","line_price":"3999.00","goods_weight":0,"is_user_grade":0,"grade_ratio":0,"grade_goods_price":"0.00","grade_total_money":"0.00","coupon_money":"0.00","points_money":"0.00","points_num":0,"points_bonus":2680,"virtual_code_money":"0.00","exchange_points_num":2680,"exchange_points_money":"0.00","total_num":1,"total_price":"2680.00","total_pay_price":"2680.00","is_ind_dealer":0,"dealer_money_type":10,"first_money":"0.00","second_money":"0.00","third_money":"0.00","is_comment":0,"order_id":18957,"user_id":14784,"image":{"file_id":20995,"shop_id":0,"storage":"local","group_id":10118,"file_url":"","file_name":"202008211201269f9292848.jpg","file_size":543517,"file_type":"image","extension":"jpg","is_user":0,"is_recycle":0,"is_delete":0,"wxapp_id":10001,"create_time":"2020-08-21 12:01:26","file_path":"https://djsh.meiliancheng.cn/uploads/202008211201269f9292848.jpg"},"sku":null,"goods":{"goods_id":11888,"shop_id":10020,"supplier_id":0,"type":1,"goods_name":"云南腾冲三飞6日游","selling_point":"泡温泉，游公园。","use_rule":null,"category_id":10430,"spec_type":10,"deduct_stock_type":10,"content":" <\/p>  <\/p>  <\/p>  <\/p>  <\/p>","content2":"","goods_sort":44,"buy_limit":0,"least_expend_money":"0.00","delivery_id":0,"delivery_type":20,"is_new_user_enjoy":0,"is_points_gift":1,"is_points_discount":1,"is_enable_balance_price":0,"is_enable_grade":1,"is_alone_grade":0,"alone_grade_equity":{"10024":"","10023":"","10022":"","10020":"","10021":""},"is_ind_dealer":0,"dealer_money_type":10,"first_money":"0.00","second_money":"0.00","third_money":"0.00","is_rush":0,"is_points_exchange":1,"need_points_num":2680,"need_points_money":"0.00","is_new_user":0,"new_need_points_num":0,"new_need_points_money":"0.00","video":"","goods_status":{"text":"上架","value":10},"is_hot":0,"use_code":1,"is_check":1,"share_buy":0,"share_num":23,"view_num":233,"is_baopin":0,"is_ziyin":0,"is_pinpai":0,"brand_id":0,"goods_sales":3},"refund":null}],"address":{"order_address_id":13642,"name":"测试","phone":"18312341234","date_time":0,"province_id":1,"city_id":2,"region_id":3,"detail":"测试","order_id":18957,"user_id":14784,"region":{"province":"北京市","city":"北京市","region":"东城区"}},"express":null,"extract_shop":{"shop_id":10020,"shanglv_id":14759,"user_id":0,"apply_id":0,"shop_name":"第玖生活自营商家","money":"0.01","commission":"0.00","logo_image_id":20032,"image_id":0,"area_id":10545,"category_id":10430,"tips":"商家标签","linkman":"第玖生活","phone":"4000706899","password":"e10adc3949ba59abbe56e057f20f883e","shop_hours":"24小时","price":"0.00","province_id":0,"city_id":1,"region_id":0,"address":"芙蓉路东海花园","longitude":"117.176056","latitude":"31.858897","geohash":"wtem4rtp80b","summary":"商家简介","sort":100,"is_hot":0,"is_check":1,"percent":"0.00","order_num":44,"score":"4.8","status":1,"can_goods":1,"can_foods":1,"can_notice":1,"registrationid":"170976fa8a3063ff581","is_over":1,"region":{"province":"其他","city":"北京市","region":""}},"state_text":"待付款"}}
      * code : 1
      * msg : 获取成功
      */
@@ -41,7 +42,7 @@ public class MyClassDetailsBean {
 
     public static class DataBean {
         /**
-         * order : {"order_id":18907,"supplier_id":0,"shop_id":10020,"order_no":"SHOP_2020111011070254509956","total_price":"0.01","order_price":"0.01","coupon_id":0,"coupon_money":"0.00","points_money":"0.00","points_num":0,"virtual_code":"","virtual_code_money":"0.00","points_exchange_num":0,"pay_price":"0.01","update_price":{"symbol":"+","value":"0.00"},"buyer_remark":"","seller_remark":"","pay_type":{"text":"微信支付","value":20},"pay_status":{"text":"待付款","value":10},"pay_time":0,"delivery_type":{"text":"到店核销","value":20},"extract_shop_id":10040,"extract_clerk_id":0,"express_price":"0.00","express_id":0,"express_company":"","express_no":"","delivery_status":{"text":"待发货","value":10},"delivery_time":0,"receipt_status":{"text":"待收货","value":10},"receipt_time":0,"order_status":{"text":"已取消","value":20},"cancel_time":0,"points_bonus":0,"is_settled":0,"transaction_id":"","is_comment":0,"order_source":10,"order_type":3,"order_source_id":0,"source_id":0,"user_id":14784,"share_id":0,"is_delete":0,"create_time":"2020-11-10 11:07:02","uniqueOrderNo":null,"travel_ids":"0","video_list":[{"study_id":1,"goods_id":12014,"title":"测试1","video_id":25820,"sort":10,"free":0,"create_time":"2020-09-21 15:42:29","update_time":"2020-09-21 16:11:46","wxapp_id":10001,"is_delete":0,"file":{"file_id":25820,"shop_id":0,"storage":"aliyun","group_id":0,"file_url":"http://dijiush.oss-cn-beijing.aliyuncs.com","file_name":"20200921154225ffd781956.mp4","file_size":3639229,"file_type":"image","extension":"mp4","is_user":0,"is_recycle":0,"is_delete":0,"wxapp_id":10001,"create_time":"2020-09-21 15:42:26","file_path":"http://dijiush.oss-cn-beijing.aliyuncs.com/20200921154225ffd781956.mp4"}},{"study_id":2,"goods_id":12014,"title":"测试222","video_id":32974,"sort":100,"free":1,"create_time":"2020-10-26 09:38:00","update_time":"2020-10-26 09:38:00","wxapp_id":10001,"is_delete":0,"file":{"file_id":32974,"shop_id":0,"storage":"aliyun","group_id":0,"file_url":"http://dijiush.oss-cn-beijing.aliyuncs.com","file_name":"20201026093753c35035864.mp4","file_size":1502939,"file_type":"image","extension":"mp4","is_user":0,"is_recycle":0,"is_delete":0,"wxapp_id":10001,"create_time":"2020-10-26 09:37:54","file_path":"http://dijiush.oss-cn-beijing.aliyuncs.com/20201026093753c35035864.mp4"}}],"isAllowRefund":false,"goods":[{"order_goods_id":20291,"goods_id":12014,"goods_name":"测试课程","image_id":24584,"deduct_stock_type":10,"spec_type":10,"spec_sku_id":"0","goods_sku_id":29175,"goods_attr":"","goods_no":"","goods_price":"0.01","line_price":"0.00","goods_weight":0,"is_user_grade":0,"grade_ratio":0,"grade_goods_price":"0.00","grade_total_money":"0.00","coupon_money":"0.00","points_money":"0.00","points_num":0,"points_bonus":0,"virtual_code_money":"0.00","exchange_points_num":0,"exchange_points_money":"0.00","total_num":1,"total_price":"0.01","total_pay_price":"0.01","is_ind_dealer":0,"dealer_money_type":10,"first_money":"0.00","second_money":"0.00","third_money":"0.00","is_comment":0,"order_id":18907,"user_id":14784,"image":{"file_id":24584,"shop_id":0,"storage":"aliyun","group_id":0,"file_url":"http://dijiush.oss-cn-beijing.aliyuncs.com","file_name":"202009151725453455d7261.jpg","file_size":73947,"file_type":"image","extension":"jpg","is_user":0,"is_recycle":0,"is_delete":0,"wxapp_id":10001,"create_time":"2020-09-15 17:25:46","file_path":"http://dijiush.oss-cn-beijing.aliyuncs.com/202009151725453455d7261.jpg"},"sku":{"goods_sku_id":29175,"goods_id":12014,"spec_sku_id":"0","image_id":0,"goods_no":"","balance_price":"0.00","goods_price":"0.01","line_price":"0.00","real_price":"0.00","stock_num":4,"goods_sales":0,"goods_weight":0},"goods":{"goods_id":12014,"shop_id":10020,"supplier_id":0,"type":3,"goods_name":"测试课程","selling_point":"测试课程测试课程测试课程测试课程","use_rule":null,"category_id":10541,"spec_type":10,"deduct_stock_type":10,"content":"<p><img src=\"http://dijiush.oss-cn-beijing.aliyuncs.com/20201022165000794ee0767.png\"/><\/p><p><span style=\"color: rgb(14, 23, 38); font-family: \" pingfang=\"\" helvetica=\"\" hiragino=\"\" sans=\"\" source=\"\" han=\"\" noto=\"\" cjk=\"\" microsoft=\"\" white-space:=\"\" background-color:=\"\"><\/span><br/><\/p>","content2":"","goods_sort":100,"buy_limit":0,"least_expend_money":"0.00","delivery_id":0,"delivery_type":20,"is_new_user_enjoy":0,"is_points_gift":1,"is_points_discount":1,"is_enable_balance_price":0,"is_enable_grade":1,"is_alone_grade":0,"alone_grade_equity":{"10020":"","10021":"","10022":"","10023":"","10024":""},"is_ind_dealer":0,"dealer_money_type":10,"first_money":"0.00","second_money":"0.00","third_money":"0.00","is_rush":0,"is_points_exchange":0,"need_points_num":0,"need_points_money":"0.00","is_new_user":0,"new_need_points_num":0,"new_need_points_money":"0.00","video":null,"goods_status":{"text":"上架","value":10},"is_hot":1,"use_code":0,"is_check":1,"share_buy":0,"share_num":0,"view_num":201,"is_baopin":0,"is_ziyin":0,"is_pinpai":0,"brand_id":0,"goods_sales":3},"refund":null}],"address":null,"express":null,"extract_shop":{"shop_id":10020,"shanglv_id":14759,"user_id":0,"apply_id":0,"shop_name":"第玖生活自营商家","money":"0.01","commission":"0.00","logo_image_id":20032,"image_id":0,"area_id":10545,"category_id":10430,"tips":"商家标签","linkman":"第玖生活","phone":"4000706899","password":"e10adc3949ba59abbe56e057f20f883e","shop_hours":"24小时","price":"0.00","province_id":0,"city_id":1,"region_id":0,"address":"芙蓉路东海花园","longitude":"117.176056","latitude":"31.858897","geohash":"wtem4rtp80b","summary":"商家简介","sort":100,"is_hot":0,"is_check":1,"percent":"0.00","order_num":44,"score":"4.8","status":1,"can_goods":1,"can_foods":1,"can_notice":1,"registrationid":"170976fa8a3063ff581","is_over":1,"region":{"province":"其他","city":"北京市","region":""}},"state_text":"已取消"}
+         * order : {"order_id":18957,"supplier_id":0,"shop_id":10020,"order_no":"SHOP_2020111218540297100101","total_price":"2680.00","order_price":"2680.00","coupon_id":0,"coupon_money":"0.00","points_money":"0.00","points_num":0,"virtual_code":"","virtual_code_money":"0.00","points_exchange_num":0,"pay_price":"2680.00","update_price":{"symbol":"+","value":"0.00"},"buyer_remark":"","seller_remark":"","pay_type":{"text":"支付宝支付","value":30},"pay_status":{"text":"待付款","value":10},"pay_time":0,"delivery_type":{"text":"快递配送","value":10},"extract_shop_id":0,"extract_clerk_id":0,"express_price":"0.00","express_id":0,"express_company":"","express_no":"","delivery_status":{"text":"待发货","value":10},"delivery_time":0,"receipt_status":{"text":"待收货","value":10},"receipt_time":0,"order_status":{"text":"进行中","value":10},"cancel_time":0,"points_bonus":2680,"is_settled":0,"transaction_id":"","is_comment":0,"order_source":10,"order_type":1,"order_source_id":0,"source_id":0,"user_id":14784,"share_id":0,"is_delete":0,"create_time":"2020-11-12 18:54:02","uniqueOrderNo":null,"travel_ids":"0","video_list":[],"isAllowRefund":false,"goods":[{"order_goods_id":20344,"goods_id":11888,"goods_name":"云南腾冲三飞6日游","image_id":20995,"deduct_stock_type":10,"spec_type":10,"spec_sku_id":"0","goods_sku_id":26811,"goods_attr":"","goods_no":"","goods_price":"2680.00","line_price":"3999.00","goods_weight":0,"is_user_grade":0,"grade_ratio":0,"grade_goods_price":"0.00","grade_total_money":"0.00","coupon_money":"0.00","points_money":"0.00","points_num":0,"points_bonus":2680,"virtual_code_money":"0.00","exchange_points_num":2680,"exchange_points_money":"0.00","total_num":1,"total_price":"2680.00","total_pay_price":"2680.00","is_ind_dealer":0,"dealer_money_type":10,"first_money":"0.00","second_money":"0.00","third_money":"0.00","is_comment":0,"order_id":18957,"user_id":14784,"image":{"file_id":20995,"shop_id":0,"storage":"local","group_id":10118,"file_url":"","file_name":"202008211201269f9292848.jpg","file_size":543517,"file_type":"image","extension":"jpg","is_user":0,"is_recycle":0,"is_delete":0,"wxapp_id":10001,"create_time":"2020-08-21 12:01:26","file_path":"https://djsh.meiliancheng.cn/uploads/202008211201269f9292848.jpg"},"sku":null,"goods":{"goods_id":11888,"shop_id":10020,"supplier_id":0,"type":1,"goods_name":"云南腾冲三飞6日游","selling_point":"泡温泉，游公园。","use_rule":null,"category_id":10430,"spec_type":10,"deduct_stock_type":10,"content":" <\/p>  <\/p>  <\/p>  <\/p>  <\/p>","content2":"","goods_sort":44,"buy_limit":0,"least_expend_money":"0.00","delivery_id":0,"delivery_type":20,"is_new_user_enjoy":0,"is_points_gift":1,"is_points_discount":1,"is_enable_balance_price":0,"is_enable_grade":1,"is_alone_grade":0,"alone_grade_equity":{"10024":"","10023":"","10022":"","10020":"","10021":""},"is_ind_dealer":0,"dealer_money_type":10,"first_money":"0.00","second_money":"0.00","third_money":"0.00","is_rush":0,"is_points_exchange":1,"need_points_num":2680,"need_points_money":"0.00","is_new_user":0,"new_need_points_num":0,"new_need_points_money":"0.00","video":"","goods_status":{"text":"上架","value":10},"is_hot":0,"use_code":1,"is_check":1,"share_buy":0,"share_num":23,"view_num":233,"is_baopin":0,"is_ziyin":0,"is_pinpai":0,"brand_id":0,"goods_sales":3},"refund":null}],"address":{"order_address_id":13642,"name":"测试","phone":"18312341234","date_time":0,"province_id":1,"city_id":2,"region_id":3,"detail":"测试","order_id":18957,"user_id":14784,"region":{"province":"北京市","city":"北京市","region":"东城区"}},"express":null,"extract_shop":{"shop_id":10020,"shanglv_id":14759,"user_id":0,"apply_id":0,"shop_name":"第玖生活自营商家","money":"0.01","commission":"0.00","logo_image_id":20032,"image_id":0,"area_id":10545,"category_id":10430,"tips":"商家标签","linkman":"第玖生活","phone":"4000706899","password":"e10adc3949ba59abbe56e057f20f883e","shop_hours":"24小时","price":"0.00","province_id":0,"city_id":1,"region_id":0,"address":"芙蓉路东海花园","longitude":"117.176056","latitude":"31.858897","geohash":"wtem4rtp80b","summary":"商家简介","sort":100,"is_hot":0,"is_check":1,"percent":"0.00","order_num":44,"score":"4.8","status":1,"can_goods":1,"can_foods":1,"can_notice":1,"registrationid":"170976fa8a3063ff581","is_over":1,"region":{"province":"其他","city":"北京市","region":""}},"state_text":"待付款"}
          */
 
         private OrderBean order;
@@ -56,12 +57,12 @@ public class MyClassDetailsBean {
 
         public static class OrderBean {
             /**
-             * order_id : 18907
+             * order_id : 18957
              * supplier_id : 0
              * shop_id : 10020
-             * order_no : SHOP_2020111011070254509956
-             * total_price : 0.01
-             * order_price : 0.01
+             * order_no : SHOP_2020111218540297100101
+             * total_price : 2680.00
+             * order_price : 2680.00
              * coupon_id : 0
              * coupon_money : 0.00
              * points_money : 0.00
@@ -69,15 +70,15 @@ public class MyClassDetailsBean {
              * virtual_code :
              * virtual_code_money : 0.00
              * points_exchange_num : 0
-             * pay_price : 0.01
+             * pay_price : 2680.00
              * update_price : {"symbol":"+","value":"0.00"}
              * buyer_remark :
              * seller_remark :
-             * pay_type : {"text":"微信支付","value":20}
+             * pay_type : {"text":"支付宝支付","value":30}
              * pay_status : {"text":"待付款","value":10}
              * pay_time : 0
-             * delivery_type : {"text":"到店核销","value":20}
-             * extract_shop_id : 10040
+             * delivery_type : {"text":"快递配送","value":10}
+             * extract_shop_id : 0
              * extract_clerk_id : 0
              * express_price : 0.00
              * express_id : 0
@@ -87,29 +88,29 @@ public class MyClassDetailsBean {
              * delivery_time : 0
              * receipt_status : {"text":"待收货","value":10}
              * receipt_time : 0
-             * order_status : {"text":"已取消","value":20}
+             * order_status : {"text":"进行中","value":10}
              * cancel_time : 0
-             * points_bonus : 0
+             * points_bonus : 2680
              * is_settled : 0
              * transaction_id :
              * is_comment : 0
              * order_source : 10
-             * order_type : 3
+             * order_type : 1
              * order_source_id : 0
              * source_id : 0
              * user_id : 14784
              * share_id : 0
              * is_delete : 0
-             * create_time : 2020-11-10 11:07:02
+             * create_time : 2020-11-12 18:54:02
              * uniqueOrderNo : null
              * travel_ids : 0
-             * video_list : [{"study_id":1,"goods_id":12014,"title":"测试1","video_id":25820,"sort":10,"free":0,"create_time":"2020-09-21 15:42:29","update_time":"2020-09-21 16:11:46","wxapp_id":10001,"is_delete":0,"file":{"file_id":25820,"shop_id":0,"storage":"aliyun","group_id":0,"file_url":"http://dijiush.oss-cn-beijing.aliyuncs.com","file_name":"20200921154225ffd781956.mp4","file_size":3639229,"file_type":"image","extension":"mp4","is_user":0,"is_recycle":0,"is_delete":0,"wxapp_id":10001,"create_time":"2020-09-21 15:42:26","file_path":"http://dijiush.oss-cn-beijing.aliyuncs.com/20200921154225ffd781956.mp4"}},{"study_id":2,"goods_id":12014,"title":"测试222","video_id":32974,"sort":100,"free":1,"create_time":"2020-10-26 09:38:00","update_time":"2020-10-26 09:38:00","wxapp_id":10001,"is_delete":0,"file":{"file_id":32974,"shop_id":0,"storage":"aliyun","group_id":0,"file_url":"http://dijiush.oss-cn-beijing.aliyuncs.com","file_name":"20201026093753c35035864.mp4","file_size":1502939,"file_type":"image","extension":"mp4","is_user":0,"is_recycle":0,"is_delete":0,"wxapp_id":10001,"create_time":"2020-10-26 09:37:54","file_path":"http://dijiush.oss-cn-beijing.aliyuncs.com/20201026093753c35035864.mp4"}}]
+             * video_list : []
              * isAllowRefund : false
-             * goods : [{"order_goods_id":20291,"goods_id":12014,"goods_name":"测试课程","image_id":24584,"deduct_stock_type":10,"spec_type":10,"spec_sku_id":"0","goods_sku_id":29175,"goods_attr":"","goods_no":"","goods_price":"0.01","line_price":"0.00","goods_weight":0,"is_user_grade":0,"grade_ratio":0,"grade_goods_price":"0.00","grade_total_money":"0.00","coupon_money":"0.00","points_money":"0.00","points_num":0,"points_bonus":0,"virtual_code_money":"0.00","exchange_points_num":0,"exchange_points_money":"0.00","total_num":1,"total_price":"0.01","total_pay_price":"0.01","is_ind_dealer":0,"dealer_money_type":10,"first_money":"0.00","second_money":"0.00","third_money":"0.00","is_comment":0,"order_id":18907,"user_id":14784,"image":{"file_id":24584,"shop_id":0,"storage":"aliyun","group_id":0,"file_url":"http://dijiush.oss-cn-beijing.aliyuncs.com","file_name":"202009151725453455d7261.jpg","file_size":73947,"file_type":"image","extension":"jpg","is_user":0,"is_recycle":0,"is_delete":0,"wxapp_id":10001,"create_time":"2020-09-15 17:25:46","file_path":"http://dijiush.oss-cn-beijing.aliyuncs.com/202009151725453455d7261.jpg"},"sku":{"goods_sku_id":29175,"goods_id":12014,"spec_sku_id":"0","image_id":0,"goods_no":"","balance_price":"0.00","goods_price":"0.01","line_price":"0.00","real_price":"0.00","stock_num":4,"goods_sales":0,"goods_weight":0},"goods":{"goods_id":12014,"shop_id":10020,"supplier_id":0,"type":3,"goods_name":"测试课程","selling_point":"测试课程测试课程测试课程测试课程","use_rule":null,"category_id":10541,"spec_type":10,"deduct_stock_type":10,"content":"<p><img src=\"http://dijiush.oss-cn-beijing.aliyuncs.com/20201022165000794ee0767.png\"/><\/p><p><span style=\"color: rgb(14, 23, 38); font-family: \" pingfang=\"\" helvetica=\"\" hiragino=\"\" sans=\"\" source=\"\" han=\"\" noto=\"\" cjk=\"\" microsoft=\"\" white-space:=\"\" background-color:=\"\"><\/span><br/><\/p>","content2":"","goods_sort":100,"buy_limit":0,"least_expend_money":"0.00","delivery_id":0,"delivery_type":20,"is_new_user_enjoy":0,"is_points_gift":1,"is_points_discount":1,"is_enable_balance_price":0,"is_enable_grade":1,"is_alone_grade":0,"alone_grade_equity":{"10020":"","10021":"","10022":"","10023":"","10024":""},"is_ind_dealer":0,"dealer_money_type":10,"first_money":"0.00","second_money":"0.00","third_money":"0.00","is_rush":0,"is_points_exchange":0,"need_points_num":0,"need_points_money":"0.00","is_new_user":0,"new_need_points_num":0,"new_need_points_money":"0.00","video":null,"goods_status":{"text":"上架","value":10},"is_hot":1,"use_code":0,"is_check":1,"share_buy":0,"share_num":0,"view_num":201,"is_baopin":0,"is_ziyin":0,"is_pinpai":0,"brand_id":0,"goods_sales":3},"refund":null}]
-             * address : null
+             * goods : [{"order_goods_id":20344,"goods_id":11888,"goods_name":"云南腾冲三飞6日游","image_id":20995,"deduct_stock_type":10,"spec_type":10,"spec_sku_id":"0","goods_sku_id":26811,"goods_attr":"","goods_no":"","goods_price":"2680.00","line_price":"3999.00","goods_weight":0,"is_user_grade":0,"grade_ratio":0,"grade_goods_price":"0.00","grade_total_money":"0.00","coupon_money":"0.00","points_money":"0.00","points_num":0,"points_bonus":2680,"virtual_code_money":"0.00","exchange_points_num":2680,"exchange_points_money":"0.00","total_num":1,"total_price":"2680.00","total_pay_price":"2680.00","is_ind_dealer":0,"dealer_money_type":10,"first_money":"0.00","second_money":"0.00","third_money":"0.00","is_comment":0,"order_id":18957,"user_id":14784,"image":{"file_id":20995,"shop_id":0,"storage":"local","group_id":10118,"file_url":"","file_name":"202008211201269f9292848.jpg","file_size":543517,"file_type":"image","extension":"jpg","is_user":0,"is_recycle":0,"is_delete":0,"wxapp_id":10001,"create_time":"2020-08-21 12:01:26","file_path":"https://djsh.meiliancheng.cn/uploads/202008211201269f9292848.jpg"},"sku":null,"goods":{"goods_id":11888,"shop_id":10020,"supplier_id":0,"type":1,"goods_name":"云南腾冲三飞6日游","selling_point":"泡温泉，游公园。","use_rule":null,"category_id":10430,"spec_type":10,"deduct_stock_type":10,"content":" <\/p>  <\/p>  <\/p>  <\/p>  <\/p>","content2":"","goods_sort":44,"buy_limit":0,"least_expend_money":"0.00","delivery_id":0,"delivery_type":20,"is_new_user_enjoy":0,"is_points_gift":1,"is_points_discount":1,"is_enable_balance_price":0,"is_enable_grade":1,"is_alone_grade":0,"alone_grade_equity":{"10024":"","10023":"","10022":"","10020":"","10021":""},"is_ind_dealer":0,"dealer_money_type":10,"first_money":"0.00","second_money":"0.00","third_money":"0.00","is_rush":0,"is_points_exchange":1,"need_points_num":2680,"need_points_money":"0.00","is_new_user":0,"new_need_points_num":0,"new_need_points_money":"0.00","video":"","goods_status":{"text":"上架","value":10},"is_hot":0,"use_code":1,"is_check":1,"share_buy":0,"share_num":23,"view_num":233,"is_baopin":0,"is_ziyin":0,"is_pinpai":0,"brand_id":0,"goods_sales":3},"refund":null}]
+             * address : {"order_address_id":13642,"name":"测试","phone":"18312341234","date_time":0,"province_id":1,"city_id":2,"region_id":3,"detail":"测试","order_id":18957,"user_id":14784,"region":{"province":"北京市","city":"北京市","region":"东城区"}}
              * express : null
              * extract_shop : {"shop_id":10020,"shanglv_id":14759,"user_id":0,"apply_id":0,"shop_name":"第玖生活自营商家","money":"0.01","commission":"0.00","logo_image_id":20032,"image_id":0,"area_id":10545,"category_id":10430,"tips":"商家标签","linkman":"第玖生活","phone":"4000706899","password":"e10adc3949ba59abbe56e057f20f883e","shop_hours":"24小时","price":"0.00","province_id":0,"city_id":1,"region_id":0,"address":"芙蓉路东海花园","longitude":"117.176056","latitude":"31.858897","geohash":"wtem4rtp80b","summary":"商家简介","sort":100,"is_hot":0,"is_check":1,"percent":"0.00","order_num":44,"score":"4.8","status":1,"can_goods":1,"can_foods":1,"can_notice":1,"registrationid":"170976fa8a3063ff581","is_over":1,"region":{"province":"其他","city":"北京市","region":""}}
-             * state_text : 已取消
+             * state_text : 待付款
              */
 
             private int order_id;
@@ -160,7 +161,7 @@ public class MyClassDetailsBean {
             private Object uniqueOrderNo;
             private String travel_ids;
             private boolean isAllowRefund;
-            private Object address;
+            private AddressBean address;
             private Object express;
             private ExtractShopBean extract_shop;
             private String state_text;
@@ -551,11 +552,11 @@ public class MyClassDetailsBean {
                 this.isAllowRefund = isAllowRefund;
             }
 
-            public Object getAddress() {
+            public AddressBean getAddress() {
                 return address;
             }
 
-            public void setAddress(Object address) {
+            public void setAddress(AddressBean address) {
                 this.address = address;
             }
 
@@ -627,8 +628,8 @@ public class MyClassDetailsBean {
 
             public static class PayTypeBean {
                 /**
-                 * text : 微信支付
-                 * value : 20
+                 * text : 支付宝支付
+                 * value : 30
                  */
 
                 private String text;
@@ -679,8 +680,8 @@ public class MyClassDetailsBean {
 
             public static class DeliveryTypeBean {
                 /**
-                 * text : 到店核销
-                 * value : 20
+                 * text : 快递配送
+                 * value : 10
                  */
 
                 private String text;
@@ -757,8 +758,8 @@ public class MyClassDetailsBean {
 
             public static class OrderStatusBean {
                 /**
-                 * text : 已取消
-                 * value : 20
+                 * text : 进行中
+                 * value : 10
                  */
 
                 private String text;
@@ -778,6 +779,158 @@ public class MyClassDetailsBean {
 
                 public void setValue(int value) {
                     this.value = value;
+                }
+            }
+
+            public static class AddressBean {
+                /**
+                 * order_address_id : 13642
+                 * name : 测试
+                 * phone : 18312341234
+                 * date_time : 0
+                 * province_id : 1
+                 * city_id : 2
+                 * region_id : 3
+                 * detail : 测试
+                 * order_id : 18957
+                 * user_id : 14784
+                 * region : {"province":"北京市","city":"北京市","region":"东城区"}
+                 */
+
+                private int order_address_id;
+                private String name;
+                private String phone;
+                private int date_time;
+                private int province_id;
+                private int city_id;
+                private int region_id;
+                private String detail;
+                private int order_id;
+                private int user_id;
+                private RegionBean region;
+
+                public int getOrder_address_id() {
+                    return order_address_id;
+                }
+
+                public void setOrder_address_id(int order_address_id) {
+                    this.order_address_id = order_address_id;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public void setName(String name) {
+                    this.name = name;
+                }
+
+                public String getPhone() {
+                    return phone;
+                }
+
+                public void setPhone(String phone) {
+                    this.phone = phone;
+                }
+
+                public int getDate_time() {
+                    return date_time;
+                }
+
+                public void setDate_time(int date_time) {
+                    this.date_time = date_time;
+                }
+
+                public int getProvince_id() {
+                    return province_id;
+                }
+
+                public void setProvince_id(int province_id) {
+                    this.province_id = province_id;
+                }
+
+                public int getCity_id() {
+                    return city_id;
+                }
+
+                public void setCity_id(int city_id) {
+                    this.city_id = city_id;
+                }
+
+                public int getRegion_id() {
+                    return region_id;
+                }
+
+                public void setRegion_id(int region_id) {
+                    this.region_id = region_id;
+                }
+
+                public String getDetail() {
+                    return detail;
+                }
+
+                public void setDetail(String detail) {
+                    this.detail = detail;
+                }
+
+                public int getOrder_id() {
+                    return order_id;
+                }
+
+                public void setOrder_id(int order_id) {
+                    this.order_id = order_id;
+                }
+
+                public int getUser_id() {
+                    return user_id;
+                }
+
+                public void setUser_id(int user_id) {
+                    this.user_id = user_id;
+                }
+
+                public RegionBean getRegion() {
+                    return region;
+                }
+
+                public void setRegion(RegionBean region) {
+                    this.region = region;
+                }
+
+                public static class RegionBean {
+                    /**
+                     * province : 北京市
+                     * city : 北京市
+                     * region : 东城区
+                     */
+
+                    private String province;
+                    private String city;
+                    private String region;
+
+                    public String getProvince() {
+                        return province;
+                    }
+
+                    public void setProvince(String province) {
+                        this.province = province;
+                    }
+
+                    public String getCity() {
+                        return city;
+                    }
+
+                    public void setCity(String city) {
+                        this.city = city;
+                    }
+
+                    public String getRegion() {
+                        return region;
+                    }
+
+                    public void setRegion(String region) {
+                        this.region = region;
+                    }
                 }
             }
 
@@ -860,7 +1013,7 @@ public class MyClassDetailsBean {
                 private int can_notice;
                 private String registrationid;
                 private int is_over;
-                private RegionBean region;
+                private RegionBeanX region;
 
                 public int getShop_id() {
                     return shop_id;
@@ -1158,15 +1311,15 @@ public class MyClassDetailsBean {
                     this.is_over = is_over;
                 }
 
-                public RegionBean getRegion() {
+                public RegionBeanX getRegion() {
                     return region;
                 }
 
-                public void setRegion(RegionBean region) {
+                public void setRegion(RegionBeanX region) {
                     this.region = region;
                 }
 
-                public static class RegionBean {
+                public static class RegionBeanX {
                     /**
                      * province : 其他
                      * city : 北京市
@@ -1477,18 +1630,18 @@ public class MyClassDetailsBean {
 
             public static class GoodsBeanX {
                 /**
-                 * order_goods_id : 20291
-                 * goods_id : 12014
-                 * goods_name : 测试课程
-                 * image_id : 24584
+                 * order_goods_id : 20344
+                 * goods_id : 11888
+                 * goods_name : 云南腾冲三飞6日游
+                 * image_id : 20995
                  * deduct_stock_type : 10
                  * spec_type : 10
                  * spec_sku_id : 0
-                 * goods_sku_id : 29175
+                 * goods_sku_id : 26811
                  * goods_attr :
                  * goods_no :
-                 * goods_price : 0.01
-                 * line_price : 0.00
+                 * goods_price : 2680.00
+                 * line_price : 3999.00
                  * goods_weight : 0
                  * is_user_grade : 0
                  * grade_ratio : 0
@@ -1497,24 +1650,24 @@ public class MyClassDetailsBean {
                  * coupon_money : 0.00
                  * points_money : 0.00
                  * points_num : 0
-                 * points_bonus : 0
+                 * points_bonus : 2680
                  * virtual_code_money : 0.00
-                 * exchange_points_num : 0
+                 * exchange_points_num : 2680
                  * exchange_points_money : 0.00
                  * total_num : 1
-                 * total_price : 0.01
-                 * total_pay_price : 0.01
+                 * total_price : 2680.00
+                 * total_pay_price : 2680.00
                  * is_ind_dealer : 0
                  * dealer_money_type : 10
                  * first_money : 0.00
                  * second_money : 0.00
                  * third_money : 0.00
                  * is_comment : 0
-                 * order_id : 18907
+                 * order_id : 18957
                  * user_id : 14784
-                 * image : {"file_id":24584,"shop_id":0,"storage":"aliyun","group_id":0,"file_url":"http://dijiush.oss-cn-beijing.aliyuncs.com","file_name":"202009151725453455d7261.jpg","file_size":73947,"file_type":"image","extension":"jpg","is_user":0,"is_recycle":0,"is_delete":0,"wxapp_id":10001,"create_time":"2020-09-15 17:25:46","file_path":"http://dijiush.oss-cn-beijing.aliyuncs.com/202009151725453455d7261.jpg"}
-                 * sku : {"goods_sku_id":29175,"goods_id":12014,"spec_sku_id":"0","image_id":0,"goods_no":"","balance_price":"0.00","goods_price":"0.01","line_price":"0.00","real_price":"0.00","stock_num":4,"goods_sales":0,"goods_weight":0}
-                 * goods : {"goods_id":12014,"shop_id":10020,"supplier_id":0,"type":3,"goods_name":"测试课程","selling_point":"测试课程测试课程测试课程测试课程","use_rule":null,"category_id":10541,"spec_type":10,"deduct_stock_type":10,"content":"<p><img src=\"http://dijiush.oss-cn-beijing.aliyuncs.com/20201022165000794ee0767.png\"/><\/p><p><span style=\"color: rgb(14, 23, 38); font-family: \" pingfang=\"\" helvetica=\"\" hiragino=\"\" sans=\"\" source=\"\" han=\"\" noto=\"\" cjk=\"\" microsoft=\"\" white-space:=\"\" background-color:=\"\"><\/span><br/><\/p>","content2":"","goods_sort":100,"buy_limit":0,"least_expend_money":"0.00","delivery_id":0,"delivery_type":20,"is_new_user_enjoy":0,"is_points_gift":1,"is_points_discount":1,"is_enable_balance_price":0,"is_enable_grade":1,"is_alone_grade":0,"alone_grade_equity":{"10020":"","10021":"","10022":"","10023":"","10024":""},"is_ind_dealer":0,"dealer_money_type":10,"first_money":"0.00","second_money":"0.00","third_money":"0.00","is_rush":0,"is_points_exchange":0,"need_points_num":0,"need_points_money":"0.00","is_new_user":0,"new_need_points_num":0,"new_need_points_money":"0.00","video":null,"goods_status":{"text":"上架","value":10},"is_hot":1,"use_code":0,"is_check":1,"share_buy":0,"share_num":0,"view_num":201,"is_baopin":0,"is_ziyin":0,"is_pinpai":0,"brand_id":0,"goods_sales":3}
+                 * image : {"file_id":20995,"shop_id":0,"storage":"local","group_id":10118,"file_url":"","file_name":"202008211201269f9292848.jpg","file_size":543517,"file_type":"image","extension":"jpg","is_user":0,"is_recycle":0,"is_delete":0,"wxapp_id":10001,"create_time":"2020-08-21 12:01:26","file_path":"https://djsh.meiliancheng.cn/uploads/202008211201269f9292848.jpg"}
+                 * sku : null
+                 * goods : {"goods_id":11888,"shop_id":10020,"supplier_id":0,"type":1,"goods_name":"云南腾冲三飞6日游","selling_point":"泡温泉，游公园。","use_rule":null,"category_id":10430,"spec_type":10,"deduct_stock_type":10,"content":" <\/p>  <\/p>  <\/p>  <\/p>  <\/p>","content2":"","goods_sort":44,"buy_limit":0,"least_expend_money":"0.00","delivery_id":0,"delivery_type":20,"is_new_user_enjoy":0,"is_points_gift":1,"is_points_discount":1,"is_enable_balance_price":0,"is_enable_grade":1,"is_alone_grade":0,"alone_grade_equity":{"10024":"","10023":"","10022":"","10020":"","10021":""},"is_ind_dealer":0,"dealer_money_type":10,"first_money":"0.00","second_money":"0.00","third_money":"0.00","is_rush":0,"is_points_exchange":1,"need_points_num":2680,"need_points_money":"0.00","is_new_user":0,"new_need_points_num":0,"new_need_points_money":"0.00","video":"","goods_status":{"text":"上架","value":10},"is_hot":0,"use_code":1,"is_check":1,"share_buy":0,"share_num":23,"view_num":233,"is_baopin":0,"is_ziyin":0,"is_pinpai":0,"brand_id":0,"goods_sales":3}
                  * refund : null
                  */
 
@@ -1554,7 +1707,7 @@ public class MyClassDetailsBean {
                 private int order_id;
                 private int user_id;
                 private ImageBean image;
-                private SkuBean sku;
+                private Object sku;
                 private GoodsBean goods;
                 private Object refund;
 
@@ -1846,11 +1999,11 @@ public class MyClassDetailsBean {
                     this.image = image;
                 }
 
-                public SkuBean getSku() {
+                public Object getSku() {
                     return sku;
                 }
 
-                public void setSku(SkuBean sku) {
+                public void setSku(Object sku) {
                     this.sku = sku;
                 }
 
@@ -1872,21 +2025,21 @@ public class MyClassDetailsBean {
 
                 public static class ImageBean {
                     /**
-                     * file_id : 24584
+                     * file_id : 20995
                      * shop_id : 0
-                     * storage : aliyun
-                     * group_id : 0
-                     * file_url : http://dijiush.oss-cn-beijing.aliyuncs.com
-                     * file_name : 202009151725453455d7261.jpg
-                     * file_size : 73947
+                     * storage : local
+                     * group_id : 10118
+                     * file_url :
+                     * file_name : 202008211201269f9292848.jpg
+                     * file_size : 543517
                      * file_type : image
                      * extension : jpg
                      * is_user : 0
                      * is_recycle : 0
                      * is_delete : 0
                      * wxapp_id : 10001
-                     * create_time : 2020-09-15 17:25:46
-                     * file_path : http://dijiush.oss-cn-beijing.aliyuncs.com/202009151725453455d7261.jpg
+                     * create_time : 2020-08-21 12:01:26
+                     * file_path : https://djsh.meiliancheng.cn/uploads/202008211201269f9292848.jpg
                      */
 
                     private int file_id;
@@ -2026,147 +2179,21 @@ public class MyClassDetailsBean {
                     }
                 }
 
-                public static class SkuBean {
-                    /**
-                     * goods_sku_id : 29175
-                     * goods_id : 12014
-                     * spec_sku_id : 0
-                     * image_id : 0
-                     * goods_no :
-                     * balance_price : 0.00
-                     * goods_price : 0.01
-                     * line_price : 0.00
-                     * real_price : 0.00
-                     * stock_num : 4
-                     * goods_sales : 0
-                     * goods_weight : 0
-                     */
-
-                    private int goods_sku_id;
-                    private int goods_id;
-                    private String spec_sku_id;
-                    private int image_id;
-                    private String goods_no;
-                    private String balance_price;
-                    private String goods_price;
-                    private String line_price;
-                    private String real_price;
-                    private int stock_num;
-                    private int goods_sales;
-                    private int goods_weight;
-
-                    public int getGoods_sku_id() {
-                        return goods_sku_id;
-                    }
-
-                    public void setGoods_sku_id(int goods_sku_id) {
-                        this.goods_sku_id = goods_sku_id;
-                    }
-
-                    public int getGoods_id() {
-                        return goods_id;
-                    }
-
-                    public void setGoods_id(int goods_id) {
-                        this.goods_id = goods_id;
-                    }
-
-                    public String getSpec_sku_id() {
-                        return spec_sku_id;
-                    }
-
-                    public void setSpec_sku_id(String spec_sku_id) {
-                        this.spec_sku_id = spec_sku_id;
-                    }
-
-                    public int getImage_id() {
-                        return image_id;
-                    }
-
-                    public void setImage_id(int image_id) {
-                        this.image_id = image_id;
-                    }
-
-                    public String getGoods_no() {
-                        return goods_no;
-                    }
-
-                    public void setGoods_no(String goods_no) {
-                        this.goods_no = goods_no;
-                    }
-
-                    public String getBalance_price() {
-                        return balance_price;
-                    }
-
-                    public void setBalance_price(String balance_price) {
-                        this.balance_price = balance_price;
-                    }
-
-                    public String getGoods_price() {
-                        return goods_price;
-                    }
-
-                    public void setGoods_price(String goods_price) {
-                        this.goods_price = goods_price;
-                    }
-
-                    public String getLine_price() {
-                        return line_price;
-                    }
-
-                    public void setLine_price(String line_price) {
-                        this.line_price = line_price;
-                    }
-
-                    public String getReal_price() {
-                        return real_price;
-                    }
-
-                    public void setReal_price(String real_price) {
-                        this.real_price = real_price;
-                    }
-
-                    public int getStock_num() {
-                        return stock_num;
-                    }
-
-                    public void setStock_num(int stock_num) {
-                        this.stock_num = stock_num;
-                    }
-
-                    public int getGoods_sales() {
-                        return goods_sales;
-                    }
-
-                    public void setGoods_sales(int goods_sales) {
-                        this.goods_sales = goods_sales;
-                    }
-
-                    public int getGoods_weight() {
-                        return goods_weight;
-                    }
-
-                    public void setGoods_weight(int goods_weight) {
-                        this.goods_weight = goods_weight;
-                    }
-                }
-
                 public static class GoodsBean {
                     /**
-                     * goods_id : 12014
+                     * goods_id : 11888
                      * shop_id : 10020
                      * supplier_id : 0
-                     * type : 3
-                     * goods_name : 测试课程
-                     * selling_point : 测试课程测试课程测试课程测试课程
+                     * type : 1
+                     * goods_name : 云南腾冲三飞6日游
+                     * selling_point : 泡温泉，游公园。
                      * use_rule : null
-                     * category_id : 10541
+                     * category_id : 10430
                      * spec_type : 10
                      * deduct_stock_type : 10
-                     * content : <p><img src="http://dijiush.oss-cn-beijing.aliyuncs.com/20201022165000794ee0767.png"/></p><p><span style="color: rgb(14, 23, 38); font-family: " pingfang="" helvetica="" hiragino="" sans="" source="" han="" noto="" cjk="" microsoft="" white-space:="" background-color:=""></span><br/></p>
+                     * content :  </p>  </p>  </p>  </p>  </p>
                      * content2 :
-                     * goods_sort : 100
+                     * goods_sort : 44
                      * buy_limit : 0
                      * least_expend_money : 0.00
                      * delivery_id : 0
@@ -2177,27 +2204,27 @@ public class MyClassDetailsBean {
                      * is_enable_balance_price : 0
                      * is_enable_grade : 1
                      * is_alone_grade : 0
-                     * alone_grade_equity : {"10020":"","10021":"","10022":"","10023":"","10024":""}
+                     * alone_grade_equity : {"10024":"","10023":"","10022":"","10020":"","10021":""}
                      * is_ind_dealer : 0
                      * dealer_money_type : 10
                      * first_money : 0.00
                      * second_money : 0.00
                      * third_money : 0.00
                      * is_rush : 0
-                     * is_points_exchange : 0
-                     * need_points_num : 0
+                     * is_points_exchange : 1
+                     * need_points_num : 2680
                      * need_points_money : 0.00
                      * is_new_user : 0
                      * new_need_points_num : 0
                      * new_need_points_money : 0.00
-                     * video : null
+                     * video :
                      * goods_status : {"text":"上架","value":10}
-                     * is_hot : 1
-                     * use_code : 0
+                     * is_hot : 0
+                     * use_code : 1
                      * is_check : 1
                      * share_buy : 0
-                     * share_num : 0
-                     * view_num : 201
+                     * share_num : 23
+                     * view_num : 233
                      * is_baopin : 0
                      * is_ziyin : 0
                      * is_pinpai : 0
@@ -2241,7 +2268,7 @@ public class MyClassDetailsBean {
                     private int is_new_user;
                     private int new_need_points_num;
                     private String new_need_points_money;
-                    private Object video;
+                    private String video;
                     private GoodsStatusBean goods_status;
                     private int is_hot;
                     private int use_code;
@@ -2543,11 +2570,11 @@ public class MyClassDetailsBean {
                         this.new_need_points_money = new_need_points_money;
                     }
 
-                    public Object getVideo() {
+                    public String getVideo() {
                         return video;
                     }
 
-                    public void setVideo(Object video) {
+                    public void setVideo(String video) {
                         this.video = video;
                     }
 
@@ -2649,23 +2676,47 @@ public class MyClassDetailsBean {
 
                     public static class AloneGradeEquityBean {
                         /**
+                         * 10024 :
+                         * 10023 :
+                         * 10022 :
                          * 10020 :
                          * 10021 :
-                         * 10022 :
-                         * 10023 :
-                         * 10024 :
                          */
 
+                        @SerializedName("10024")
+                        private String _$10024;
+                        @SerializedName("10023")
+                        private String _$10023;
+                        @SerializedName("10022")
+                        private String _$10022;
                         @SerializedName("10020")
                         private String _$10020;
                         @SerializedName("10021")
                         private String _$10021;
-                        @SerializedName("10022")
-                        private String _$10022;
-                        @SerializedName("10023")
-                        private String _$10023;
-                        @SerializedName("10024")
-                        private String _$10024;
+
+                        public String get_$10024() {
+                            return _$10024;
+                        }
+
+                        public void set_$10024(String _$10024) {
+                            this._$10024 = _$10024;
+                        }
+
+                        public String get_$10023() {
+                            return _$10023;
+                        }
+
+                        public void set_$10023(String _$10023) {
+                            this._$10023 = _$10023;
+                        }
+
+                        public String get_$10022() {
+                            return _$10022;
+                        }
+
+                        public void set_$10022(String _$10022) {
+                            this._$10022 = _$10022;
+                        }
 
                         public String get_$10020() {
                             return _$10020;
@@ -2681,30 +2732,6 @@ public class MyClassDetailsBean {
 
                         public void set_$10021(String _$10021) {
                             this._$10021 = _$10021;
-                        }
-
-                        public String get_$10022() {
-                            return _$10022;
-                        }
-
-                        public void set_$10022(String _$10022) {
-                            this._$10022 = _$10022;
-                        }
-
-                        public String get_$10023() {
-                            return _$10023;
-                        }
-
-                        public void set_$10023(String _$10023) {
-                            this._$10023 = _$10023;
-                        }
-
-                        public String get_$10024() {
-                            return _$10024;
-                        }
-
-                        public void set_$10024(String _$10024) {
-                            this._$10024 = _$10024;
                         }
                     }
 

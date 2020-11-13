@@ -119,4 +119,20 @@ public interface RetrofitService {
     // 收货地址
     @POST("index.php?s=/shop/api.address/lists")
     Observable<AddressBean> lists(@QueryMap Map<String, String> queryMap);
+
+    // 新增收货地址
+    @POST("index.php?s=/shop/api.address/add")
+    Observable<StatusBean> add(@QueryMap Map<String, String> queryMap);
+
+    // 设置默认地址
+    @POST("index.php?s=/shop/api.address/setDefault")
+    Observable<StatusBean> setDefault(@QueryMap Map<String, String> queryMap);
+
+    // 修改地址
+    @POST("index.php?s=/shop/api.address/edit")
+    Observable<StatusBean> edit(@QueryMap Map<String, String> queryMap);
+
+    // 删除地址
+    @POST("index.php?s=/shop/api.address/delete")
+    Observable<StatusBean> delete(@QueryMap Map<String, String> queryMap);
 }

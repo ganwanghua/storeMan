@@ -1,6 +1,7 @@
 package com.pinnoocle.storeman.home;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.alipay.sdk.app.PayTask;
 import com.bumptech.glide.Glide;
@@ -122,10 +125,11 @@ public class AcknowledgementOrderActivity extends BaseActivity {
             @Override
             public void onSuccess(Object data) {
                 ByNowClassBean byNowClassBean = (ByNowClassBean) data;
-                if (byNowClassBean.getCode() == 0) {
+                if (byNowClassBean.getCode() == 1) {
                     tvName.setText(byNowClassBean.getData().getOrderInfo().getAddress().getName());
                     tvPhone.setText(byNowClassBean.getData().getOrderInfo().getAddress().getPhone());
-                    tvAddress.setText(byNowClassBean.getData().getOrderInfo().getAddress().getDetail());
+                    tvAddress.setText(byNowClassBean.getData().getOrderInfo().getAddress().getRegion().getProvince() + byNowClassBean.getData().getOrderInfo().getAddress().getRegion().getCity()
+                            + byNowClassBean.getData().getOrderInfo().getAddress().getRegion().getRegion() + byNowClassBean.getData().getOrderInfo().getAddress().getDetail());
                     Glide.with(AcknowledgementOrderActivity.this).load(byNowClassBean.getData().getOrderInfo().getGoods_list().get(0).getGoods_image()).centerCrop().into(ivShop);
                     tvTitle.setText(byNowClassBean.getData().getOrderInfo().getGoods_list().get(0).getGoods_name());
                     tvMoney.setText("¥" + byNowClassBean.getData().getOrderInfo().getGoods_list().get(0).getGoods_price());
@@ -168,8 +172,16 @@ public class AcknowledgementOrderActivity extends BaseActivity {
                 ivSelect2.setImageResource(R.mipmap.select);
                 break;
             case R.id.iv_right:
-                ActivityUtils.startActivity(this, AddressActivity.class);
+                ActivityUtils.startActivityForResult(this, AddressActivity.class, 1001);
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1001 && resultCode == 1001) {
+            buyNow();
         }
     }
 

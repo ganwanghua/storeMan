@@ -2,6 +2,7 @@ package com.pinnoocle.storeman.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -45,6 +46,7 @@ public class TravelCardActivity extends BaseActivity implements TravelCardAdapte
     private DataRepository dataRepository;
     private TravelCardAdapter travelCardAdapter;
     private List<ClassListBean.DataBeanX.ListBean.DataBean> dataBeanList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         initWhite();
@@ -113,10 +115,20 @@ public class TravelCardActivity extends BaseActivity implements TravelCardAdapte
     }
 
     @Override
-    public void onItemClick(int position) {
-        Intent intent = new Intent(this, TravelCardDetailsActivity.class);
-        intent.putExtra("goods_id", dataBeanList.get(position).getGoods_id() + "");
-        intent.putExtra("goods_name", dataBeanList.get(position).getGoods_name());
-        startActivity(intent);
+    public void onItemClick(int position, View v) {
+        switch (v.getId()) {
+            case R.id.rl_class:
+                Intent intent = new Intent(this, TravelCardDetailsActivity.class);
+                intent.putExtra("goods_id", dataBeanList.get(position).getGoods_id() + "");
+                intent.putExtra("goods_name", dataBeanList.get(position).getGoods_name());
+                startActivity(intent);
+                break;
+            case R.id.tv_rush_purchase:
+                Intent intent1 = new Intent(this, AcknowledgementOrderActivity.class);
+                intent1.putExtra("goods_id", dataBeanList.get(position).getGoods_id() + "");
+                intent1.putExtra("sku_id", dataBeanList.get(position).getGoods_sku().getSpec_sku_id());
+                startActivity(intent1);
+                break;
+        }
     }
 }

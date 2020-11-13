@@ -60,14 +60,52 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
                 + mShowItems.get(position).getRegion().getRegion() + mShowItems.get(position).getDetail());
 
         if (pos == position) {
+            holder.iv_select.setEnabled(false);
             holder.iv_select.setImageResource(R.mipmap.select);
             holder.tv_select.setText("已设为默认");
             holder.tv_select.setTextColor(0xff333333);
-        }else {
+        } else {
+            holder.iv_select.setEnabled(true);
             holder.iv_select.setImageResource(R.mipmap.unselect);
             holder.tv_select.setText("设为默认");
             holder.tv_select.setTextColor(0xff888888);
         }
+
+        holder.iv_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(position, v);
+                }
+            }
+        });
+
+        holder.ll_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(position, v);
+                }
+            }
+        });
+
+        holder.ll_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(position, v);
+                }
+            }
+        });
+
+        holder.ll_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(position, v);
+                }
+            }
+        });
     }
 
     @Override
@@ -84,7 +122,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
     //**********************itemClick************************
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(int position, View v);
     }
 
     private OnItemClickListener mOnItemClickListener;
@@ -97,7 +135,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView tv_name, tv_address, tv_select;
         private final ImageView iv_select;
-        private final LinearLayout ll_edit, ll_delete;
+        private final LinearLayout ll_edit, ll_delete, ll_address;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -107,6 +145,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
             tv_name = (TextView) itemView.findViewById(R.id.tv_name);
             ll_edit = (LinearLayout) itemView.findViewById(R.id.ll_edit);
             ll_delete = (LinearLayout) itemView.findViewById(R.id.ll_delete);
+            ll_address = (LinearLayout) itemView.findViewById(R.id.ll_address);
         }
     }
 

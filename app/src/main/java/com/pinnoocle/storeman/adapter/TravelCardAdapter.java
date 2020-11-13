@@ -54,7 +54,15 @@ public class TravelCardAdapter extends RecyclerView.Adapter<TravelCardAdapter.Vi
             @Override
             public void onClick(View v) {
                 if (mOnItemClickListener != null) {
-                    mOnItemClickListener.onItemClick(position);
+                    mOnItemClickListener.onItemClick(position, v);
+                }
+            }
+        });
+        holder.tv_rush_purchase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(position, v);
                 }
             }
         });
@@ -73,7 +81,7 @@ public class TravelCardAdapter extends RecyclerView.Adapter<TravelCardAdapter.Vi
 
     //**********************itemClick************************
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(int position,View v);
     }
 
     private OnItemClickListener mOnItemClickListener;

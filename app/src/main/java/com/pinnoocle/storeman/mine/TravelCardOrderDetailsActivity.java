@@ -162,40 +162,41 @@ public class TravelCardOrderDetailsActivity extends BaseActivity {
                     } else if (orderDetailBean.getData().getOrder().getState_text().equals("已完成")) {
                         tvHint.setText("您的订单已完成，期待您的好评~");
                     }
-//                    tvName.setText(orderDetailBean.getData().getOrder().getUser().getNickName());
-//                    if (!TextUtils.isEmpty(orderDetailBean.getData().getOrder().getUser().getPhone()) && orderDetailBean.getData().getDetail().getUser().getPhone().length() > 6) {
-//                        StringBuilder sb = new StringBuilder();
-//                        for (int i = 0; i < orderDetailBean.getData().getOrder().getUser().getPhone().length(); i++) {
-//                            char c = orderDetailBean.getData().getOrder().getUser().getPhone().charAt(i);
-//                            if (i >= 3 && i <= 6) {
-//                                sb.append('*');
-//                            } else {
-//                                sb.append(c);
-//                            }
-//                        }
-//                        tvPhone.setText(sb.toString());
-//                    }
-//                    tvAddress.setText(orderDetailBean.getData().getDetail().getShop().getAddress());
-//                    Glide.with(OrderDetailsActivity.this).load(orderDetailBean.getData().getDetail().getGoods().get(0).getImage().getFile_path()).centerCrop().into(ivShop);
-//                    tvTitle.setText(orderDetailBean.getData().getDetail().getGoods().get(0).getGoods_name());
-//
-//                    if (orderDetailBean.getData().getDetail().getPoints_exchange_num() > 0) {
-//                        if (Double.parseDouble(orderDetailBean.getData().getDetail().getGoods().get(0).getExchange_points_money()) > 0) {
-//                            tvMoney.setText(orderDetailBean.getData().getDetail().getGoods().get(0).getExchange_points_num() + "积分+¥" + orderDetailBean.getData().getDetail().getGoods().get(0).getExchange_points_money());
-//                        } else {
-//                            tvMoney.setText(orderDetailBean.getData().getDetail().getGoods().get(0).getExchange_points_num() + "积分");
-//                        }
-//                    } else {
-//                        tvMoney.setText("¥" + orderDetailBean.getData().getDetail().getGoods().get(0).getGoods_price());
-//                    }
-//                    tvNum.setText("x" + orderDetailBean.getData().getDetail().getGoods().get(0).getTotal_num());
-//                    tvTime.setText("共" + orderDetailBean.getData().getDetail().getGoods().get(0).getTotal_num() + "件商品，合计:");
-//                    tvAllMoney.setText("¥" + orderDetailBean.getData().getDetail().getGoods().get(0).getTotal_price());
-//                    tvTotalMoney.setText("¥" + orderDetailBean.getData().getDetail().getTotal_price());
-//                    tvDeliveryFee.setText("¥" + orderDetailBean.getData().getDetail().getExpress_price());
-//                    tvTotalMerchandise.setText("¥" + orderDetailBean.getData().getDetail().getOrder_price());
-//                    tvOrder.setText(orderDetailBean.getData().getDetail().getOrder_no());
-//                    tvUpdateTime.setText(orderDetailBean.getData().getDetail().getCreate_time());
+                    tvName.setText(orderDetailBean.getData().getOrder().getAddress().getName());
+                    if (!TextUtils.isEmpty(orderDetailBean.getData().getOrder().getAddress().getPhone()) && orderDetailBean.getData().getOrder().getAddress().getPhone().length() > 6) {
+                        StringBuilder sb = new StringBuilder();
+                        for (int i = 0; i < orderDetailBean.getData().getOrder().getAddress().getPhone().length(); i++) {
+                            char c = orderDetailBean.getData().getOrder().getAddress().getPhone().charAt(i);
+                            if (i >= 3 && i <= 6) {
+                                sb.append('*');
+                            } else {
+                                sb.append(c);
+                            }
+                        }
+                        tvPhone.setText(sb.toString());
+                    }
+                    tvAddress.setText(orderDetailBean.getData().getOrder().getAddress().getRegion().getProvince() + orderDetailBean.getData().getOrder().getAddress().getRegion().getCity()
+                            + orderDetailBean.getData().getOrder().getAddress().getRegion().getRegion() + orderDetailBean.getData().getOrder().getAddress().getDetail());
+                    Glide.with(TravelCardOrderDetailsActivity.this).load(orderDetailBean.getData().getOrder().getGoods().get(0).getImage().getFile_path()).centerCrop().into(ivShop);
+                    tvTitle.setText(orderDetailBean.getData().getOrder().getGoods().get(0).getGoods_name());
+
+                    if (orderDetailBean.getData().getOrder().getPoints_exchange_num() > 0) {
+                        if (Double.parseDouble(orderDetailBean.getData().getOrder().getGoods().get(0).getExchange_points_money()) > 0) {
+                            tvMoney.setText(orderDetailBean.getData().getOrder().getGoods().get(0).getExchange_points_num() + "积分+¥" + orderDetailBean.getData().getOrder().getGoods().get(0).getExchange_points_money());
+                        } else {
+                            tvMoney.setText(orderDetailBean.getData().getOrder().getGoods().get(0).getExchange_points_num() + "积分");
+                        }
+                    } else {
+                        tvMoney.setText("¥" + orderDetailBean.getData().getOrder().getGoods().get(0).getGoods_price());
+                    }
+                    tvNum.setText("x" + orderDetailBean.getData().getOrder().getGoods().get(0).getTotal_num());
+                    tvTime.setText("共" + orderDetailBean.getData().getOrder().getGoods().get(0).getTotal_num() + "件商品，合计:");
+                    tvAllMoney.setText("¥" + orderDetailBean.getData().getOrder().getGoods().get(0).getTotal_price());
+                    tvTotalMoney.setText("¥" + orderDetailBean.getData().getOrder().getTotal_price());
+                    tvDeliveryFee.setText("¥" + orderDetailBean.getData().getOrder().getExpress_price());
+                    tvTotalMerchandise.setText("¥" + orderDetailBean.getData().getOrder().getOrder_price());
+                    tvOrder.setText(orderDetailBean.getData().getOrder().getOrder_no());
+                    tvUpdateTime.setText(orderDetailBean.getData().getOrder().getCreate_time());
                 }
             }
         });

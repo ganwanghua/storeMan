@@ -24,6 +24,7 @@ import com.pinnoocle.storeman.R;
 import com.pinnoocle.storeman.adapter.ClassAdapter;
 import com.pinnoocle.storeman.adapter.TravelAdapter;
 import com.pinnoocle.storeman.bean.HomeModel;
+import com.pinnoocle.storeman.home.AcknowledgementOrderActivity;
 import com.pinnoocle.storeman.home.ClassActivity;
 import com.pinnoocle.storeman.home.ClassDetailsActivity;
 import com.pinnoocle.storeman.home.CollectionCodeActivity;
@@ -139,11 +140,21 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
         recyclerView1.setAdapter(travelAdapter);
         travelAdapter.setOnItemClickListener(new TravelAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(int position) {
-                Intent intent = new Intent(getActivity(), TravelCardDetailsActivity.class);
-                intent.putExtra("goods_id", travelBeans.get(position).getGoods_id() + "");
-                intent.putExtra("goods_name", travelBeans.get(position).getGoods_name());
-                startActivity(intent);
+            public void onItemClick(int position, View v) {
+                switch (v.getId()) {
+                    case R.id.ll_travel_card:
+                        Intent intent = new Intent(getActivity(), TravelCardDetailsActivity.class);
+                        intent.putExtra("goods_id", travelBeans.get(position).getGoods_id() + "");
+                        intent.putExtra("goods_name", travelBeans.get(position).getGoods_name());
+                        startActivity(intent);
+                        break;
+                    case R.id.tv_rush_purchase:
+                        Intent intent1 = new Intent(getActivity(), AcknowledgementOrderActivity.class);
+                        intent1.putExtra("goods_id", travelBeans.get(position).getGoods_id() + "");
+                        intent1.putExtra("sku_id", travelBeans.get(position).getGoods_sku().getSpec_sku_id());
+                        startActivity(intent1);
+                        break;
+                }
             }
         });
     }
