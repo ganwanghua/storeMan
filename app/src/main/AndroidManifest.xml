@@ -43,7 +43,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".home.AddAddressActivity"></activity>
+        <activity android:name=".home.PaySuccessActivity"></activity>
+        <activity android:name=".home.AddAddressActivity" />
         <activity android:name=".home.AddressActivity" />
         <activity android:name=".home.AcknowledgementOrderActivity" />
         <activity android:name=".mine.TravelCardOrderDetailsActivity" />

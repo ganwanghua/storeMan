@@ -102,7 +102,7 @@ public class ByNowClassBean {
             private boolean intra_region;
             private boolean is_allow_points;
             private int is_use_points;
-            private int points_money;
+            private double points_money;
             private int points_bonus;
             private int pay_type;
             private SettingBean setting;
@@ -212,11 +212,11 @@ public class ByNowClassBean {
                 this.is_use_points = is_use_points;
             }
 
-            public int getPoints_money() {
+            public double getPoints_money() {
                 return points_money;
             }
 
-            public void setPoints_money(int points_money) {
+            public void setPoints_money(double points_money) {
                 this.points_money = points_money;
             }
 
@@ -919,7 +919,7 @@ public class ByNowClassBean {
                 private int grade_ratio;
                 private int grade_goods_price;
                 private int grade_total_money;
-                private int points_money;
+                private double points_money;
                 private String points_num;
                 private int coupon_money;
                 private int virtual_code_money;
@@ -1408,11 +1408,11 @@ public class ByNowClassBean {
                     this.grade_total_money = grade_total_money;
                 }
 
-                public int getPoints_money() {
+                public double getPoints_money() {
                     return points_money;
                 }
 
-                public void setPoints_money(int points_money) {
+                public void setPoints_money(double points_money) {
                     this.points_money = points_money;
                 }
 

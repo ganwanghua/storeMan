@@ -8,6 +8,7 @@ import android.os.Message;
 import android.os.StrictMode;
 import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -17,6 +18,7 @@ import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.pedaily.yc.ycdialoglib.dialog.loading.ViewLoading;
+import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
 import com.pinnoocle.storeman.R;
 import com.pinnoocle.storeman.bean.ClassDetailBean;
 import com.pinnoocle.storeman.common.BaseActivity;
@@ -25,6 +27,10 @@ import com.pinnoocle.storeman.nets.Injection;
 import com.pinnoocle.storeman.nets.RemotDataSource;
 import com.pinnoocle.storeman.util.FastData;
 import com.pinnoocle.storeman.util.StatusBarUtil;
+import com.timmy.tdialog.TDialog;
+import com.timmy.tdialog.base.BindViewHolder;
+import com.timmy.tdialog.listener.OnBindViewListener;
+import com.timmy.tdialog.listener.OnViewClickListener;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -58,6 +64,7 @@ public class TravelCardDetailsActivity extends BaseActivity {
     TextView tvBuy;
     private DataRepository dataRepository;
     ClassDetailBean.DataBean.DetailBean classDetail;
+    private TextView et_shop_num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,11 +150,68 @@ public class TravelCardDetailsActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_buy:
-                Intent intent = new Intent(this, AcknowledgementOrderActivity.class);
-                intent.putExtra("goods_id", classDetail.getGoods_id() + "");
-                intent.putExtra("sku_id", classDetail.getGoods_sku().getSpec_sku_id());
-                startActivity(intent);
+                SelectNum();
                 break;
         }
+    }
+
+    private void SelectNum() {
+        new TDialog.Builder(getSupportFragmentManager())
+                .setLayoutRes(R.layout.dialog_num_select)
+                .setScreenWidthAspect(TravelCardDetailsActivity.this, 1f)
+                .setGravity(Gravity.BOTTOM)
+                .setCancelableOutside(false)
+                .addOnClickListener(R.id.ic_close, R.id.tv_sure, R.id.rl_shop_delete, R.id.rl_shop_insert, R.id.et_shop_num)
+                .setOnBindViewListener(new OnBindViewListener() {
+                    @Override
+                    public void bindView(BindViewHolder viewHolder) {
+                        ImageView iv_shop = viewHolder.itemView.findViewById(R.id.iv_shop);
+                        TextView tv_title = viewHolder.itemView.findViewById(R.id.tv_title);
+                        TextView tv_money = viewHolder.itemView.findViewById(R.id.tv_money);
+                        TextView tv_stork = viewHolder.itemView.findViewById(R.id.tv_stork);
+                        et_shop_num = viewHolder.itemView.findViewById(R.id.et_shop_num);
+                        Glide.with(TravelCardDetailsActivity.this).load(classDetail.getGoods_image()).into(iv_shop);
+                        tv_title.setText(classDetail.getGoods_name());
+                        tv_money.setText("¥" + classDetail.getGoods_sku().getGoods_price());
+                        tv_stork.setText("库存：" + classDetail.getGoods_sku().getStock_num());
+                    }
+                })
+                .setOnViewClickListener(new OnViewClickListener() {
+                    @Override
+                    public void onViewClick(BindViewHolder viewHolder, View view, TDialog tDialog) {
+                        switch (view.getId()) {
+                            case R.id.ic_close:
+                                tDialog.dismiss();
+                                break;
+                            case R.id.tv_sure:
+                                if (Integer.parseInt(et_shop_num.getText().toString()) > classDetail.getGoods_sku().getStock_num()) {
+                                    ToastUtils.showToast("您购买的数量超出库存总数！");
+                                } else {
+                                    Intent intent = new Intent(TravelCardDetailsActivity.this, AcknowledgementOrderActivity.class);
+                                    intent.putExtra("goods_id", classDetail.getGoods_id() + "");
+                                    intent.putExtra("sku_id", classDetail.getGoods_sku().getSpec_sku_id());
+                                    startActivity(intent);
+                                }
+                                tDialog.dismiss();
+                                break;
+                            case R.id.rl_shop_delete:
+                                int s = Integer.parseInt(et_shop_num.getText().toString());
+                                if (s <= 1) {
+
+                                } else {
+                                    s = s - 1;
+                                    et_shop_num.setText(s + "");
+                                }
+                                break;
+                            case R.id.rl_shop_insert:
+                                int s1 = Integer.parseInt(et_shop_num.getText().toString());
+                                s1 = s1 + 1;
+                                et_shop_num.setText(s1 + "");
+                                break;
+                        }
+                    }
+                })
+                .create()
+                .show();
     }
 }

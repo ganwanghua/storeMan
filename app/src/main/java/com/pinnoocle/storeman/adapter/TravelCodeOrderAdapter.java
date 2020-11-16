@@ -53,21 +53,55 @@ public class TravelCodeOrderAdapter extends RecyclerView.Adapter<TravelCodeOrder
         if (mShowItems.get(position).getPoints_exchange_num() > 0) {
             if (Double.parseDouble(mShowItems.get(position).getGoods().get(0).getExchange_points_money()) > 0) {
                 holder.tv_money.setText(mShowItems.get(position).getGoods().get(0).getExchange_points_num() + "积分+¥" + mShowItems.get(position).getGoods().get(0).getExchange_points_money());
-            }else {
+            } else {
                 holder.tv_money.setText(mShowItems.get(position).getGoods().get(0).getExchange_points_num() + "积分");
             }
-        }else {
+        } else {
             holder.tv_money.setText("¥" + mShowItems.get(position).getGoods().get(0).getGoods_price());
         }
         holder.tv_num.setText("x" + mShowItems.get(position).getGoods().get(0).getTotal_num());
         holder.tv_all_money.setText("共:" + mShowItems.get(position).getGoods().get(0).getTotal_price() + "元");
         holder.tv_time.setText("支付时间：" + mShowItems.get(position).getCreate_time());
 
+        if (mShowItems.get(position).getState_text().equals("待付款")) {
+            holder.tv_pay.setVisibility(View.VISIBLE);
+            holder.tv_logistics.setVisibility(View.GONE);
+            holder.tv_receipt_confirmation.setVisibility(View.GONE);
+            holder.tv_evaluate.setVisibility(View.GONE);
+        } else if (mShowItems.get(position).getState_text().equals("已付款，待发货")) {
+            holder.tv_pay.setVisibility(View.GONE);
+            holder.tv_logistics.setVisibility(View.VISIBLE);
+            holder.tv_receipt_confirmation.setVisibility(View.GONE);
+            holder.tv_evaluate.setVisibility(View.GONE);
+        } else if (mShowItems.get(position).getState_text().equals("已发货，待收货")) {
+            holder.tv_pay.setVisibility(View.GONE);
+            holder.tv_logistics.setVisibility(View.VISIBLE);
+            holder.tv_receipt_confirmation.setVisibility(View.VISIBLE);
+            holder.tv_evaluate.setVisibility(View.GONE);
+        } else if (mShowItems.get(position).getState_text().equals("已取消")) {
+            holder.tv_pay.setVisibility(View.GONE);
+            holder.tv_logistics.setVisibility(View.GONE);
+            holder.tv_receipt_confirmation.setVisibility(View.GONE);
+            holder.tv_evaluate.setVisibility(View.GONE);
+        } else if (mShowItems.get(position).getState_text().equals("已完成")) {
+            holder.tv_pay.setVisibility(View.GONE);
+            holder.tv_logistics.setVisibility(View.GONE);
+            holder.tv_receipt_confirmation.setVisibility(View.GONE);
+            holder.tv_evaluate.setVisibility(View.VISIBLE);
+        }
         holder.ll_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mOnItemClickListener != null) {
-                    mOnItemClickListener.onItemClick(position);
+                    mOnItemClickListener.onItemClick(position, v);
+                }
+            }
+        });
+        holder.tv_pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(position, v);
                 }
             }
         });
@@ -86,7 +120,7 @@ public class TravelCodeOrderAdapter extends RecyclerView.Adapter<TravelCodeOrder
 
     //**********************itemClick************************
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(int position, View v);
     }
 
     private OnItemClickListener mOnItemClickListener;
@@ -97,7 +131,8 @@ public class TravelCodeOrderAdapter extends RecyclerView.Adapter<TravelCodeOrder
     //**************************************************************
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView tv_order, tv_status, tv_title, tv_money, tv_all_money, tv_num, tv_time;
+        private final TextView tv_order, tv_status, tv_title, tv_money, tv_all_money, tv_num, tv_time,
+                tv_pay, tv_logistics, tv_receipt_confirmation, tv_evaluate;
         private final ImageView iv_shop;
         private final LinearLayout ll_order;
 
@@ -111,6 +146,10 @@ public class TravelCodeOrderAdapter extends RecyclerView.Adapter<TravelCodeOrder
             tv_num = (TextView) itemView.findViewById(R.id.tv_num);
             tv_all_money = (TextView) itemView.findViewById(R.id.tv_all_money);
             tv_time = (TextView) itemView.findViewById(R.id.tv_time);
+            tv_pay = (TextView) itemView.findViewById(R.id.tv_pay);
+            tv_logistics = (TextView) itemView.findViewById(R.id.tv_logistics);
+            tv_receipt_confirmation = (TextView) itemView.findViewById(R.id.tv_receipt_confirmation);
+            tv_evaluate = (TextView) itemView.findViewById(R.id.tv_evaluate);
             ll_order = (LinearLayout) itemView.findViewById(R.id.ll_order);
         }
     }

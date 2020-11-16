@@ -72,7 +72,6 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
         notifyDataSetChanged();
     }
 
-
     //**********************itemClick************************
     public interface OnItemClickListener {
         void onItemClick(int position);

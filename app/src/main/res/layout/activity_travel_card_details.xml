@@ -30,27 +30,56 @@
             android:src="@mipmap/goback" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_buy"
+    <LinearLayout
+        android:id="@+id/ll_buy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="10dp"
-        android:background="@drawable/bg_juice"
-        android:gravity="center"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:text="立即购买"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:gravity="center_vertical"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/customer_service" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="客服"
+                android:textColor="@color/grey"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_buy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_juice"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="立即购买"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/ll_buy"
         android:layout_below="@id/rl_title"
-        android:layout_above="@id/tv_buy"
-        android:overScrollMode="never"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:overScrollMode="never">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,8 +89,8 @@
             <ImageView
                 android:id="@+id/iv_picture"
                 android:layout_width="match_parent"
-                android:scaleType="fitXY"
-                android:layout_height="250dp" />
+                android:layout_height="250dp"
+                android:scaleType="fitXY" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -144,32 +173,32 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="购买说明"
                     android:layout_marginTop="5dp"
+                    android:text="购买说明"
                     android:textColor="#111111"
                     android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:text="购买后发货"
-                    android:layout_marginTop="5dp"
                     android:textColor="#111111"
                     android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:text="本产品是虚拟产品，一旦购买，不退换"
-                    android:layout_marginTop="5dp"
                     android:textColor="#111111"
                     android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="用法用法啥的"
                     android:layout_marginTop="5dp"
+                    android:text="用法用法啥的"
                     android:textColor="#111111"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -187,8 +216,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="图文详情"
                     android:layout_marginTop="5dp"
+                    android:text="图文详情"
                     android:textColor="#111111"
                     android:textSize="18sp" />
 
@@ -196,8 +225,8 @@
                     android:id="@+id/tv_content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="5dp"
+                    android:gravity="center" />
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

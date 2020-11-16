@@ -32,6 +32,8 @@ import com.pinnoocle.storeman.util.ActivityUtils;
 import com.pinnoocle.storeman.util.FastData;
 import com.pinnoocle.storeman.util.StatusBarUtil;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -245,13 +247,21 @@ public class AcknowledgementOrderActivity extends BaseActivity {
                     String resultStatus = payResult.getResultStatus();
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
-                        // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
-//                        showAlert(PayDemoActivity.this, getString(R.string.pay_success) + payResult);
-                        ToastUtils.showToast(payResult.getMemo());
+                        ToastUtils.showToast("支付成功");
+                        Intent intent = new Intent(AcknowledgementOrderActivity.this, PaySuccessActivity.class);
+                        intent.putExtra("pos", "2");
+                        startActivity(intent);
                     } else {
-                        // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
-//                        showAlert(PayDemoActivity.this, getString(R.string.pay_failed) + payResult);
-                        ToastUtils.showToast(payResult.getMemo());
+                        // 判断resultStatus 为非“9000”则代表可能支付失败
+                        // “8000”代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
+                        if (TextUtils.equals(resultStatus, "8000")) {
+                            ToastUtils.showToast("支付结果确认中");
+                        } else if (TextUtils.equals(resultStatus, "6001")) { //用户中途取消
+                            ToastUtils.showToast("取消支付");
+                        } else {
+                            // 其他值就可以判断为支付失败
+                            ToastUtils.showToast("支付失败");
+                        }
                     }
                     break;
                 }
