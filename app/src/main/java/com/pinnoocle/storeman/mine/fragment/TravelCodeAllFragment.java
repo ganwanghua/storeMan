@@ -33,6 +33,7 @@ import com.pinnoocle.storeman.bean.PayResult;
 import com.pinnoocle.storeman.home.ClassDetailsActivity;
 import com.pinnoocle.storeman.home.OrderDetailsActivity;
 import com.pinnoocle.storeman.home.PaySuccessActivity;
+import com.pinnoocle.storeman.mine.LogisticsActivity;
 import com.pinnoocle.storeman.mine.TravelCardOrderDetailsActivity;
 import com.pinnoocle.storeman.nets.DataRepository;
 import com.pinnoocle.storeman.nets.Injection;
@@ -149,7 +150,14 @@ public class TravelCodeAllFragment extends Fragment implements TravelCodeOrderAd
                 startActivity(intent);
                 break;
             case R.id.tv_pay:
-                showCustomDialog(position);
+//                showCustomDialog(position);
+                buyPay(position);
+                break;
+            case R.id.tv_logistics:
+                Intent intent1 = new Intent(getActivity(), LogisticsActivity.class);
+                intent1.putExtra("order_id", dataBeanList.get(position).getOrder_id() + "");
+                intent1.putExtra("image", dataBeanList.get(position).getGoods().get(0).getImage().getFile_path());
+                startActivity(intent1);
                 break;
         }
     }
@@ -188,14 +196,10 @@ public class TravelCodeAllFragment extends Fragment implements TravelCodeOrderAd
     private void buyPay(int position) {
         ViewLoading.show(getContext());
         Map<String, String> map = new HashMap<>();
-        map.put("goods_id", dataBeanList.get(position).getGoods().get(0).getGoods_id() + "");
-        map.put("goods_num", dataBeanList.get(position).getGoods().get(0).getTotal_num()+"");
-        map.put("goods_sku_id", dataBeanList.get(position).getGoods().get(0).getSpec_sku_id());
-        map.put("wxapp_id", FastData.getWxAppId());
-        map.put("delivery", "10");
         map.put("shop_id", FastData.getShopId());
+        map.put("order_id", dataBeanList.get(position).getOrder_id() + "");
         map.put("pay_type", "30");
-        dataRepository.buyPay(map, new RemotDataSource.getCallback() {
+        dataRepository.pay(map, new RemotDataSource.getCallback() {
             @Override
             public void onFailure(String info) {
                 ViewLoading.dismiss(getActivity());

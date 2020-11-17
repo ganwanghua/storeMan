@@ -17,6 +17,8 @@ import com.pinnoocle.storeman.bean.PackageManagerBean;
 
 import java.util.List;
 
+import ch.ielse.view.SwitchView;
+
 
 /**
  * @author: xl
@@ -48,9 +50,11 @@ public class PackageManagementAdapter extends RecyclerView.Adapter<PackageManage
         if (mShowItems.get(position).getGoods_status().getValue() == 10) {
             holder.iv_type.setBackgroundResource(R.drawable.bg_package_manager_one);
             holder.tv_type.setText(mShowItems.get(position).getGoods_status().getText());
-        }else {
+//            holder.switch_button.setOpened(true);
+        } else {
             holder.iv_type.setBackgroundResource(R.drawable.bg_package_manager);
             holder.tv_type.setText(mShowItems.get(position).getGoods_status().getText());
+//            holder.switch_button.setOpened(false);
         }
         holder.tv_name.setText(mShowItems.get(position).getGoods_name());
         if (mShowItems.get(position).getIs_points_exchange() == 1) {
@@ -73,6 +77,21 @@ public class PackageManagementAdapter extends RecyclerView.Adapter<PackageManage
                 }
             }
         });
+//        holder.switch_button.setOnStateChangedListener(new SwitchView.OnStateChangedListener() {
+//            @Override
+//            public void toggleToOn(SwitchView view) {
+//                view.setOpened(true);
+//                if (mOnItemClickListener != null) {
+//                    mOnItemClickListener.onItemClicks(position, true);
+//                }
+//            }
+//
+//            @Override
+//            public void toggleToOff(SwitchView view) {
+//                view.setOpened(false);
+//                mOnItemClickListener.onItemClicks(position, false);
+//            }
+//        });
         holder.tv_purchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,6 +116,8 @@ public class PackageManagementAdapter extends RecyclerView.Adapter<PackageManage
     //**********************itemClick************************
     public interface OnItemClickListener {
         void onItemClick(int position, View v);
+
+//        void onItemClicks(int position,boolean v);
     }
 
     private OnItemClickListener mOnItemClickListener;
@@ -108,11 +129,13 @@ public class PackageManagementAdapter extends RecyclerView.Adapter<PackageManage
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView tv_type, tv_original_price, tv_concessional_rate, tv_name, tv_stock, tv_sales_volume,
-                tv_state, tv_purchase, tv_promotion_plan;
+                tv_purchase, tv_promotion_plan,tv_state;
         private final ImageView iv_picture, iv_type;
+        private SwitchView switch_button;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            tv_state = (TextView) itemView.findViewById(R.id.tv_state);
             iv_picture = (ImageView) itemView.findViewById(R.id.iv_picture);
             iv_type = (ImageView) itemView.findViewById(R.id.iv_type);
             tv_type = (TextView) itemView.findViewById(R.id.tv_type);
@@ -121,7 +144,7 @@ public class PackageManagementAdapter extends RecyclerView.Adapter<PackageManage
             tv_name = (TextView) itemView.findViewById(R.id.tv_name);
             tv_stock = (TextView) itemView.findViewById(R.id.tv_stock);
             tv_sales_volume = (TextView) itemView.findViewById(R.id.tv_sales_volume);
-            tv_state = (TextView) itemView.findViewById(R.id.tv_state);
+//            tv_state = (TextView) itemView.findViewById(R.id.tv_state);
             tv_purchase = (TextView) itemView.findViewById(R.id.tv_purchase);
             tv_promotion_plan = (TextView) itemView.findViewById(R.id.tv_promotion_plan);
         }

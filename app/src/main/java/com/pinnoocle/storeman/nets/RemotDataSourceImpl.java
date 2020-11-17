@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.pinnoocle.storeman.bean.AddressBean;
 import com.pinnoocle.storeman.bean.AliPayBean;
+import com.pinnoocle.storeman.bean.ApplyInfoBean;
 import com.pinnoocle.storeman.bean.ByNowClassBean;
 import com.pinnoocle.storeman.bean.ClassBean;
 import com.pinnoocle.storeman.bean.ClassDetailBean;
@@ -21,11 +22,15 @@ import com.pinnoocle.storeman.bean.PackageManagerBean;
 import com.pinnoocle.storeman.bean.PersonalBean;
 import com.pinnoocle.storeman.bean.QrCodeBean;
 import com.pinnoocle.storeman.bean.RefundBean;
+import com.pinnoocle.storeman.bean.SearchBean;
 import com.pinnoocle.storeman.bean.StatusBean;
+import com.pinnoocle.storeman.bean.TraceBean;
+import com.pinnoocle.storeman.bean.UploadModel;
 import com.pinnoocle.storeman.bean.UserManagerBean;
 
 import java.util.Map;
 
+import okhttp3.MultipartBody;
 import retrofit2.http.Path;
 import rx.Observable;
 import rx.Observer;
@@ -618,6 +623,160 @@ public class RemotDataSourceImpl implements RemotDataSource {
 
                     @Override
                     public void onNext(StatusBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void search(Map<String, String> queryMap, final getCallback callback) {
+        Observable<SearchBean> observable = RetrofitHelper.getInstance(mContext).getServer().search(queryMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<SearchBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(SearchBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void applyInfo(Map<String, String> queryMap, final getCallback callback) {
+        Observable<ApplyInfoBean> observable = RetrofitHelper.getInstance(mContext).getServer().applyInfo(queryMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ApplyInfoBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(ApplyInfoBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void pay(Map<String, String> queryMap, final getCallback callback) {
+        Observable<AliPayBean> observable = RetrofitHelper.getInstance(mContext).getServer().pay(queryMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<AliPayBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(AliPayBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void pays(Map<String, String> queryMap, final getCallback callback) {
+        Observable<AliPayBean> observable = RetrofitHelper.getInstance(mContext).getServer().pays(queryMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<AliPayBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(AliPayBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void upUserHead(Map<String, String> queryMap, MultipartBody.Part file, final getCallback callback) {
+        Observable<UploadModel> observable = RetrofitHelper.getInstance(mContext).getServer().upUserHead(queryMap, file);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<UploadModel>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(UploadModel s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void apply(Map<String, String> queryMap, final getCallback callback) {
+        Observable<StatusBean> observable = RetrofitHelper.getInstance(mContext).getServer().apply(queryMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<StatusBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(StatusBean s) { // 请求成功
+                        callback.onSuccess(s);
+                    }
+                });
+    }
+
+    @Override
+    public void express(Map<String, String> queryMap, final getCallback callback) {
+        Observable<TraceBean> observable = RetrofitHelper.getInstance(mContext).getServer().express(queryMap);
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<TraceBean>() {
+                    @Override
+                    public void onCompleted() { // 完成请求后
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) { // 异常处理
+                        callback.onFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(TraceBean s) { // 请求成功
                         callback.onSuccess(s);
                     }
                 });

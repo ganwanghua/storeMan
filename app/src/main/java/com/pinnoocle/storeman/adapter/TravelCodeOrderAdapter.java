@@ -105,6 +105,14 @@ public class TravelCodeOrderAdapter extends RecyclerView.Adapter<TravelCodeOrder
                 }
             }
         });
+        holder.tv_logistics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(position, v);
+                }
+            }
+        });
     }
 
     @Override

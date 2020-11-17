@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white1"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".login.LoginActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="商户入驻"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:src="@mipmap/goback" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="入驻协议"
+            android:textColor="#333333"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="尊敬的客户:\n在您投保之前，先请详细阅读本《入驻协议》：\n（一）在商户开始提供相关服务前，商户须按照乙方的要求提交经商户加盖公章确认的营业执照、税务登记证、商标注册证、授权书、服务说明材料等商户在众创空间企业服务平台开展相关服务所必须的资料，并向乙方提供联系人、电子邮件地址、联系电话、联系地址、邮政编码等联系信息。商户应确保前述资料和信息的真实、合法、准确、有效，同时商户应在上述资料实际变更时及时更新有资料，且不得以他人资料在众创空间企业服务平台进行注册。否则，乙方有权终止或解除本协议，且造成的一切后果由商户自行承担。\n\n（二）商户特别承诺遵守以下约定：\n\n1，商户保证其拥有向用户提供相关服务的合法资质，商户有义务保障其服务符合国家有关法律法规、行政规章的规定，不侵犯任何第三方的包括知识产权在内的合法权益且不违反任何对商户有约束力的法律文件。\n\n2，商户在众创空间企业服务平台向用户服务均为真实有效。如出现任何欺诈，乙方有权立即终止或解除本协议，并扣除商户的所有保证金，且保留追究其他相关法律责任的权利。"
+            android:textColor="#333333"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/iv_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:src="@mipmap/unselect" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我同意该协议"
+            android:textColor="#333333"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_buy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_blue_stroke"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+</LinearLayout>

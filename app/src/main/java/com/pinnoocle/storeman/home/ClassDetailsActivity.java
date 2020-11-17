@@ -127,7 +127,7 @@ public class ClassDetailsActivity extends BaseActivity {
                     tvName.setText(classDetailBean.getData().getDetail().getGoods_name());
                     tvMoneyOne.setText(classDetailBean.getData().getDetail().getGoods_sku().getGoods_price());
                     tvConcessionalRate.setText("¥" + classDetailBean.getData().getDetail().getGoods_sku().getLine_price());
-                    tvSalesVolume.setText("销量:" + classDetailBean.getData().getDetail().getGoods_sku().getStock_num());
+                    tvSalesVolume.setText("销量:" + classDetailBean.getData().getDetail().getGoods_sku().getGoods_sales());
 
                     List<String> titles = new ArrayList<>();
                     titles.add("课程介绍");
@@ -193,7 +193,8 @@ public class ClassDetailsActivity extends BaseActivity {
                                 if (Integer.parseInt(et_shop_num.getText().toString()) > classDetail.getGoods_sku().getStock_num()) {
                                     ToastUtils.showToast("您购买的数量超出库存总数！");
                                 } else {
-                                    showCustomDialog();
+//                                    showCustomDialog();
+                                    buyPay();
                                 }
                                 break;
                             case R.id.rl_shop_delete:

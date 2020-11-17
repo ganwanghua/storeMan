@@ -2,6 +2,8 @@ package com.pinnoocle.storeman.nets;
 
 import java.util.Map;
 
+import okhttp3.MultipartBody;
+
 /**
  * Created by whs on 2017/6/7
  */
@@ -61,6 +63,20 @@ public interface RemotDataSource {
     void delete(Map<String, String> queryMap, getCallback callback);
 
     void switchNotice(Map<String, String> queryMap, getCallback callback);
+
+    void search(Map<String, String> queryMap, getCallback callback);
+
+    void applyInfo(Map<String, String> queryMap, getCallback callback);
+
+    void pay(Map<String, String> queryMap, getCallback callback);
+
+    void pays(Map<String, String> queryMap, getCallback callback);
+
+    void apply(Map<String, String> queryMap, getCallback callback);
+
+    void express(Map<String, String> queryMap, getCallback callback);
+
+    void upUserHead(Map<String, String> queryMap, MultipartBody.Part file, getCallback callback);
 
     void classIndex(getCallback callback);
 

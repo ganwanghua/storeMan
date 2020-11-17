@@ -122,6 +122,15 @@ public class PackageManagementActivity extends BaseActivity implements PackageMa
         }
     }
 
+//    @Override
+//    public void onItemClicks(int position, boolean v) {
+//        if(v){
+//            goodsStatus("10", dataBeanList.get(position).getGoods_id());
+//        }else {
+//            goodsStatus("20", dataBeanList.get(position).getGoods_id());
+//        }
+//    }
+
     private void showStatus(int pos, String status, String value) {
         tDialog = new TDialog.Builder(getSupportFragmentManager())
                 .setLayoutRes(R.layout.dialog_status)
@@ -155,6 +164,7 @@ public class PackageManagementActivity extends BaseActivity implements PackageMa
     }
 
     private void goodsStatus(String value, int id) {
+        ViewLoading.show(this);
         Map<String, String> map = new HashMap<>();
         map.put("status", value);
         map.put("wxapp_id", FastData.getWxAppId());
@@ -163,10 +173,12 @@ public class PackageManagementActivity extends BaseActivity implements PackageMa
         dataRepository.goodsStatus(map, new RemotDataSource.getCallback() {
             @Override
             public void onFailure(String info) {
+                ViewLoading.show(PackageManagementActivity.this);
             }
 
             @Override
             public void onSuccess(Object data) {
+                ViewLoading.show(PackageManagementActivity.this);
                 StatusBean statusBean = (StatusBean) data;
                 if (statusBean.getCode() == 1) {
                     ToastUtils.showToast("修改成功");

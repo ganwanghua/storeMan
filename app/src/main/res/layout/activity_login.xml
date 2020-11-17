@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context=".login.LoginActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue">
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/blue"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingTop="60dp"
@@ -32,49 +34,29 @@
                 android:layout_height="wrap_content"
                 android:src="@mipmap/logo1" />
         </LinearLayout>
-    </RelativeLayout>
 
-    <EditText
-        android:id="@+id/et_phone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="40dp"
-        android:background="@drawable/bg_login"
-        android:hint="请输入手机号码"
-        android:inputType="phone"
-        android:maxLength="11"
-        android:padding="16dp"
-        android:textColorHint="#6B757A"
-        android:textSize="14sp" />
+        <com.androidkun.xtablayout.XTabLayout
+            android:id="@+id/xTablayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/blue"
+            android:overScrollMode="never"
+            app:xTabMode="fixed"
+            app:xTabSelectedTextColor="@color/white"
+            app:xTabSelectedTextSize="16sp"
+            app:xTabTextColor="#99ffffff"
+            app:xTabTextSelectedBold="true"
+            app:xTabTextSize="16sp" />
 
-    <EditText
-        android:id="@+id/et_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="40dp"
-        android:background="@drawable/bg_login"
-        android:hint="请输入密码"
-        android:inputType="textPassword"
-        android:padding="16dp"
-        android:textColorHint="#6B757A"
-        android:textSize="14sp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#E5E5E7" />
 
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="40dp"
-        android:background="@drawable/bg_login_one"
-        android:text="登录"
-        android:gravity="center"
-        android:paddingTop="15dp"
-        android:textColor="@color/white"
-        android:paddingBottom="15dp"
-        android:textSize="16sp" />
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never" />
+    </LinearLayout>
 </LinearLayout>
