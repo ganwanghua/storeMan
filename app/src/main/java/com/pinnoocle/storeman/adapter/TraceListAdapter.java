@@ -54,6 +54,7 @@ public class TraceListAdapter extends BaseAdapter {
             holder.tvAcceptTime = (TextView) convertView.findViewById(R.id.tvAcceptTime);
             holder.tvAcceptStation = (TextView) convertView.findViewById(R.id.tvAcceptStation);
             holder.tvTopLine = (TextView) convertView.findViewById(R.id.tvTopLine);
+            holder.tvStatus = (TextView) convertView.findViewById(R.id.tvStatus);
             holder.tvDot = (TextView) convertView.findViewById(R.id.tvDot);
             convertView.setTag(holder);
         }
@@ -61,18 +62,21 @@ public class TraceListAdapter extends BaseAdapter {
             // 第一行头的竖线不显示
             holder.tvTopLine.setVisibility(View.INVISIBLE);
             // 字体颜色加深
-            holder.tvAcceptTime.setTextColor(0xff999999);
-            holder.tvAcceptStation.setTextColor(0xff2463FF);
+            holder.tvStatus.setTextColor(0xff111111);
+            holder.tvAcceptTime.setTextColor(0xff111111);
+            holder.tvAcceptStation.setTextColor(0xff888888);
             holder.tvDot.setBackgroundResource(R.drawable.timelline_dot_first);
         } else if (getItemViewType(position) == TYPE_NORMAL) {
             holder.tvTopLine.setVisibility(View.VISIBLE);
-            holder.tvAcceptTime.setTextColor(0xff999999);
-            holder.tvAcceptStation.setTextColor(0xff555555);
+            holder.tvStatus.setTextColor(0xffA5A5A5);
+            holder.tvAcceptTime.setTextColor(0xffA5A5A5);
+            holder.tvAcceptStation.setTextColor(0xffA5A5A5);
             holder.tvDot.setBackgroundResource(R.drawable.timelline_dot_normal);
         }
 
-        holder.tvAcceptTime.setText(traceList.get(position).getTime());
-        holder.tvAcceptStation.setText(traceList.get(position).getContext());
+        holder.tvStatus.setText(traceList.get(position).getStatus());
+        holder.tvAcceptTime.setText(traceList.get(position).getContext());
+        holder.tvAcceptStation.setText(traceList.get(position).getTime());
         return convertView;
     }
 
@@ -86,6 +90,6 @@ public class TraceListAdapter extends BaseAdapter {
 
     static class ViewHolder {
         public TextView tvAcceptTime, tvAcceptStation;
-        public TextView tvTopLine, tvDot;
+        public TextView tvTopLine, tvDot,tvStatus;
     }
 }

@@ -190,6 +190,7 @@ public class TravelCardDetailsActivity extends BaseActivity {
                                     Intent intent = new Intent(TravelCardDetailsActivity.this, AcknowledgementOrderActivity.class);
                                     intent.putExtra("goods_id", classDetail.getGoods_id() + "");
                                     intent.putExtra("sku_id", classDetail.getGoods_sku().getSpec_sku_id());
+                                    intent.putExtra("num", et_shop_num.getText().toString());
                                     startActivity(intent);
                                 }
                                 tDialog.dismiss();

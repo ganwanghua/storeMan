@@ -104,6 +104,7 @@ public class AcknowledgementOrderActivity extends BaseActivity {
     ImageView ivSelect2;
     private DataRepository dataRepository;
     private static final int SDK_PAY_FLAG = 1;
+    private String num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,12 +114,17 @@ public class AcknowledgementOrderActivity extends BaseActivity {
         setContentView(R.layout.activity_acknowledgement_order);
         ButterKnife.bind(this);
         dataRepository = Injection.dataRepository(this);
+        if (getIntent().getStringExtra("num") != null) {
+            num = getIntent().getStringExtra("num");
+        }else {
+            num = "1";
+        }
         buyNow();
     }
 
 
     private void buyNow() {
-        dataRepository.buyNow("/shop/api.pay/buyNow", getIntent().getStringExtra("goods_id"), "1", getIntent().getStringExtra("sku_id"), FastData.getShopId(), new RemotDataSource.getCallback() {
+        dataRepository.buyNow("/shop/api.pay/buyNow", getIntent().getStringExtra("goods_id"), num, getIntent().getStringExtra("sku_id"), FastData.getShopId(), new RemotDataSource.getCallback() {
             @Override
             public void onFailure(String info) {
 

@@ -2,7 +2,6 @@ package com.pinnoocle.storeman.mine;
 
 import android.os.Bundle;
 import android.os.Trace;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.pinnoocle.storeman.R;
 import com.pinnoocle.storeman.adapter.TraceListAdapter;
-import com.pinnoocle.storeman.bean.MyClassBean;
 import com.pinnoocle.storeman.bean.TraceBean;
 import com.pinnoocle.storeman.common.BaseActivity;
 import com.pinnoocle.storeman.nets.DataRepository;
@@ -34,14 +32,20 @@ public class LogisticsActivity extends BaseActivity {
     ImageView ivBack;
     @BindView(R.id.rl_title)
     RelativeLayout rlTitle;
-    @BindView(R.id.iv_picture)
-    ImageView ivPicture;
     @BindView(R.id.tv_status)
     TextView tvStatus;
     @BindView(R.id.tv_logistics)
     TextView tvLogistics;
     @BindView(R.id.lvTrace)
     ListView lvTrace;
+    @BindView(R.id.iv_shop)
+    ImageView ivShop;
+    @BindView(R.id.tv_money)
+    TextView tvMoney;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView(R.id.tv_num)
+    TextView tvNum;
     private List<Trace> traceList = new ArrayList<>(10);
     private TraceListAdapter adapter;
     private DataRepository dataRepository;
@@ -76,9 +80,12 @@ public class LogisticsActivity extends BaseActivity {
                 TraceBean traceBean = (TraceBean) data;
                 if (traceBean.getCode() == 0) {
                     adapter.setData(traceBean.getData().getExpress().getList());
-                    Glide.with(LogisticsActivity.this).load(getIntent().getStringExtra("image")).centerCrop().into(ivPicture);
-                    tvStatus.setText(traceBean.getData().getExpress().getList().get(0).getStatus());
-                    tvLogistics.setText(traceBean.getData().getExpress().getExpress_name() + ": " + traceBean.getData().getExpress().getExpress_no());
+                    Glide.with(LogisticsActivity.this).load(getIntent().getStringExtra("image")).centerCrop().into(ivShop);
+                    tvTitle.setText(getIntent().getStringExtra("title"));
+                    tvMoney.setText(getIntent().getStringExtra("money"));
+                    tvNum.setText(getIntent().getStringExtra("num"));
+                    tvStatus.setText("物流公司：" + traceBean.getData().getExpress().getExpress_name());
+                    tvLogistics.setText("快递单号：" + traceBean.getData().getExpress().getExpress_no());
                 }
             }
         });

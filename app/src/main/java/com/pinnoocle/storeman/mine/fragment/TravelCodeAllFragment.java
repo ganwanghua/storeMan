@@ -157,6 +157,17 @@ public class TravelCodeAllFragment extends Fragment implements TravelCodeOrderAd
                 Intent intent1 = new Intent(getActivity(), LogisticsActivity.class);
                 intent1.putExtra("order_id", dataBeanList.get(position).getOrder_id() + "");
                 intent1.putExtra("image", dataBeanList.get(position).getGoods().get(0).getImage().getFile_path());
+                intent1.putExtra("title", dataBeanList.get(position).getGoods().get(0).getGoods_name());
+                if (dataBeanList.get(position).getPoints_exchange_num() > 0) {
+                    if (Double.parseDouble(dataBeanList.get(position).getGoods().get(0).getExchange_points_money()) > 0) {
+                        intent1.putExtra("money", dataBeanList.get(position).getGoods().get(0).getExchange_points_num() + "积分+¥" + dataBeanList.get(position).getGoods().get(0).getExchange_points_money());
+                    } else {
+                        intent1.putExtra("money", dataBeanList.get(position).getGoods().get(0).getExchange_points_num() + "积分");
+                    }
+                } else {
+                    intent1.putExtra("money", "¥" + dataBeanList.get(position).getGoods().get(0).getGoods_price());
+                }
+                intent1.putExtra("num", "x" + dataBeanList.get(position).getGoods().get(0).getTotal_num());
                 startActivity(intent1);
                 break;
         }
