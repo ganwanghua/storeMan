@@ -156,6 +156,7 @@
                             android:gravity="center_vertical">
 
                             <LinearLayout
+                                android:id="@+id/ll_wx_money"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -186,6 +187,7 @@
                                 android:background="#33ffffff" />
 
                             <LinearLayout
+                                android:id="@+id/ll_zfb_money"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -216,6 +218,7 @@
                                 android:background="#33ffffff" />
 
                             <LinearLayout
+                                android:id="@+id/ll_all_money"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"

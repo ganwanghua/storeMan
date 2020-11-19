@@ -70,7 +70,7 @@ public class TravelCodeOrderAdapter extends RecyclerView.Adapter<TravelCodeOrder
             holder.tv_evaluate.setVisibility(View.GONE);
         } else if (mShowItems.get(position).getState_text().equals("已付款，待发货")) {
             holder.tv_pay.setVisibility(View.GONE);
-            holder.tv_logistics.setVisibility(View.VISIBLE);
+            holder.tv_logistics.setVisibility(View.GONE);
             holder.tv_receipt_confirmation.setVisibility(View.GONE);
             holder.tv_evaluate.setVisibility(View.GONE);
         } else if (mShowItems.get(position).getState_text().equals("已发货，待收货")) {
@@ -87,7 +87,7 @@ public class TravelCodeOrderAdapter extends RecyclerView.Adapter<TravelCodeOrder
             holder.tv_pay.setVisibility(View.GONE);
             holder.tv_logistics.setVisibility(View.GONE);
             holder.tv_receipt_confirmation.setVisibility(View.GONE);
-            holder.tv_evaluate.setVisibility(View.VISIBLE);
+            holder.tv_evaluate.setVisibility(View.GONE);
         }
         holder.ll_order.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +106,22 @@ public class TravelCodeOrderAdapter extends RecyclerView.Adapter<TravelCodeOrder
             }
         });
         holder.tv_logistics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(position, v);
+                }
+            }
+        });
+        holder.tv_receipt_confirmation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(position, v);
+                }
+            }
+        });
+        holder.tv_evaluate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mOnItemClickListener != null) {

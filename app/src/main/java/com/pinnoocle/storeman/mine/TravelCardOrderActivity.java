@@ -17,6 +17,7 @@ import com.pinnoocle.storeman.home.fragment.CommentFragment;
 import com.pinnoocle.storeman.home.fragment.DeliveryFragment;
 import com.pinnoocle.storeman.home.fragment.PaymentFragment;
 import com.pinnoocle.storeman.home.fragment.ReceivedFragment;
+import com.pinnoocle.storeman.mine.fragment.TravelCardFragment;
 import com.pinnoocle.storeman.mine.fragment.TravelCodeAllFragment;
 import com.pinnoocle.storeman.util.StatusBarUtil;
 
@@ -56,7 +57,6 @@ public class TravelCardOrderActivity extends BaseActivity {
         titles.add("待发货");
         titles.add("待收货");
         titles.add("已完成");
-        titles.add("售后单");
         for (int i = 0; i < titles.size(); i++) {
             if (i == 0) {
                 fragments.add(new TravelCodeAllFragment("all"));
@@ -67,14 +67,12 @@ public class TravelCardOrderActivity extends BaseActivity {
             } else if (i == 3) {
                 fragments.add(new TravelCodeAllFragment("received"));
             } else if (i == 4) {
-                fragments.add(new TravelCodeAllFragment("comment"));
-            } else if (i == 5) {
-                fragments.add(new AfterSaleFragment());
+                fragments.add(new TravelCardFragment("comment"));
             }
         }
         FragmentAdapter adatper = new FragmentAdapter(getSupportFragmentManager(), fragments, titles);
         viewPager.setAdapter(adatper);
-        viewPager.setOffscreenPageLimit(6);
+        viewPager.setOffscreenPageLimit(5);
         //将TabLayout和ViewPager关联起来。
         xTablayout.setupWithViewPager(viewPager);
     }

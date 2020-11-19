@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alipay.sdk.app.PayTask;
+import com.bumptech.glide.Glide;
 import com.pedaily.yc.ycdialoglib.dialog.loading.ViewLoading;
 import com.pedaily.yc.ycdialoglib.dialog.select.CustomSelectDialog;
 import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
@@ -27,12 +29,15 @@ import com.pinnoocle.storeman.R;
 import com.pinnoocle.storeman.adapter.OrderAdapter;
 import com.pinnoocle.storeman.adapter.TravelCodeOrderAdapter;
 import com.pinnoocle.storeman.bean.AliPayBean;
+import com.pinnoocle.storeman.bean.ClassDetailBean;
 import com.pinnoocle.storeman.bean.MyClassBean;
 import com.pinnoocle.storeman.bean.OrderBean;
 import com.pinnoocle.storeman.bean.PayResult;
+import com.pinnoocle.storeman.bean.StatusBean;
 import com.pinnoocle.storeman.home.ClassDetailsActivity;
 import com.pinnoocle.storeman.home.OrderDetailsActivity;
 import com.pinnoocle.storeman.home.PaySuccessActivity;
+import com.pinnoocle.storeman.home.TravelCardDetailsActivity;
 import com.pinnoocle.storeman.mine.LogisticsActivity;
 import com.pinnoocle.storeman.mine.TravelCardOrderDetailsActivity;
 import com.pinnoocle.storeman.nets.DataRepository;
@@ -43,6 +48,10 @@ import com.pinnoocle.storeman.weight.CommItemDecoration;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -170,7 +179,35 @@ public class TravelCodeAllFragment extends Fragment implements TravelCodeOrderAd
                 intent1.putExtra("num", "x" + dataBeanList.get(position).getGoods().get(0).getTotal_num());
                 startActivity(intent1);
                 break;
+            case R.id.tv_receipt_confirmation:
+                receipt(dataBeanList.get(position).getOrder_id()+"");
+                break;
         }
+    }
+
+    private void receipt(String order_id) {
+        ViewLoading.show(getActivity());
+        Map<String, String> map = new HashMap<>();
+        map.put("order_id", order_id);
+        map.put("shop_id", FastData.getShopId());
+        dataRepository.receipt(map, new RemotDataSource.getCallback() {
+            @Override
+            public void onFailure(String info) {
+                ViewLoading.dismiss(getActivity());
+            }
+
+            @Override
+            public void onSuccess(Object data) {
+                ViewLoading.dismiss(getActivity());
+                StatusBean statusBean = (StatusBean) data;
+                if (statusBean.getCode() == 1) {
+                    page = 1;
+                    dataBeanList.clear();
+                    order(page);
+                    EventBus.getDefault().post("2");
+                }
+            }
+        });
     }
 
     private void showCustomDialog(int position) {

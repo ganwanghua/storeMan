@@ -64,7 +64,6 @@
             android:layout_below="@id/rl_code"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:text="老顾@微信.小程序..."
             android:textColor="@color/white"
             android:textSize="15sp" />
 
@@ -76,7 +75,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
-            android:text="139****0255"
             android:textColor="@color/white"
             android:textSize="12sp" />
     </RelativeLayout>

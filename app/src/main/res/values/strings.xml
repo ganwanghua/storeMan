@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">第玖生活</string>
+
+    <!--版本更新地址-->
+    <string name="versionurl">https://djsh.dijiushenghuo.com/assets/app/djsh.xml</string>
     <string name="serverhost">https://djsh.dijiushenghuo.com/</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

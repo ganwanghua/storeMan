@@ -19,6 +19,7 @@ import com.pinnoocle.storeman.bean.PackageManagerBean;
 import com.pinnoocle.storeman.bean.PersonalBean;
 import com.pinnoocle.storeman.bean.QrCodeBean;
 import com.pinnoocle.storeman.bean.RefundBean;
+import com.pinnoocle.storeman.bean.ScanBean;
 import com.pinnoocle.storeman.bean.SearchBean;
 import com.pinnoocle.storeman.bean.StatusBean;
 import com.pinnoocle.storeman.bean.TraceBean;
@@ -175,4 +176,12 @@ public interface RetrofitService {
     //物流信息
     @POST("index.php?s=/shop/api.user/express")
     Observable<TraceBean> express(@QueryMap Map<String, String> queryMap);
+
+    //扫码付款记录
+    @POST("index.php?s=/shop/api.order/ScanList")
+    Observable<ScanBean> ScanList(@QueryMap Map<String, String> queryMap);
+
+    //确认收货
+    @POST("index.php?s=/shop/api.user/receipt")
+    Observable<StatusBean> receipt(@QueryMap Map<String, String> queryMap);
 }

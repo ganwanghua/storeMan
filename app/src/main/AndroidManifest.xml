@@ -46,7 +46,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mine.LogisticsActivity"></activity>
+        <activity android:name=".home.PaymentRecordActivity"></activity>
+        <activity android:name=".mine.LogisticsActivity" />
         <activity android:name=".login.InformationActivity" />
         <activity android:name=".login.MerchantsEnteringActivity" />
         <activity android:name=".login.ApplyShopActivity" />

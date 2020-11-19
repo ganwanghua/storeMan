@@ -17,12 +17,14 @@ import com.pinnoocle.storeman.bean.StatusBean;
 import com.pinnoocle.storeman.common.AppManager;
 import com.pinnoocle.storeman.common.BaseActivity;
 import com.pinnoocle.storeman.home.fragment.HomeFragment;
+import com.pinnoocle.storeman.login.LoginActivity;
 import com.pinnoocle.storeman.mine.fragment.MyFragment;
 import com.pinnoocle.storeman.nets.DataRepository;
 import com.pinnoocle.storeman.nets.Injection;
 import com.pinnoocle.storeman.nets.RemotDataSource;
 import com.pinnoocle.storeman.util.FastData;
 import com.pinnoocle.storeman.util.StatusBarUtil;
+import com.titan.versionupdata.VersionUpdata;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
 import com.yzq.zxinglibrary.common.Constant;
@@ -82,6 +84,17 @@ public class MainActivity extends BaseActivity {
         fragments.add(new MyFragment());
         tabAdapter = new FragmentTabAdapter(this, fragments, R.id.fl_layout);
         initListener();
+        versionCheck();
+    }
+
+    private void versionCheck() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String url = getResources().getString(R.string.versionurl);
+                new VersionUpdata(MainActivity.this).checkVersion(url);
+            }
+        }).start();
     }
 
     @OnClick({R.id.ll_tab_one, R.id.ll_tab_two, R.id.ll_tab_three})

@@ -1,6 +1,9 @@
 package com.pinnoocle.storeman.mine;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -8,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
+import com.pinnoocle.storeman.MainActivity;
 import com.pinnoocle.storeman.R;
 import com.pinnoocle.storeman.bean.StatusBean;
 import com.pinnoocle.storeman.common.AppManager;
@@ -18,6 +22,7 @@ import com.pinnoocle.storeman.nets.Injection;
 import com.pinnoocle.storeman.nets.RemotDataSource;
 import com.pinnoocle.storeman.util.FastData;
 import com.pinnoocle.storeman.util.StatusBarUtil;
+import com.titan.versionupdata.VersionUpdata;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -43,6 +48,10 @@ public class SettingActivity extends BaseActivity {
     SwitchView switchButtonWxpay;
     @BindView(R.id.rl_assets)
     RelativeLayout rlAssets;
+    @BindView(R.id.tv_version)
+    TextView tvVersion;
+    @BindView(R.id.rl_version)
+    RelativeLayout rlVersion;
     private DataRepository dataRepository;
 
     @Override
@@ -77,6 +86,23 @@ public class SettingActivity extends BaseActivity {
                 setBroadcast();
             }
         });
+
+        tvVersion.setText(getPackageInfo(this).versionName);
+    }
+
+    /**
+     * 版本信息
+     */
+    private static PackageInfo getPackageInfo(Context context) {
+        PackageInfo pi = null;
+        try {
+            PackageManager pm = context.getPackageManager();
+            pi = pm.getPackageInfo(context.getPackageName(), PackageManager.GET_CONFIGURATIONS);
+            return pi;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return pi;
     }
 
     private void setBroadcast() {
@@ -107,7 +133,7 @@ public class SettingActivity extends BaseActivity {
         });
     }
 
-    @OnClick({R.id.iv_back, R.id.tv_quit})
+    @OnClick({R.id.iv_back, R.id.tv_quit,R.id.rl_version})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -120,6 +146,19 @@ public class SettingActivity extends BaseActivity {
                 startActivity(intent);
                 AppManager.getInstance().killAllActivity();
                 break;
+            case R.id.rl_version:
+                versionCheck();
+                break;
         }
+    }
+
+    private void versionCheck() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String url = getResources().getString(R.string.versionurl);
+                new VersionUpdata(SettingActivity.this).checkVersion(url);
+            }
+        }).start();
     }
 }

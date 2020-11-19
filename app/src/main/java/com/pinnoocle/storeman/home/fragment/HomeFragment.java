@@ -31,6 +31,7 @@ import com.pinnoocle.storeman.home.ClassDetailsActivity;
 import com.pinnoocle.storeman.home.CollectionCodeActivity;
 import com.pinnoocle.storeman.home.OrderActivity;
 import com.pinnoocle.storeman.home.PackageManagementActivity;
+import com.pinnoocle.storeman.home.PaymentRecordActivity;
 import com.pinnoocle.storeman.home.TravelCardActivity;
 import com.pinnoocle.storeman.home.TravelCardDetailsActivity;
 import com.pinnoocle.storeman.home.UserManagementActivity;
@@ -65,9 +66,9 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
     private SimpleAdapter sim_adapter;
     private ArrayList<Map<String, Object>> data_list;
     private DataRepository dataRepository;
-    private TextView tv_store_name,tv_achievement, tv_total_money, tv_wxPay_money, tv_aliPay_money, tv_balancePay_money, tv_pay_num, tv_indent_num, tv_indfh_num, tv_zt_num;
+    private TextView tv_store_name, tv_achievement, tv_total_money, tv_wxPay_money, tv_aliPay_money, tv_balancePay_money, tv_pay_num, tv_indent_num, tv_indfh_num, tv_zt_num;
     private SmartRefreshLayout refreshLayout;
-//    private PowerSpinnerView powerSpinnerView;
+    //    private PowerSpinnerView powerSpinnerView;
     private int position;
     private RecyclerView recyclerView, recyclerView1;
     private ClassAdapter classAdapter;
@@ -75,7 +76,7 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
     private List<String> dataList = new ArrayList<>();
     private List<HomeModel.DataBean.ClassBean> dataBeanList = new ArrayList<>();
     private List<HomeModel.DataBean.TravelBean> travelBeans = new ArrayList<>();
-    private LinearLayout ll_class_more, ll_travel_card_more,ll_achievement;
+    private LinearLayout ll_class_more, ll_travel_card_more, ll_achievement, ll_wx_money, ll_zfb_money, ll_all_money;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -113,10 +114,16 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
         ll_class_more = v.findViewById(R.id.ll_class_more);
         ll_travel_card_more = v.findViewById(R.id.ll_travel_card_more);
         ll_achievement = v.findViewById(R.id.ll_achievement);
+        ll_wx_money = v.findViewById(R.id.ll_wx_money);
+        ll_zfb_money = v.findViewById(R.id.ll_zfb_money);
+        ll_all_money = v.findViewById(R.id.ll_all_money);
 
         ll_class_more.setOnClickListener(this);
         ll_travel_card_more.setOnClickListener(this);
         ll_achievement.setOnClickListener(this);
+        ll_wx_money.setOnClickListener(this);
+        ll_zfb_money.setOnClickListener(this);
+        ll_all_money.setOnClickListener(this);
         tv_store_name.setText(FastData.getStoreName());
         grid();
         home("day");
@@ -269,6 +276,21 @@ public class HomeFragment extends Fragment implements OnRefreshListener, Adapter
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.ll_wx_money:
+                Intent intent = new Intent(getActivity(), PaymentRecordActivity.class);
+                intent.putExtra("pos",2);
+                startActivity(intent);
+                break;
+            case R.id.ll_zfb_money:
+                Intent intent1 = new Intent(getActivity(), PaymentRecordActivity.class);
+                intent1.putExtra("pos",3);
+                startActivity(intent1);
+                break;
+            case R.id.ll_all_money:
+                Intent intent2 = new Intent(getActivity(), PaymentRecordActivity.class);
+                intent2.putExtra("pos",1);
+                startActivity(intent2);
+                break;
             case R.id.ll_class_more:
                 ActivityUtils.startActivity(getActivity(), ClassActivity.class);
                 break;

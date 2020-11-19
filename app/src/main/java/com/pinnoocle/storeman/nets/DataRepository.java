@@ -181,6 +181,16 @@ public class DataRepository implements RemotDataSource {
     }
 
     @Override
+    public void ScanList(Map<String, String> queryMap, getCallback callback) {
+        mRemoteDataSource.ScanList(queryMap, callback);
+    }
+
+    @Override
+    public void receipt(Map<String, String> queryMap, getCallback callback) {
+        mRemoteDataSource.receipt(queryMap, callback);
+    }
+
+    @Override
     public void upUserHead(Map<String, String> queryMap, MultipartBody.Part file, getCallback callback) {
         mRemoteDataSource.upUserHead(queryMap, file, callback);
     }

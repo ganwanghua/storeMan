@@ -76,6 +76,10 @@ public interface RemotDataSource {
 
     void express(Map<String, String> queryMap, getCallback callback);
 
+    void ScanList(Map<String, String> queryMap, getCallback callback);
+
+    void receipt(Map<String, String> queryMap, getCallback callback);
+
     void upUserHead(Map<String, String> queryMap, MultipartBody.Part file, getCallback callback);
 
     void classIndex(getCallback callback);
