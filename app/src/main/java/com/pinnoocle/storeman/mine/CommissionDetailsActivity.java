@@ -1,5 +1,6 @@
 package com.pinnoocle.storeman.mine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,6 +26,9 @@ import com.pinnoocle.storeman.nets.Injection;
 import com.pinnoocle.storeman.nets.RemotDataSource;
 import com.pinnoocle.storeman.util.FastData;
 import com.pinnoocle.storeman.util.StatusBarUtil;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -64,6 +68,7 @@ public class CommissionDetailsActivity extends BaseActivity {
     private CommissionAdapter commissionAdapter;
     private Calendar selectedDate;
     private List<CommissionBean.DataBeanX.ListBean.DataBean> dataBeanList = new ArrayList<>();
+    private CommissionBean commissionBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +78,15 @@ public class CommissionDetailsActivity extends BaseActivity {
         setContentView(R.layout.activity_commission_details);
         ButterKnife.bind(this);
         initView();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, priority = 100, sticky = false) //在ui线程执行，优先级为100
+    public void onEvent(String message) {
+        if (message.equals("3")) {
+            Date date = new Date(System.currentTimeMillis());
+            SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM");
+            commission(simpleDateFormat1.format(date));
+        }
     }
 
     private void initView() {
@@ -105,7 +119,7 @@ public class CommissionDetailsActivity extends BaseActivity {
             @Override
             public void onSuccess(Object data) {
                 ViewLoading.dismiss(CommissionDetailsActivity.this);
-                CommissionBean commissionBean = (CommissionBean) data;
+                commissionBean = (CommissionBean) data;
                 if (commissionBean.getCode() == 1) {
                     tvAliPayMoney.setText("¥" + commissionBean.getData().getCount().getTotal());
                     tvBalancePayMoney.setText("¥" + commissionBean.getData().getCount().getMonth_total());
@@ -124,6 +138,9 @@ public class CommissionDetailsActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_withdrawal:
+                Intent intent = new Intent(this, CommissionWithdrawalActivity.class);
+                intent.putExtra("money", commissionBean.getData().getCount().getTotal() + "");
+                startActivity(intent);
                 break;
             case R.id.tv_time:
                 Calendar startDate = Calendar.getInstance();

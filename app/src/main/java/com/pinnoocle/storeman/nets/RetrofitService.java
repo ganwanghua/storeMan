@@ -188,4 +188,8 @@ public interface RetrofitService {
     //绑定imei
     @POST("index.php?s=/shop/api.index/updateImei")
     Observable<StatusBean> updateImei(@QueryMap Map<String, String> queryMap);
+
+    //绑定imei
+    @POST("index.php?s=/shop/api.index/withdraw")
+    Observable<StatusBean> withdraw(@QueryMap Map<String, String> queryMap);
 }

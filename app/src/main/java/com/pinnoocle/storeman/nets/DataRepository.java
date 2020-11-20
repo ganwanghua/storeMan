@@ -196,6 +196,11 @@ public class DataRepository implements RemotDataSource {
     }
 
     @Override
+    public void withdraw(Map<String, String> queryMap, getCallback callback) {
+        mRemoteDataSource.withdraw(queryMap, callback);
+    }
+
+    @Override
     public void upUserHead(Map<String, String> queryMap, MultipartBody.Part file, getCallback callback) {
         mRemoteDataSource.upUserHead(queryMap, file, callback);
     }

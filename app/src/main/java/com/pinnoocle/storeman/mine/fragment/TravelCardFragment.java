@@ -1,5 +1,6 @@
 package com.pinnoocle.storeman.mine.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.pinnoocle.storeman.R;
 import com.pinnoocle.storeman.adapter.TravelCodeOrderAdapter;
 import com.pinnoocle.storeman.bean.MyClassBean;
+import com.pinnoocle.storeman.mine.TravelCardOrderDetailsActivity;
 import com.pinnoocle.storeman.nets.DataRepository;
 import com.pinnoocle.storeman.nets.Injection;
 import com.pinnoocle.storeman.nets.RemotDataSource;
@@ -144,6 +146,8 @@ public class TravelCardFragment extends Fragment implements OnRefreshLoadMoreLis
 
     @Override
     public void onItemClick(int position, View v) {
-
+        Intent intent = new Intent(getActivity(), TravelCardOrderDetailsActivity.class);
+        intent.putExtra("order_id", dataBeanList.get(position).getOrder_id() + "");
+        startActivity(intent);
     }
 }
