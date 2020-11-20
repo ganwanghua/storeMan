@@ -80,6 +80,8 @@ public interface RemotDataSource {
 
     void receipt(Map<String, String> queryMap, getCallback callback);
 
+    void updateImei(Map<String, String> queryMap, getCallback callback);
+
     void upUserHead(Map<String, String> queryMap, MultipartBody.Part file, getCallback callback);
 
     void classIndex(getCallback callback);

@@ -20,6 +20,15 @@ public class FastData extends Remember {
         return remember;
     }
 
+    //绑定imei
+    public static void setIMei(String imei) {
+        putString("imei", imei);
+    }
+
+    public static String getIMei() {
+        return getString("imei", "");
+    }
+
     //首次登录
     public static void setFirstLogin(String firstLogin) {
         putString("firstLogin", firstLogin);

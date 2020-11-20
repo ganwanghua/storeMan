@@ -191,6 +191,11 @@ public class DataRepository implements RemotDataSource {
     }
 
     @Override
+    public void updateImei(Map<String, String> queryMap, getCallback callback) {
+        mRemoteDataSource.updateImei(queryMap, callback);
+    }
+
+    @Override
     public void upUserHead(Map<String, String> queryMap, MultipartBody.Part file, getCallback callback) {
         mRemoteDataSource.upUserHead(queryMap, file, callback);
     }

@@ -5,13 +5,16 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Looper;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
-import com.pinnoocle.storeman.MainActivity;
 import com.pinnoocle.storeman.R;
 import com.pinnoocle.storeman.bean.StatusBean;
 import com.pinnoocle.storeman.common.AppManager;
@@ -22,6 +25,10 @@ import com.pinnoocle.storeman.nets.Injection;
 import com.pinnoocle.storeman.nets.RemotDataSource;
 import com.pinnoocle.storeman.util.FastData;
 import com.pinnoocle.storeman.util.StatusBarUtil;
+import com.timmy.tdialog.TDialog;
+import com.timmy.tdialog.base.BindViewHolder;
+import com.timmy.tdialog.listener.OnBindViewListener;
+import com.timmy.tdialog.listener.OnViewClickListener;
 import com.titan.versionupdata.VersionUpdata;
 
 import org.greenrobot.eventbus.EventBus;
@@ -52,7 +59,16 @@ public class SettingActivity extends BaseActivity {
     TextView tvVersion;
     @BindView(R.id.rl_version)
     RelativeLayout rlVersion;
+    @BindView(R.id.view)
+    View view;
+    @BindView(R.id.tv_bind)
+    TextView tvBind;
+    @BindView(R.id.iv_right)
+    ImageView ivRight;
+    @BindView(R.id.ll_bind)
+    LinearLayout llBind;
     private DataRepository dataRepository;
+    private EditText ed_imei;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +83,15 @@ public class SettingActivity extends BaseActivity {
 
     private void initView() {
         dataRepository = Injection.dataRepository(this);
+        if (FastData.getIMei().equals("")) {
+            tvBind.setText("去绑定");
+            ivRight.setVisibility(View.VISIBLE);
+            llBind.setEnabled(true);
+        } else {
+            tvBind.setText("已绑定");
+            ivRight.setVisibility(View.GONE);
+            llBind.setEnabled(false);
+        }
         if (FastData.getCan_notice().equals("1")) {
             switchButtonWxpay.setOpened(true);
         } else {
@@ -133,7 +158,7 @@ public class SettingActivity extends BaseActivity {
         });
     }
 
-    @OnClick({R.id.iv_back, R.id.tv_quit,R.id.rl_version})
+    @OnClick({R.id.iv_back, R.id.tv_quit, R.id.rl_version, R.id.ll_bind})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -149,7 +174,68 @@ public class SettingActivity extends BaseActivity {
             case R.id.rl_version:
                 versionCheck();
                 break;
+            case R.id.ll_bind:
+                showImei();
+                break;
         }
+    }
+
+    private void showImei() {
+        new TDialog.Builder(getSupportFragmentManager())
+                .setLayoutRes(R.layout.dialog_imei)
+                .setScreenWidthAspect(this, 0.7f)
+                .setGravity(Gravity.CENTER)
+                .setCancelableOutside(false)
+                .addOnClickListener(R.id.ed_imei, R.id.tv_quit, R.id.tv_cancel)
+                .setOnBindViewListener(new OnBindViewListener() {
+                    @Override
+                    public void bindView(BindViewHolder viewHolder) {
+                        ed_imei = viewHolder.itemView.findViewById(R.id.ed_imei);
+                    }
+                })
+                .setOnViewClickListener(new OnViewClickListener() {
+                    @Override
+                    public void onViewClick(BindViewHolder viewHolder, View view, TDialog tDialog) {
+                        switch (view.getId()) {
+                            case R.id.tv_quit:
+                                if (ed_imei.getText().toString().length() > 0) {
+                                    updateImei();
+                                    tDialog.dismiss();
+                                } else {
+                                    ToastUtils.showToast("请输入IMei号");
+                                }
+                                break;
+                            case R.id.tv_cancel:
+                                tDialog.dismiss();
+                                break;
+                        }
+                    }
+                })
+                .create()
+                .show();
+    }
+
+    private void updateImei() {
+        Map<String, String> map = new HashMap<>();
+        map.put("shop_id", FastData.getShopId());
+        map.put("imei", ed_imei.getText().toString());
+        dataRepository.updateImei(map, new RemotDataSource.getCallback() {
+            @Override
+            public void onFailure(String info) {
+            }
+
+            @Override
+            public void onSuccess(Object data) {
+                StatusBean statusBean = (StatusBean) data;
+                if (statusBean.getCode() == 1) {
+                    FastData.setIMei("已绑定");
+                    tvBind.setText("已绑定");
+                    ivRight.setVisibility(View.GONE);
+                } else {
+                    ToastUtils.showToast(statusBean.getMsg());
+                }
+            }
+        });
     }
 
     private void versionCheck() {
@@ -157,7 +243,12 @@ public class SettingActivity extends BaseActivity {
             @Override
             public void run() {
                 String url = getResources().getString(R.string.versionurl);
-                new VersionUpdata(SettingActivity.this).checkVersion(url);
+                boolean flag = new VersionUpdata(SettingActivity.this).checkVersion(url);
+                if (!flag) {
+                    Looper.prepare();
+                    ToastUtils.showToast("当前版本已是最新版本");
+                    Looper.loop();
+                }
             }
         }).start();
     }

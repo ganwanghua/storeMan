@@ -184,4 +184,8 @@ public interface RetrofitService {
     //确认收货
     @POST("index.php?s=/shop/api.user/receipt")
     Observable<StatusBean> receipt(@QueryMap Map<String, String> queryMap);
+
+    //绑定imei
+    @POST("index.php?s=/shop/api.index/updateImei")
+    Observable<StatusBean> updateImei(@QueryMap Map<String, String> queryMap);
 }
