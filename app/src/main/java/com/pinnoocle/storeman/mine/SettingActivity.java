@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -15,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
+import com.pinnoocle.storeman.MainActivity;
 import com.pinnoocle.storeman.R;
 import com.pinnoocle.storeman.bean.StatusBean;
 import com.pinnoocle.storeman.common.AppManager;
@@ -239,17 +242,24 @@ public class SettingActivity extends BaseActivity {
     }
 
     private void versionCheck() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String url = getResources().getString(R.string.versionurl);
-                boolean flag = new VersionUpdata(SettingActivity.this).checkVersion(url);
-                if (!flag) {
-                    Looper.prepare();
-                    ToastUtils.showToast("当前版本已是最新版本");
-                    Looper.loop();
-                }
-            }
-        }).start();
+        Message msg = new Message();
+        msg.what = 1;
+        handler.sendMessage(msg);
     }
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 1:
+                    String url = getResources().getString(R.string.versionurl);
+                    boolean flag = new VersionUpdata(SettingActivity.this).checkVersion(url);
+                    if (!flag) {
+                        ToastUtils.showToast("当前版本已是最新版本");
+                    }
+                    break;
+            }
+        }
+    };
 }

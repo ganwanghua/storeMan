@@ -2,6 +2,8 @@ package com.pinnoocle.storeman;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -18,6 +20,7 @@ import com.pinnoocle.storeman.common.AppManager;
 import com.pinnoocle.storeman.common.BaseActivity;
 import com.pinnoocle.storeman.home.fragment.HomeFragment;
 import com.pinnoocle.storeman.login.LoginActivity;
+import com.pinnoocle.storeman.mine.SettingActivity;
 import com.pinnoocle.storeman.mine.fragment.MyFragment;
 import com.pinnoocle.storeman.nets.DataRepository;
 import com.pinnoocle.storeman.nets.Injection;
@@ -88,14 +91,23 @@ public class MainActivity extends BaseActivity {
     }
 
     private void versionCheck() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String url = getResources().getString(R.string.versionurl);
-                new VersionUpdata(MainActivity.this).checkVersion(url);
-            }
-        }).start();
+        Message msg = new Message();
+        msg.what = 1;
+        handler.sendMessage(msg);
     }
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 1:
+                    String url = getResources().getString(R.string.versionurl);
+                    new VersionUpdata(MainActivity.this).checkVersion(url);
+                    break;
+            }
+        }
+    };
 
     @OnClick({R.id.ll_tab_one, R.id.ll_tab_two, R.id.ll_tab_three})
     public void onViewClicked(View view) {
